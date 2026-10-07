@@ -2476,9 +2476,9 @@
         .hero-photo-frame {
             position: relative;
             width: 100%;
-            max-width: 370px;
-            height: 450px;
-            border-radius: 28px;
+            max-width: 450px;
+            height: 530px;
+            border-radius: 32px;
             background: transparent;
             border: none;
             box-shadow: none;
@@ -2500,28 +2500,28 @@
             object-fit: cover;
             object-position: center top;
             display: block;
-            border-radius: 28px;
+            border-radius: 32px;
             transform: none !important;
             transition: none !important;
-            filter: drop-shadow(0 8px 20px rgba(0, 0, 0, 0.12));
+            filter: drop-shadow(0 10px 24px rgba(0, 0, 0, 0.14));
         }
 
         .hero-photo-line-svg {
             position: absolute;
-            inset: -45px;
-            width: calc(100% + 90px);
-            height: calc(100% + 90px);
+            inset: -90px;
+            width: calc(100% + 180px);
+            height: calc(100% + 180px);
             z-index: -1;
             pointer-events: none;
             overflow: visible;
         }
 
         .draw-line-path {
-            animation: drawLineProgress 2.8s cubic-bezier(0.22, 1, 0.36, 1) 0.3s forwards;
+            animation: drawLineProgress 3.2s cubic-bezier(0.22, 1, 0.36, 1) 0.3s forwards;
         }
 
         .draw-line-path-delay {
-            animation: drawLineProgress 3.2s cubic-bezier(0.22, 1, 0.36, 1) 0.7s forwards;
+            animation: drawLineProgress 3.8s cubic-bezier(0.22, 1, 0.36, 1) 0.7s forwards;
         }
 
         @keyframes drawLineProgress {
@@ -3678,13 +3678,13 @@
 
                         <div class="hero-photo-clean" id="hero-photo-el">
                             <div class="hero-photo-frame">
-                                <svg class="hero-photo-line-svg" viewBox="0 0 500 580" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-                                    <path d="M 30 520 C 10 380, 40 220, 140 120 C 240 20, 410 40, 460 170 C 510 300, 390 490, 240 520 C 120 540, 40 440, 130 330 C 200 240, 380 210, 470 290"
-                                          stroke="var(--ink)" stroke-width="2.5" stroke-opacity="0.35" stroke-linecap="round"
-                                          stroke-dasharray="2200" stroke-dashoffset="2200" class="draw-line-path" />
-                                    <path d="M -10 180 C 110 90, 290 140, 360 40 C 430 -60, 510 90, 450 260 C 390 430, 190 480, 50 410"
+                                <svg class="hero-photo-line-svg" viewBox="0 0 700 760" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                                    <path d="M 20 680 C -40 480, 40 240, 180 100 C 320 -40, 560 20, 640 180 C 720 340, 620 620, 440 680 C 260 740, 80 620, 140 440 C 200 260, 480 220, 660 360 C 720 440, 680 580, 540 640"
+                                          stroke="var(--ink)" stroke-width="2.5" stroke-opacity="0.32" stroke-linecap="round"
+                                          stroke-dasharray="3400" stroke-dashoffset="3400" class="draw-line-path" />
+                                    <path d="M 680 80 C 500 20, 260 140, 140 320 C 20 500, 120 700, 360 720 C 600 740, 720 520, 580 340 C 440 160, 200 280, 60 480"
                                           stroke="var(--lilac-primary)" stroke-width="2" stroke-opacity="0.55" stroke-linecap="round"
-                                          stroke-dasharray="1800" stroke-dashoffset="1800" class="draw-line-path-delay" />
+                                          stroke-dasharray="2800" stroke-dashoffset="2800" class="draw-line-path-delay" />
                                 </svg>
                                 <img id="me" src="img_web/irene_avatar.png"
                                     onerror="this.onerror=null;this.src='irene_avatar.png'" alt="Irene Puche Armero"
