@@ -3017,33 +3017,18 @@
             border-radius: 50%;
             position: relative;
             text-decoration: none;
-            cursor: none !important;
-            transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.3s ease, opacity 0.3s ease;
+            cursor: pointer;
+            transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.3s ease, opacity 0.3s ease, background 0.3s ease;
             opacity: 0.45;
-            background: var(--nav-dot-color, var(--lilac-primary));
-        }
-
-        .side-nav-item[data-section="hero-stage"] {
-            --nav-dot-color: #9d72ff;
-        }
-
-        .side-nav-item[data-section="proj"] {
-            --nav-dot-color: #ff6584;
-        }
-
-        .side-nav-item[data-section="photo"] {
-            --nav-dot-color: #38bdf8;
-        }
-
-        .side-nav-item[data-section="figs"] {
-            --nav-dot-color: #34d399;
+            background: var(--lilac-primary);
         }
 
         .side-nav-item:hover,
         .side-nav-item.active {
             opacity: 1;
             transform: scale(1.35);
-            box-shadow: 0 0 12px var(--nav-dot-color);
+            background: var(--lilac-primary);
+            box-shadow: 0 0 14px var(--lilac-primary);
         }
 
         .side-nav-item.active::after {
@@ -3054,8 +3039,8 @@
             right: -4px;
             bottom: -4px;
             border-radius: 50%;
-            border: 2px solid var(--nav-dot-color);
-            opacity: 0.8;
+            border: 2px solid var(--lilac-primary);
+            opacity: 0.85;
         }
 
         .side-nav-item::before {
@@ -3598,9 +3583,9 @@
 
     <!-- VERTICAL SIDE NAVIGATION -->
     <nav class="side-nav" id="sideNav">
-        <span class="side-nav-logo">IP</span>
+        <a href="#top" class="side-nav-logo" aria-label="Inicio">IP</a>
         <div class="side-nav-items">
-            <a href="#hero-stage" class="side-nav-item active" data-section="hero-stage" data-tooltip="Inicio"
+            <a href="#top" class="side-nav-item active" data-section="hero-stage" data-tooltip="Inicio"
                 aria-label="Inicio"></a>
             <a href="#proj" class="side-nav-item" data-section="proj" data-tooltip="Proyectos"
                 aria-label="Proyectos"></a>
@@ -3618,7 +3603,7 @@
     <!-- Header Bar -->
     <header>
         <div class="wrap" style="display:flex; align-items:center; justify-content:space-between; gap:20px;">
-            <a href="#"
+            <a href="#top"
                 style="font-family: var(--font-serif); font-size: 1.25rem; font-style: italic; font-weight: 700; color: var(--ink); text-decoration: none; display:flex; align-items:center;">
                 Irene Puche <span
                     style="font-family: var(--font-sans); font-size:0.75rem; font-style:normal; font-weight:700; color:var(--lilac-primary); text-transform:uppercase; margin-left:8px; letter-spacing:0.06em;">✦
@@ -3627,7 +3612,7 @@
 
             <nav style="display:flex; align-items:center; gap:24px;">
                 <div class="nav-links">
-                    <a href="#" class="nav-link-item">Inicio</a>
+                    <a href="#top" class="nav-link-item">Inicio</a>
                     <a href="#proj" class="nav-link-item">Proyectos</a>
                     <a href="#photo" class="nav-link-item">Fotografía</a>
                     <a href="#figs" class="nav-link-item">Impresión 3D</a>
@@ -5671,6 +5656,14 @@
             sectionIds.forEach(function (id) {
                 var el = document.getElementById(id);
                 if (el) observer.observe(el);
+            });
+
+            /* Ensure clicking Inicio scrolls smoothly to top of portfolio hero page */
+            document.querySelectorAll('a[href="#top"], a[data-section="hero-stage"]').forEach(function (btn) {
+                btn.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    window.scrollTo({ top: 0, behavior: 'smooth' });
+                });
             });
 
             /* Wire side nav buttons to match header functionality */
