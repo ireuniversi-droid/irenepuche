@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
+    <path d="M30 25 a15 15 0 0 1 15 -15 h20 v30 h-20 a15 15 0 0 1 -15 -15 z" fill="#f24e1e"/>
+    <path d="M50 10 h20 a15 15 0 1 1 0 30 h-20 z" fill="#ff7262"/>
+    <path d="M50 40 h20 a15 15 0 1 1 0 30 h-20 z" fill="#1abcfe"/>
+    <path d="M30 85 a15 15 0 0 1 15 -15 h20 v15 a15 15 0 1 1 -35 0 z" fill="#0acf83"/>
+    <path d="M30 55 a15 15 0 0 1 15 -15 h20 v30 h-20 a15 15 0 0 1 -15 -15 z" fill="#a259ff"/>
+</svg>
