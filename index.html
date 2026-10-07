@@ -2462,7 +2462,7 @@
             background: var(--lilac-primary);
         }
 
-        /* === HERO PHOTO FRAMED & SQUARED === */
+        /* === HERO PHOTO CLEAN & PROGRESSIVE LINE === */
         .hero-photo-clean {
             position: relative;
             z-index: 2;
@@ -2479,19 +2479,19 @@
             max-width: 370px;
             height: 450px;
             border-radius: 28px;
-            background: linear-gradient(155deg, color-mix(in srgb, var(--lilac-primary) 18%, var(--surf)), color-mix(in srgb, var(--lilac-soft) 45%, var(--bg)));
-            border: 1.5px solid color-mix(in srgb, var(--lilac-primary) 35%, var(--line));
-            box-shadow: 0 16px 40px rgba(157, 114, 255, 0.18), 0 0 25px var(--lilac-glow);
-            overflow: hidden;
+            background: transparent;
+            border: none;
+            box-shadow: none;
+            overflow: visible;
             display: flex;
             align-items: flex-end;
             justify-content: center;
-            transition: transform 0.4s ease, box-shadow 0.4s ease;
+            transition: none;
         }
 
         .hero-photo-frame:hover {
-            transform: translateY(-4px);
-            box-shadow: 0 22px 50px rgba(157, 114, 255, 0.28), 0 0 35px var(--lilac-glow);
+            transform: none !important;
+            box-shadow: none !important;
         }
 
         .hero-photo-frame img {
@@ -2500,9 +2500,34 @@
             object-fit: cover;
             object-position: center top;
             display: block;
-            border-radius: inherit;
-            filter: drop-shadow(0 8px 16px rgba(0, 0, 0, 0.15));
-            will-change: transform;
+            border-radius: 28px;
+            transform: none !important;
+            transition: none !important;
+            filter: drop-shadow(0 8px 20px rgba(0, 0, 0, 0.12));
+        }
+
+        .hero-photo-line-svg {
+            position: absolute;
+            inset: -14px;
+            width: calc(100% + 28px);
+            height: calc(100% + 28px);
+            z-index: -1;
+            pointer-events: none;
+            overflow: visible;
+        }
+
+        .draw-line-path {
+            animation: drawLineProgress 2.2s cubic-bezier(0.16, 1, 0.3, 1) 0.3s forwards;
+        }
+
+        .draw-line-path-delay {
+            animation: drawLineProgress 2.6s cubic-bezier(0.16, 1, 0.3, 1) 0.8s forwards;
+        }
+
+        @keyframes drawLineProgress {
+            to {
+                stroke-dashoffset: 0;
+            }
         }
 
         /* === SECTION REVEAL TRANSITION === */
@@ -3653,7 +3678,10 @@
 
                         <div class="hero-photo-clean" id="hero-photo-el">
                             <div class="hero-photo-frame">
-                                <div class="hero-halo" id="heroHalo"></div>
+                                <svg class="hero-photo-line-svg" viewBox="0 0 398 478" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                                    <rect x="14" y="14" width="370" height="450" rx="28" stroke="var(--ink)" stroke-width="2" stroke-opacity="0.35" stroke-dasharray="1650" stroke-dashoffset="1650" class="draw-line-path" />
+                                    <line x1="-15" y1="360" x2="415" y2="360" stroke="var(--lilac-primary)" stroke-width="1.5" stroke-opacity="0.6" stroke-dasharray="450" stroke-dashoffset="450" class="draw-line-path-delay" />
+                                </svg>
                                 <img id="me" src="img_web/irene_avatar.png"
                                     onerror="this.onerror=null;this.src='irene_avatar.png'" alt="Irene Puche Armero"
                                     loading="eager">
@@ -5408,15 +5436,9 @@
             loop();
         }
 
-        /* === HERO PHOTO PARALLAX === */
+        /* === HERO PHOTO PARALLAX (DISABLED PER USER REQUEST) === */
         function initHeroPhotoParallax() {
-            var photo = document.querySelector('#hero-photo-el img');
-            if (!photo || reduceMotion || !window.matchMedia('(pointer: fine)').matches) return;
-            window.addEventListener('mousemove', function (e) {
-                var x = (e.clientX / innerWidth - 0.5) * 14;
-                var y = (e.clientY / innerHeight - 0.5) * 8;
-                photo.style.transform = 'translate(' + x + 'px, ' + y + 'px)';
-            });
+            return;
         }
 
         /* === EXPERTISE ACCORDION === */
@@ -5642,37 +5664,9 @@
             }
         }
 
-        /* --- HERO LIGHT HALO --- */
+        /* --- HERO LIGHT HALO (DISABLED PER USER REQUEST) --- */
         function initHeroHalo() {
-            var halo = document.getElementById('heroHalo');
-            var heroSection = document.querySelector('.section-hero');
-            if (!halo || !heroSection) return;
-            if (window.matchMedia('(pointer: coarse)').matches) return;
-
-            var colors = [
-                'radial-gradient(circle, rgba(157,114,255,0.4) 0%, rgba(196,181,253,0.15) 40%, transparent 70%)',
-                'radial-gradient(circle, rgba(255,180,100,0.35) 0%, rgba(255,200,150,0.12) 40%, transparent 70%)',
-                'radial-gradient(circle, rgba(100,180,255,0.35) 0%, rgba(150,200,255,0.12) 40%, transparent 70%)'
-            ];
-
-            heroSection.addEventListener('mousemove', function (e) {
-                var rect = heroSection.getBoundingClientRect();
-                var x = e.clientX - rect.left;
-                var y = e.clientY - rect.top;
-                halo.style.left = x + 'px';
-                halo.style.top = y + 'px';
-
-                var intensity = Math.min(1, Math.sqrt(
-                    Math.pow((x / rect.width - 0.5) * 2, 2) +
-                    Math.pow((y / rect.height - 0.5) * 2, 2)
-                ));
-                halo.style.width = (400 + intensity * 200) + 'px';
-                halo.style.height = (400 + intensity * 200) + 'px';
-
-                var colorIdx = Math.floor((x / rect.width) * colors.length);
-                colorIdx = Math.min(colorIdx, colors.length - 1);
-                halo.style.background = colors[colorIdx];
-            });
+            return;
         }
 
         /* --- SECTION TRANSITION CANVASES --- */
