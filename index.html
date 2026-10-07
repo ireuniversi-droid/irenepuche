@@ -2548,143 +2548,108 @@
         }
 
         /* =========================================================
-           PLANETARY SKILLS SYSTEM (UNIVERSE DE ESPECIALIDADES)
+           PLANETARY SKILLS SYSTEM (PURE ORGANIC CONSTELLATION)
            ========================================================= */
         .planets-universe-container {
             position: relative;
             width: 100%;
-            min-height: 500px;
-            background: radial-gradient(circle at 50% 50%, rgba(35, 22, 58, 0.95) 0%, rgba(10, 8, 18, 0.98) 75%);
-            border-radius: 32px;
+            min-height: 480px;
+            background: transparent;
+            border: none;
+            box-shadow: none;
+            overflow: visible;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 20px 0 40px 0;
+        }
+
+        .planets-hint-badge {
+            position: absolute;
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 8px 20px;
+            border-radius: 20px;
+            background: rgba(196, 181, 253, 0.08);
             border: 1px solid rgba(196, 181, 253, 0.2);
-            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5), inset 0 0 70px rgba(157, 114, 255, 0.1);
-            overflow: hidden;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            padding: 50px 20px;
-            margin: 10px 0 30px 0;
-        }
-
-        .universe-orbits {
-            position: absolute;
-            inset: 0;
-            pointer-events: none;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .orbit-ring {
-            position: absolute;
-            border: 1px dashed rgba(196, 181, 253, 0.15);
-            border-radius: 50%;
-        }
-        .orbit-ring-1 { width: 280px; height: 280px; animation: spinOrbit 45s linear infinite; }
-        .orbit-ring-2 { width: 500px; height: 500px; animation: spinOrbit 70s linear infinite reverse; }
-
-        @keyframes spinOrbit {
-            from { transform: rotate(0deg); }
-            to { transform: rotate(360deg); }
-        }
-
-        .galaxy-core {
-            position: absolute;
-            width: 95px;
-            height: 95px;
-            border-radius: 50%;
-            background: radial-gradient(circle, var(--lilac-primary) 0%, rgba(139, 92, 246, 0.4) 60%, transparent 100%);
-            box-shadow: 0 0 40px var(--lilac-primary), 0 0 80px rgba(157, 114, 255, 0.4);
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            color: #fff;
+            color: var(--lilac-primary);
             font-family: var(--font-display);
-            font-size: 0.78rem;
-            font-weight: 700;
-            letter-spacing: 0.1em;
+            font-size: 0.8rem;
+            font-weight: 600;
+            letter-spacing: 0.08em;
             text-transform: uppercase;
-            z-index: 2;
-            animation: corePulse 4s ease-in-out infinite alternate;
+            z-index: 10;
         }
 
-        @keyframes corePulse {
-            0% { transform: scale(1); box-shadow: 0 0 35px var(--lilac-primary); }
-            100% { transform: scale(1.08); box-shadow: 0 0 55px var(--lilac-accent), 0 0 90px rgba(157, 114, 255, 0.6); }
-        }
-
-        .planets-grid {
+        .planets-constellation {
             position: relative;
-            z-index: 3;
             width: 100%;
-            max-width: 920px;
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 24px;
-            align-items: center;
-            justify-items: center;
-        }
-
-        @media (max-width: 850px) {
-            .planets-grid {
-                grid-template-columns: repeat(2, 1fr);
-                gap: 40px 20px;
-            }
-            .galaxy-core {
-                display: none;
-            }
-            .orbit-ring {
-                display: none;
-            }
+            max-width: 960px;
+            height: 420px;
+            margin-top: 30px;
         }
 
         .planet-item {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
+            position: absolute;
             cursor: pointer;
             background: none;
             border: none;
-            padding: 12px;
-            transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+            padding: 0;
             outline: none;
             text-decoration: none;
+            transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), filter 0.4s ease;
         }
+
+        .planet-item-1 {
+            top: 15%;
+            left: 8%;
+            animation: floatPlanet1 7s ease-in-out infinite alternate;
+        }
+        .planet-item-2 {
+            top: 8%;
+            right: 12%;
+            animation: floatPlanet2 8.5s ease-in-out 0.8s infinite alternate;
+        }
+        .planet-item-3 {
+            bottom: 10%;
+            left: 28%;
+            animation: floatPlanet3 7.5s ease-in-out 1.2s infinite alternate;
+        }
+        .planet-item-4 {
+            bottom: 14%;
+            right: 22%;
+            animation: floatPlanet4 9s ease-in-out 1.8s infinite alternate;
+        }
+
+        @keyframes floatPlanet1 { 0% { transform: translateY(0px) rotate(0deg); } 100% { transform: translateY(-16px) rotate(3deg); } }
+        @keyframes floatPlanet2 { 0% { transform: translateY(0px) rotate(0deg); } 100% { transform: translateY(18px) rotate(-4deg); } }
+        @keyframes floatPlanet3 { 0% { transform: translateY(0px) rotate(0deg); } 100% { transform: translateY(-14px) rotate(5deg); } }
+        @keyframes floatPlanet4 { 0% { transform: translateY(0px) rotate(0deg); } 100% { transform: translateY(16px) rotate(-3deg); } }
 
         .planet-item:hover {
-            transform: translateY(-8px) scale(1.08);
+            transform: scale(1.15) !important;
+            z-index: 20;
         }
-
-        .planet-item:nth-child(1) { animation: floatPlanet1 6s ease-in-out infinite alternate; }
-        .planet-item:nth-child(2) { animation: floatPlanet2 7s ease-in-out 0.5s infinite alternate; }
-        .planet-item:nth-child(3) { animation: floatPlanet3 6.5s ease-in-out 1s infinite alternate; }
-        .planet-item:nth-child(4) { animation: floatPlanet4 7.5s ease-in-out 1.5s infinite alternate; }
-
-        @keyframes floatPlanet1 { 0% { transform: translateY(0px); } 100% { transform: translateY(-12px); } }
-        @keyframes floatPlanet2 { 0% { transform: translateY(0px); } 100% { transform: translateY(14px); } }
-        @keyframes floatPlanet3 { 0% { transform: translateY(0px); } 100% { transform: translateY(-10px); } }
-        @keyframes floatPlanet4 { 0% { transform: translateY(0px); } 100% { transform: translateY(12px); } }
 
         .planet-sphere {
             position: relative;
-            width: 100px;
-            height: 100px;
             border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-family: var(--font-display);
-            font-size: 1.25rem;
-            font-weight: 800;
-            color: #ffffff;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.6), inset -15px -15px 25px rgba(0, 0, 0, 0.7);
+            box-shadow: 0 12px 35px rgba(0, 0, 0, 0.7), inset -18px -18px 30px rgba(0, 0, 0, 0.75);
             transition: box-shadow 0.4s ease, filter 0.4s ease;
         }
 
+        .size-lg { width: 120px; height: 120px; }
+        .size-md { width: 100px; height: 100px; }
+        .size-sm { width: 88px; height: 88px; }
+        .size-xl { width: 130px; height: 130px; }
+
         .planet-item:hover .planet-sphere {
-            box-shadow: 0 0 35px var(--lilac-primary), inset -10px -10px 20px rgba(0, 0, 0, 0.4);
-            filter: brightness(1.15);
+            box-shadow: 0 0 45px var(--lilac-primary), inset -10px -10px 20px rgba(0, 0, 0, 0.3);
+            filter: brightness(1.2);
         }
 
         .planet-p1 {
@@ -2700,64 +2665,66 @@
             background: radial-gradient(circle at 35% 35%, #a7f3d0 0%, #3b82f6 50%, #0f172a 100%);
         }
 
-        .planet-ring {
+        .planet-ring-1 {
             position: absolute;
-            width: 135px;
-            height: 38px;
-            border: 2px solid rgba(216, 180, 254, 0.7);
+            top: 50%;
+            left: 50%;
+            width: 160px;
+            height: 42px;
+            border: 2px solid rgba(216, 180, 254, 0.75);
             border-radius: 50%;
-            transform: rotate(-25deg);
+            transform: translate(-50%, -50%) rotate(-25deg);
             pointer-events: none;
-            box-shadow: 0 0 15px rgba(196, 181, 253, 0.4);
+            box-shadow: 0 0 18px rgba(196, 181, 253, 0.4);
         }
 
-        .planet-label-box {
-            margin-top: 14px;
-            text-align: center;
+        .planet-ring-3 {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 175px;
+            height: 46px;
+            border: 2px solid rgba(125, 211, 252, 0.75);
+            border-radius: 50%;
+            transform: translate(-50%, -50%) rotate(20deg);
+            pointer-events: none;
+            box-shadow: 0 0 18px rgba(56, 189, 248, 0.4);
         }
 
-        .planet-num-badge {
-            font-size: 0.7rem;
-            font-weight: 700;
-            color: var(--lilac-primary);
-            letter-spacing: 0.12em;
-            text-transform: uppercase;
-            display: block;
-            margin-bottom: 2px;
-        }
-
-        .planet-title-text {
+        .planet-tooltip-title {
+            position: absolute;
+            bottom: -32px;
+            left: 50%;
+            transform: translateX(-50%) translateY(5px);
+            white-space: nowrap;
             font-family: var(--font-display);
-            font-size: 0.88rem;
+            font-size: 0.78rem;
             font-weight: 700;
+            letter-spacing: 0.08em;
             color: #ffffff;
-            letter-spacing: 0.05em;
-            text-transform: uppercase;
-            margin: 0;
-            line-height: 1.2;
-            transition: color 0.3s ease;
-        }
-
-        .planet-item:hover .planet-title-text {
-            color: var(--lilac-primary);
-        }
-
-        .planet-click-hint {
-            display: inline-block;
-            margin-top: 6px;
-            font-size: 0.72rem;
-            color: rgba(255, 255, 255, 0.65);
-            padding: 3px 10px;
+            background: rgba(15, 12, 28, 0.9);
+            padding: 4px 12px;
             border-radius: 12px;
-            background: rgba(255, 255, 255, 0.08);
-            border: 1px solid rgba(255, 255, 255, 0.12);
-            transition: all 0.3s ease;
+            border: 1px solid rgba(196, 181, 253, 0.3);
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.3s ease, transform 0.3s ease;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
         }
 
-        .planet-item:hover .planet-click-hint {
-            background: var(--lilac-primary);
-            color: #0a0812;
-            font-weight: 700;
+        .planet-item:hover .planet-tooltip-title {
+            opacity: 1;
+            transform: translateX(-50%) translateY(0);
+        }
+
+        @media (max-width: 768px) {
+            .planets-constellation {
+                height: 480px;
+            }
+            .planet-item-1 { top: 5%; left: 5%; }
+            .planet-item-2 { top: 25%; right: 5%; }
+            .planet-item-3 { bottom: 25%; left: 8%; }
+            .planet-item-4 { bottom: 5%; right: 8%; }
         }
 
         /* Planet Details Modal */
@@ -4128,68 +4095,37 @@
         <section class="section-block section-expertise-new" id="about">
             <div class="wrap">
                 <div class="planets-universe-container">
-                    <!-- Cosmic Orbital Rings -->
-                    <div class="universe-orbits">
-                        <div class="orbit-ring orbit-ring-1"></div>
-                        <div class="orbit-ring orbit-ring-2"></div>
-                    </div>
+                    <!-- Minimalist Hint Badge -->
+                    <div class="planets-hint-badge">✦ Pulsa los planetas para explorar</div>
 
-                    <!-- Center Galaxy Core -->
-                    <div class="galaxy-core">
-                        <span>✦</span>
-                        <span>SKILLS</span>
-                    </div>
-
-                    <!-- Planets Grid -->
-                    <div class="planets-grid">
+                    <!-- Organic Non-Linear Constellation -->
+                    <div class="planets-constellation">
                         <!-- Planet 1 -->
-                        <button class="planet-item" onclick="openPlanetModal(0)" aria-label="Ver detalles de UI/UX & Design">
-                            <div class="planet-sphere planet-p1">
-                                <span>01</span>
-                                <div class="planet-ring"></div>
+                        <button class="planet-item planet-item-1" onclick="openPlanetModal(0)" aria-label="UI/UX & Design">
+                            <div class="planet-sphere planet-p1 size-lg">
+                                <div class="planet-ring-1"></div>
                             </div>
-                            <div class="planet-label-box">
-                                <span class="planet-num-badge">Planeta 01</span>
-                                <h3 class="planet-title-text">UI / UX & DESIGN</h3>
-                                <span class="planet-click-hint">Pulsa para ver ✦</span>
-                            </div>
+                            <span class="planet-tooltip-title">UI / UX & DESIGN</span>
                         </button>
 
                         <!-- Planet 2 -->
-                        <button class="planet-item" onclick="openPlanetModal(1)" aria-label="Ver detalles de Marketing Digital">
-                            <div class="planet-sphere planet-p2">
-                                <span>02</span>
-                            </div>
-                            <div class="planet-label-box">
-                                <span class="planet-num-badge">Planeta 02</span>
-                                <h3 class="planet-title-text">MARKETING DIGITAL</h3>
-                                <span class="planet-click-hint">Pulsa para ver ✦</span>
-                            </div>
+                        <button class="planet-item planet-item-2" onclick="openPlanetModal(1)" aria-label="Marketing Digital">
+                            <div class="planet-sphere planet-p2 size-sm"></div>
+                            <span class="planet-tooltip-title">MARKETING DIGITAL</span>
                         </button>
 
                         <!-- Planet 3 -->
-                        <button class="planet-item" onclick="openPlanetModal(2)" aria-label="Ver detalles de Transmedia">
-                            <div class="planet-sphere planet-p3">
-                                <span>03</span>
-                                <div class="planet-ring"></div>
+                        <button class="planet-item planet-item-3" onclick="openPlanetModal(2)" aria-label="Transmedia">
+                            <div class="planet-sphere planet-p3 size-xl">
+                                <div class="planet-ring-3"></div>
                             </div>
-                            <div class="planet-label-box">
-                                <span class="planet-num-badge">Planeta 03</span>
-                                <h3 class="planet-title-text">TRANSMEDIA</h3>
-                                <span class="planet-click-hint">Pulsa para ver ✦</span>
-                            </div>
+                            <span class="planet-tooltip-title">TRANSMEDIA</span>
                         </button>
 
                         <!-- Planet 4 -->
-                        <button class="planet-item" onclick="openPlanetModal(3)" aria-label="Ver detalles de Gestión de Información">
-                            <div class="planet-sphere planet-p4">
-                                <span>04</span>
-                            </div>
-                            <div class="planet-label-box">
-                                <span class="planet-num-badge">Planeta 04</span>
-                                <h3 class="planet-title-text">GESTIÓN DE INFORMACIÓN</h3>
-                                <span class="planet-click-hint">Pulsa para ver ✦</span>
-                            </div>
+                        <button class="planet-item planet-item-4" onclick="openPlanetModal(3)" aria-label="Gestión de Información">
+                            <div class="planet-sphere planet-p4 size-md"></div>
+                            <span class="planet-tooltip-title">GESTIÓN DE INFORMACIÓN</span>
                         </button>
                     </div>
                 </div>
