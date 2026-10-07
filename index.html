@@ -370,16 +370,16 @@
             display: flex;
             flex-direction: column;
             justify-content: flex-start;
-            padding-top: clamp(32px, 5vh, 60px);
-            padding-bottom: 20px;
+            padding-top: clamp(16px, 2.5vh, 28px);
+            padding-bottom: 16px;
             border-bottom: 1px solid var(--line);
             box-sizing: border-box;
             overflow: hidden;
         }
 
         .hero-titles-wrapper {
-            margin-top: 12px;
-            margin-bottom: 0;
+            margin-top: 0;
+            margin-bottom: 4px;
             flex-shrink: 0;
         }
 
@@ -2462,40 +2462,46 @@
             background: var(--lilac-primary);
         }
 
-        /* === HERO PHOTO WITHOUT FRAME === */
+        /* === HERO PHOTO FRAMED & SQUARED === */
         .hero-photo-clean {
             position: relative;
             z-index: 2;
-            align-self: stretch;
-            justify-self: end;
             display: flex;
             align-items: center;
+            justify-content: center;
+            width: 100%;
+            height: 100%;
+        }
+
+        .hero-photo-frame {
+            position: relative;
+            width: 100%;
+            max-width: 370px;
+            height: 450px;
+            border-radius: 28px;
+            background: linear-gradient(155deg, color-mix(in srgb, var(--lilac-primary) 18%, var(--surf)), color-mix(in srgb, var(--lilac-soft) 45%, var(--bg)));
+            border: 1.5px solid color-mix(in srgb, var(--lilac-primary) 35%, var(--line));
+            box-shadow: 0 16px 40px rgba(157, 114, 255, 0.18), 0 0 25px var(--lilac-glow);
             overflow: hidden;
-            padding-right: 2vw;
+            display: flex;
+            align-items: flex-end;
+            justify-content: center;
+            transition: transform 0.4s ease, box-shadow 0.4s ease;
         }
 
-        .hero-photo-clean::before {
-            content: '';
-            position: absolute;
-            left: 50%;
-            top: 30%;
-            width: 115%;
-            aspect-ratio: 1;
-            transform: translate(-50%, -30%);
-            background: radial-gradient(circle, rgba(157, 114, 255, 0.38) 0%, rgba(196, 181, 253, 0.15) 45%, transparent 68%);
-            filter: blur(20px);
-            z-index: -1;
+        .hero-photo-frame:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 22px 50px rgba(157, 114, 255, 0.28), 0 0 35px var(--lilac-glow);
         }
 
-        .hero-photo-clean img {
-            max-height: 100%;
-            width: auto;
+        .hero-photo-frame img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: center top;
             display: block;
-            object-fit: contain;
-            object-position: top center;
-            -webkit-mask-image: linear-gradient(to bottom, #000 80%, transparent 100%);
-            mask-image: linear-gradient(to bottom, #000 80%, transparent 100%);
-            filter: drop-shadow(0 10px 20px rgba(0, 0, 0, 0.2));
+            border-radius: inherit;
+            filter: drop-shadow(0 8px 16px rgba(0, 0, 0, 0.15));
             will-change: transform;
         }
 
@@ -2761,10 +2767,10 @@
         .hero-new-layout {
             display: grid;
             grid-template-columns: 1.1fr 0.9fr;
-            align-items: stretch;
+            align-items: center;
             flex: 1;
             min-height: 0;
-            padding-bottom: 12px;
+            padding-bottom: 8px;
             gap: 0 24px;
         }
 
@@ -2772,22 +2778,27 @@
         @media (max-width: 960px) {
             .hero-new-layout {
                 grid-template-columns: 1fr;
-                grid-template-rows: 1fr auto;
+                gap: 20px;
             }
 
             .hero-photo-clean {
-                position: absolute;
-                left: 50%;
-                top: 13svh;
-                height: 46svh;
-                transform: translateX(-50%);
+                position: relative;
+                top: 0; left: 0;
+                transform: none;
+                height: auto;
+            }
+
+            .hero-photo-frame {
+                max-width: 290px;
+                height: 350px;
+                margin: 0 auto;
             }
 
             .hero-copy-new {
                 position: relative;
                 z-index: 3;
-                background: linear-gradient(to top, var(--bg) 85%, transparent);
-                padding-top: 28px;
+                background: transparent;
+                padding-top: 0;
             }
 
             .typed-line {
@@ -3431,7 +3442,7 @@
                 </div>
 
                 <div class="hero-new-layout">
-                    <div class="hero-copy-new" style="position: relative; z-index: 3; padding-bottom: clamp(20px, 4vh, 48px); display: flex; flex-direction: column; justify-content: center;">
+                    <div class="hero-copy-new" style="position: relative; z-index: 3; display: flex; flex-direction: column; justify-content: flex-start; padding-top: 4px; gap: 10px;">
                         <div class="hero-divider-star">
                             <span>✦</span>
                         </div>
@@ -3451,10 +3462,12 @@
                     </div>
 
                     <div class="hero-photo-clean" id="hero-photo-el">
-                        <div class="hero-halo" id="heroHalo"></div>
-                        <img id="me" src="img_web/irene_avatar.png"
-                            onerror="this.onerror=null;this.src='irene_avatar.png'" alt="Irene Puche Armero"
-                            loading="eager">
+                        <div class="hero-photo-frame">
+                            <div class="hero-halo" id="heroHalo"></div>
+                            <img id="me" src="img_web/irene_avatar.png"
+                                onerror="this.onerror=null;this.src='irene_avatar.png'" alt="Irene Puche Armero"
+                                loading="eager">
+                        </div>
                     </div>
                     </div>
                 </div>
