@@ -2503,7 +2503,8 @@
             border-radius: 32px;
             transform: none !important;
             transition: none !important;
-            filter: drop-shadow(0 10px 24px rgba(0, 0, 0, 0.14));
+            filter: none !important;
+            box-shadow: none !important;
         }
 
         .hero-photo-line-svg {
@@ -2518,12 +2519,12 @@
 
         .draw-line-path {
             animation: drawLineProgress 3.0s cubic-bezier(0.22, 1, 0.36, 1) 0.3s forwards;
-            filter: drop-shadow(0 4px 12px rgba(157, 114, 255, 0.25));
+            filter: none;
         }
 
         .draw-line-path-delay {
             animation: drawLineProgress 3.5s cubic-bezier(0.22, 1, 0.36, 1) 0.7s forwards;
-            filter: drop-shadow(0 4px 12px rgba(157, 114, 255, 0.2));
+            filter: none;
         }
 
         @keyframes drawLineProgress {
