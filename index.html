@@ -2508,25 +2508,22 @@
 
         .hero-photo-line-svg {
             position: absolute;
-            top: -140px;
-            bottom: -50px;
-            left: -580px;
-            right: -60px;
-            width: calc(100% + 640px);
-            height: calc(100% + 190px);
+            inset: -50px;
+            width: calc(100% + 100px);
+            height: calc(100% + 100px);
             z-index: -1;
             pointer-events: none;
             overflow: visible;
         }
 
         .draw-line-path {
-            animation: drawLineProgress 1.7s cubic-bezier(0.22, 1, 0.36, 1) 0.15s forwards;
-            filter: drop-shadow(0 4px 14px rgba(157, 114, 255, 0.28));
+            animation: drawLineProgress 3.0s cubic-bezier(0.22, 1, 0.36, 1) 0.3s forwards;
+            filter: drop-shadow(0 4px 12px rgba(157, 114, 255, 0.25));
         }
 
         .draw-line-path-delay {
-            animation: drawLineProgress 2.0s cubic-bezier(0.22, 1, 0.36, 1) 0.4s forwards;
-            filter: drop-shadow(0 4px 14px rgba(157, 114, 255, 0.22));
+            animation: drawLineProgress 3.5s cubic-bezier(0.22, 1, 0.36, 1) 0.7s forwards;
+            filter: drop-shadow(0 4px 12px rgba(157, 114, 255, 0.2));
         }
 
         @keyframes drawLineProgress {
@@ -3683,28 +3680,28 @@
 
                         <div class="hero-photo-clean" id="hero-photo-el">
                             <div class="hero-photo-frame">
-                                <svg class="hero-photo-line-svg" viewBox="0 0 1100 740" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                                <svg class="hero-photo-line-svg" viewBox="0 0 560 640" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
                                     <defs>
                                         <linearGradient id="heroTitleGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-                                            <stop offset="0%" stop-color="var(--ink)" stop-opacity="0.85" />
-                                            <stop offset="50%" stop-color="var(--ink)" stop-opacity="0.75" />
+                                            <stop offset="0%" stop-color="var(--ink)" stop-opacity="0.9" />
+                                            <stop offset="50%" stop-color="var(--ink)" stop-opacity="0.8" />
                                             <stop offset="100%" stop-color="var(--lilac-primary)" stop-opacity="0.95" />
                                         </linearGradient>
                                         <linearGradient id="heroTitleGradAccent" x1="100%" y1="0%" x2="0%" y2="100%">
-                                            <stop offset="0%" stop-color="var(--lilac-primary)" stop-opacity="0.9" />
-                                            <stop offset="100%" stop-color="var(--ink)" stop-opacity="0.7" />
+                                            <stop offset="0%" stop-color="var(--lilac-primary)" stop-opacity="0.95" />
+                                            <stop offset="100%" stop-color="var(--ink)" stop-opacity="0.75" />
                                         </linearGradient>
                                     </defs>
 
-                                    <!-- Main organic thick gradient line extending smoothly from left margin across top behind texts -->
-                                    <path d="M 20 220 C 140 80, 360 120, 520 25 C 680 -40, 940 10, 1020 180 C 1100 350, 970 630, 780 670 C 600 700, 440 580, 560 420 C 640 310, 850 270, 980 370"
+                                    <!-- Thick Abstract Curved Line 1 with PORTFOLIO Gradient -->
+                                    <path d="M 30 560 C 10 400, 50 240, 160 130 C 270 20, 450 40, 510 180 C 570 320, 440 530, 270 560 C 130 580, 40 470, 140 350 C 220 250, 420 220, 520 310"
                                           stroke="url(#heroTitleGrad)" stroke-width="8" stroke-linecap="round" stroke-linejoin="round"
-                                          stroke-dasharray="3800" stroke-dashoffset="3800" class="draw-line-path" />
+                                          stroke-dasharray="2600" stroke-dashoffset="2600" class="draw-line-path" />
                                           
-                                    <!-- Secondary accent curve sweeping underneath text signature area and looping behind photo -->
-                                    <path d="M 40 540 C 200 420, 460 480, 620 280 C 780 80, 1040 100, 990 340 C 920 580, 680 640, 480 560"
+                                    <!-- Secondary Thick Accent Curve -->
+                                    <path d="M -10 200 C 120 100, 320 150, 390 40 C 470 -60, 560 100, 490 280 C 420 460, 210 520, 50 440"
                                           stroke="url(#heroTitleGradAccent)" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"
-                                          stroke-dasharray="3000" stroke-dashoffset="3000" class="draw-line-path-delay" />
+                                          stroke-dasharray="2000" stroke-dashoffset="2000" class="draw-line-path-delay" />
                                 </svg>
                                 <img id="me" src="img_web/irene_avatar.png"
                                     onerror="this.onerror=null;this.src='irene_avatar.png'" alt="Irene Puche Armero"
