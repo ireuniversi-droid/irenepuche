@@ -2533,14 +2533,16 @@
             }
         }
 
-        /* === SECTION REVEAL TRANSITION (FULLSCREEN NO MARGINS) === */
+        /* === SECTION REVEAL TRANSITION (SEAMLESS FULLSCREEN NO MARGINS) === */
         .section-reveal-overlay {
-            position: fixed;
+            position: absolute;
             top: 0;
             left: 0;
-            width: 100vw;
-            height: 100vh;
-            z-index: 999;
+            right: 0;
+            bottom: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 10;
             background: var(--dark-bg);
             clip-path: circle(0% at 70% 45%);
             display: grid;
@@ -2666,6 +2668,9 @@
         .section-expertise-new {
             background: var(--dark-bg);
             color: var(--dark-ink);
+            margin-top: 0;
+            padding-top: 60px;
+            border-top: none;
         }
 
         .section-expertise-new .expertise-intro h2 {
@@ -3241,6 +3246,12 @@
             height: 120px;
             overflow: hidden;
             z-index: 5;
+        }
+
+        .section-transition[data-transition="1"] {
+            background: var(--dark-bg);
+            margin: 0;
+            border: none;
         }
 
         .section-transition canvas {
@@ -5535,7 +5546,7 @@
                 scrub: true,
                 onUpdate: function (self) {
                     var p = self.progress;
-                    reveal.style.clipPath = 'circle(' + (p * 150) + '% at 70% 45%)';
+                    reveal.style.clipPath = 'circle(' + (p * 200) + '% at 70% 45%)';
                     if (title) {
                         var t = Math.max(0, (p - 0.45) / 0.55);
                         title.style.opacity = t;
