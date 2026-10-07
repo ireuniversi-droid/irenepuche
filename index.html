@@ -2564,16 +2564,14 @@
             margin: 20px 0 40px 0;
         }
 
-        /* Galaxy Starfield & Nebula Background */
+        /* Galaxy Starfield Background (Pure transparent stars) */
         .galaxy-starfield {
             position: absolute;
-            inset: -40px;
+            inset: 0;
             pointer-events: none;
             z-index: 1;
-            overflow: hidden;
-            background: 
-                radial-gradient(ellipse at 20% 30%, rgba(139, 92, 246, 0.18) 0%, transparent 60%),
-                radial-gradient(ellipse at 80% 70%, rgba(216, 180, 254, 0.14) 0%, transparent 55%);
+            overflow: visible;
+            background: transparent;
         }
 
         .star-layer {
