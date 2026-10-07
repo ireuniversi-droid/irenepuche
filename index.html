@@ -2515,6 +2515,23 @@
             z-index: -1;
             pointer-events: none;
             overflow: visible;
+            transform-origin: center center;
+            animation: transitionToBg 2.5s cubic-bezier(0.16, 1, 0.3, 1) 10s forwards;
+            transition: opacity 0.5s ease, filter 0.5s ease, transform 0.5s ease;
+        }
+
+        @keyframes transitionToBg {
+            to {
+                transform: scale(1.08);
+                opacity: 0.42;
+                filter: blur(2px) drop-shadow(0 0 35px rgba(157, 114, 255, 0.4));
+            }
+        }
+
+        .hero-photo-frame:hover .hero-photo-line-svg {
+            opacity: 0.95 !important;
+            filter: blur(0px) drop-shadow(0 0 20px rgba(157, 114, 255, 0.5)) !important;
+            transform: scale(1.02) !important;
         }
 
         .draw-line-path {
