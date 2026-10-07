@@ -2751,10 +2751,527 @@
         @media (prefers-reduced-motion: reduce) {
             .typed-line .caret, .contact-typed-title .caret { animation: none; }
         }
+
+        /* =============================================
+           CINEMATOGRAPHIC REDESIGN — CUSTOM CURSOR
+           ============================================= */
+        body, a, button, input, [onclick] { cursor: none !important; }
+        .custom-cursor {
+            position: fixed;
+            top: 0; left: 0;
+            width: 18px; height: 18px;
+            border-radius: 50%;
+            background: rgba(255,255,255,0.9);
+            pointer-events: none;
+            z-index: 100001;
+            transform: translate(-50%, -50%);
+            transition: width 0.3s ease, height 0.3s ease, background 0.4s ease, box-shadow 0.4s ease;
+            mix-blend-mode: difference;
+        }
+        .cursor-halo {
+            position: fixed;
+            top: 0; left: 0;
+            width: 44px; height: 44px;
+            border-radius: 50%;
+            border: 1.5px solid rgba(255,255,255,0.3);
+            pointer-events: none;
+            z-index: 100000;
+            transform: translate(-50%, -50%);
+            transition: width 0.4s ease, height 0.4s ease, border-color 0.4s ease, opacity 0.4s ease;
+        }
+        .cursor-expanded .custom-cursor { width: 48px; height: 48px; background: rgba(157,114,255,0.18); }
+        .cursor-expanded .cursor-halo { width: 72px; height: 72px; border-color: rgba(157,114,255,0.4); }
+
+        /* Section cursor color classes */
+        .cursor-hero .custom-cursor { background: rgba(255,248,235,0.85); box-shadow: 0 0 14px rgba(255,230,180,0.5); }
+        .cursor-hero .cursor-halo { border-color: rgba(255,230,180,0.3); }
+        .cursor-proj .custom-cursor { background: rgba(100,160,255,0.85); box-shadow: 0 0 14px rgba(100,160,255,0.5); }
+        .cursor-proj .cursor-halo { border-color: rgba(200,180,100,0.4); }
+        .cursor-photo .custom-cursor { background: rgba(255,255,255,0.5); box-shadow: 0 0 20px rgba(255,255,255,0.15); }
+        .cursor-photo .cursor-halo { border-color: rgba(255,255,255,0.15); opacity: 0.6; }
+        .cursor-figs .custom-cursor { background: rgba(130,180,130,0.8); box-shadow: 0 0 14px rgba(130,180,130,0.4); }
+        .cursor-figs .cursor-halo { border-color: rgba(130,180,130,0.3); }
+
+        @media (pointer: coarse) {
+            .custom-cursor, .cursor-halo { display: none !important; }
+            body, a, button, input, [onclick] { cursor: auto !important; }
+        }
+
+        /* =============================================
+           VERTICAL SIDE NAVIGATION
+           ============================================= */
+        .side-nav {
+            position: fixed;
+            left: 0; top: 0;
+            width: 64px;
+            height: 100vh;
+            background: color-mix(in srgb, var(--bg) 75%, transparent);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border-right: 1px solid var(--line);
+            z-index: 1000;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 0;
+            transition: background 0.4s ease;
+        }
+        .side-nav-items {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 32px;
+        }
+        .side-nav-item {
+            writing-mode: vertical-rl;
+            text-orientation: mixed;
+            font-family: var(--font-sans);
+            font-size: 0.72rem;
+            font-weight: 700;
+            letter-spacing: 0.18em;
+            text-transform: uppercase;
+            color: var(--mute);
+            text-decoration: none;
+            padding: 12px 4px;
+            position: relative;
+            transition: color 0.3s ease, transform 0.3s ease;
+            cursor: none !important;
+        }
+        .side-nav-item::before {
+            content: '';
+            position: absolute;
+            left: 0; top: 50%;
+            transform: translateY(-50%);
+            width: 3px; height: 0;
+            background: var(--lilac-primary);
+            border-radius: 2px;
+            transition: height 0.35s cubic-bezier(0.16,1,0.3,1);
+        }
+        .side-nav-item:hover, .side-nav-item.active {
+            color: var(--lilac-primary);
+            transform: translateX(2px);
+        }
+        .side-nav-item.active::before { height: 100%; }
+        .side-nav-item:hover::before { height: 60%; }
+
+        .side-nav-logo {
+            position: absolute;
+            top: 20px;
+            font-family: var(--font-serif);
+            font-size: 1.1rem;
+            font-weight: 700;
+            font-style: italic;
+            color: var(--lilac-primary);
+            writing-mode: vertical-rl;
+            text-orientation: mixed;
+            letter-spacing: 0.04em;
+        }
+
+        .side-nav-bottom {
+            position: absolute;
+            bottom: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 12px;
+        }
+        .side-nav-btn {
+            width: 34px; height: 34px;
+            border-radius: 50%;
+            border: 1px solid var(--line);
+            background: var(--surf);
+            color: var(--mute);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.85rem;
+            transition: all 0.25s ease;
+            cursor: none !important;
+        }
+        .side-nav-btn:hover {
+            border-color: var(--lilac-primary);
+            color: var(--lilac-primary);
+            box-shadow: 0 0 10px var(--lilac-glow);
+        }
+
+        /* Offset body content for side nav */
+        body { padding-left: 64px; }
+        header { display: none !important; }
+
+        /* Mobile: bottom bar instead of side nav */
+        @media (max-width: 768px) {
+            body { padding-left: 0; padding-bottom: 60px; }
+            .side-nav {
+                top: auto; bottom: 0; left: 0;
+                width: 100%; height: 60px;
+                flex-direction: row;
+                border-right: none;
+                border-top: 1px solid var(--line);
+            }
+            .side-nav-items { flex-direction: row; gap: 0; width: 100%; justify-content: space-around; }
+            .side-nav-item {
+                writing-mode: horizontal-tb;
+                font-size: 0.65rem;
+                padding: 8px 6px;
+            }
+            .side-nav-item::before {
+                left: 50%; top: 0; bottom: auto;
+                width: 0; height: 3px;
+                transform: translateX(-50%);
+                transition: width 0.35s cubic-bezier(0.16,1,0.3,1);
+            }
+            .side-nav-item.active::before { width: 100%; height: 3px; }
+            .side-nav-item:hover::before { width: 60%; height: 3px; }
+            .side-nav-item:hover, .side-nav-item.active { transform: translateY(-2px); }
+            .side-nav-logo { display: none; }
+            .side-nav-bottom { display: none; }
+        }
+
+        /* =============================================
+           HERO LIGHT HALO
+           ============================================= */
+        .hero-halo {
+            position: absolute;
+            width: 500px; height: 500px;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(157,114,255,0.35) 0%, rgba(196,181,253,0.15) 40%, transparent 70%);
+            filter: blur(60px);
+            pointer-events: none;
+            z-index: 1;
+            transition: background 0.6s ease;
+            transform: translate(-50%, -50%);
+        }
+
+        /* =============================================
+           SECTION TRANSITIONS — ABSTRACT SHAPES
+           ============================================= */
+        .section-transition {
+            position: relative;
+            height: 120px;
+            overflow: hidden;
+            z-index: 5;
+        }
+        .section-transition canvas {
+            position: absolute;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+        }
+
+        /* =============================================
+           PROJECTS — HORIZONTAL SCROLL
+           ============================================= */
+        .projects-hscroll-wrapper {
+            overflow: hidden;
+        }
+        .projects-hscroll-pin {
+            width: 100%;
+            overflow: hidden;
+        }
+        .projects-hscroll {
+            display: flex;
+            gap: 0;
+            width: fit-content;
+        }
+        .project-slide {
+            width: 100vw;
+            min-width: 100vw;
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 40px 80px;
+            box-sizing: border-box;
+            position: relative;
+        }
+        .project-slide-inner {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            max-width: 1200px;
+            width: 100%;
+            align-items: center;
+        }
+        .project-slide-info {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
+        .project-slide-num {
+            font-family: var(--font-display);
+            font-size: 0.85rem;
+            font-weight: 700;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            color: var(--lilac-primary);
+        }
+        .project-slide-title {
+            font-family: var(--font-display);
+            font-size: clamp(1.8rem, 4vw, 3.5rem);
+            font-weight: 700;
+            letter-spacing: 0.06em;
+            text-transform: uppercase;
+            line-height: 1.1;
+        }
+        .project-slide-desc {
+            font-size: 1rem;
+            line-height: 1.7;
+            max-width: 50ch;
+        }
+        .project-slide-meta {
+            font-size: 0.8rem;
+            color: var(--lilac-accent);
+            line-height: 1.5;
+        }
+        .project-slide-img {
+            width: 100%;
+            border-radius: var(--radius-lg);
+            overflow: hidden;
+            box-shadow: var(--shadow-lg);
+            position: relative;
+        }
+        .project-slide-img img {
+            width: 100%;
+            height: auto;
+            display: block;
+            transition: transform 0.6s ease;
+        }
+        .project-slide:hover .project-slide-img img {
+            transform: scale(1.03);
+        }
+        .project-slide-actions {
+            display: flex;
+            gap: 12px;
+            margin-top: 8px;
+            flex-wrap: wrap;
+        }
+
+        /* Progress bar for horizontal scroll */
+        .hscroll-progress {
+            position: absolute;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 200px;
+            height: 3px;
+            background: rgba(157,114,255,0.15);
+            border-radius: 2px;
+            z-index: 10;
+        }
+        .hscroll-progress-fill {
+            height: 100%;
+            background: var(--lilac-primary);
+            border-radius: 2px;
+            width: 0%;
+            transition: width 0.1s linear;
+        }
+        .hscroll-counter {
+            position: absolute;
+            bottom: 44px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-family: var(--font-display);
+            font-size: 0.8rem;
+            font-weight: 700;
+            letter-spacing: 0.15em;
+            color: var(--lilac-primary);
+            z-index: 10;
+        }
+
+        @media (max-width: 900px) {
+            .project-slide { padding: 30px 20px; min-width: 100vw; }
+            .project-slide-inner {
+                grid-template-columns: 1fr;
+                gap: 24px;
+            }
+        }
+
+        /* =============================================
+           PHOTOGRAPHY — SCATTERED ISLANDS WITH REPULSION
+           ============================================= */
+        .photo-scattered-container {
+            position: relative;
+            width: 100%;
+            min-height: 80vh;
+            overflow: hidden;
+        }
+        .photo-island {
+            position: absolute;
+            border-radius: var(--radius-md);
+            overflow: hidden;
+            box-shadow: var(--shadow-md);
+            transition: transform 0.1s ease-out, box-shadow 0.3s ease;
+            cursor: none !important;
+        }
+        .photo-island img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+            transition: transform 0.4s ease;
+        }
+        .photo-island:hover img { transform: scale(1.08); }
+        .photo-island:hover {
+            box-shadow: var(--shadow-lilac);
+            z-index: 20;
+        }
+        .photo-island-info {
+            position: absolute;
+            bottom: 0; left: 0; right: 0;
+            padding: 12px 16px;
+            background: linear-gradient(to top, rgba(0,0,0,0.7), transparent);
+            color: #fff;
+            font-size: 0.82rem;
+            font-weight: 600;
+            letter-spacing: 0.06em;
+            transform: translateY(100%);
+            transition: transform 0.35s ease;
+        }
+        .photo-island:hover .photo-island-info { transform: translateY(0); }
+
+        @media (max-width: 768px) {
+            .photo-scattered-container { min-height: 60vh; }
+        }
+
+        /* =============================================
+           3D PRINTING — LAB / WORKBENCH CONCEPT
+           ============================================= */
+        .section-lab {
+            background: #111611 !important;
+            color: #d0d8c8 !important;
+        }
+        .lab-workbench {
+            position: relative;
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+            gap: 24px;
+            padding: 40px 0;
+        }
+        .lab-item {
+            position: relative;
+            border-radius: var(--radius-md);
+            overflow: hidden;
+            background: #1a1f1a;
+            border: 1px solid rgba(130,180,130,0.15);
+            transition: transform 0.5s ease, box-shadow 0.4s ease, opacity 0.6s ease;
+            opacity: 0;
+            transform: translateY(40px);
+        }
+        .lab-item.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        .lab-item:hover {
+            transform: translateY(-6px) scale(1.02);
+            box-shadow: 0 12px 40px rgba(100,160,100,0.2);
+            border-color: rgba(130,180,130,0.4);
+        }
+        .lab-item img {
+            width: 100%;
+            aspect-ratio: 1;
+            object-fit: cover;
+            display: block;
+            filter: saturate(0.7) brightness(0.9);
+            transition: filter 0.4s ease;
+        }
+        .lab-item:hover img { filter: saturate(1) brightness(1); }
+        .lab-item-info {
+            padding: 16px;
+            background: #1a1f1a;
+        }
+        .lab-item-name {
+            font-family: var(--font-display);
+            font-size: 0.9rem;
+            font-weight: 700;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            color: #c0d4b0;
+        }
+        .lab-item-material {
+            font-size: 0.78rem;
+            color: rgba(200,220,190,0.5);
+            margin-top: 4px;
+        }
+        .lab-layer-indicator {
+            position: absolute;
+            top: 12px; right: 12px;
+            width: 28px; height: 28px;
+            border-radius: 50%;
+            border: 2px solid rgba(130,180,130,0.4);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.65rem;
+            font-weight: 700;
+            color: rgba(130,180,130,0.7);
+            background: rgba(17,22,17,0.8);
+        }
+
+        /* =============================================
+           SOUND TOGGLE
+           ============================================= */
+        .sound-toggle {
+            position: fixed;
+            bottom: 24px; right: 24px;
+            width: 42px; height: 42px;
+            border-radius: 50%;
+            border: 1px solid var(--line);
+            background: color-mix(in srgb, var(--bg) 80%, transparent);
+            backdrop-filter: blur(10px);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 10000;
+            font-size: 1.1rem;
+            color: var(--mute);
+            transition: all 0.3s ease;
+            cursor: none !important;
+        }
+        .sound-toggle:hover {
+            border-color: var(--lilac-primary);
+            color: var(--lilac-primary);
+            box-shadow: 0 0 12px var(--lilac-glow);
+        }
+        .sound-toggle.active { color: var(--lilac-primary); border-color: var(--lilac-primary); }
+
+        @media (max-width: 768px) {
+            .sound-toggle { bottom: 70px; right: 16px; }
+        }
+
+        /* =============================================
+           SECTION COLOR TRANSITIONS
+           ============================================= */
+        .section-selected-work {
+            background: var(--dark-bg) !important;
+            color: var(--dark-ink) !important;
+        }
     </style>
 </head>
 
 <body>
+
+    <!-- CUSTOM CURSOR -->
+    <div class="custom-cursor" id="cursorDot"></div>
+    <div class="cursor-halo" id="cursorHalo"></div>
+
+    <!-- VERTICAL SIDE NAVIGATION -->
+    <nav class="side-nav" id="sideNav">
+        <span class="side-nav-logo">IP</span>
+        <div class="side-nav-items">
+            <a href="#hero-stage" class="side-nav-item active" data-section="hero-stage">Inicio</a>
+            <a href="#proj" class="side-nav-item" data-section="proj">Proyectos</a>
+            <a href="#photo" class="side-nav-item" data-section="photo">Foto</a>
+            <a href="#figs" class="side-nav-item" data-section="figs">3D</a>
+        </div>
+        <div class="side-nav-bottom">
+            <button class="side-nav-btn" id="sideTheme" title="Cambiar tema">◐</button>
+            <button class="side-nav-btn" id="sideLang" title="Cambiar idioma">EN</button>
+        </div>
+    </nav>
+
+    <!-- SOUND TOGGLE -->
+    <button class="sound-toggle" id="soundToggle" title="Activar sonido">🔇</button>
+
 
     <!-- Header Bar -->
     <header>
@@ -2814,6 +3331,7 @@
                     </div>
 
                     <div class="hero-photo-clean" id="hero-photo-el">
+                        <div class="hero-halo" id="heroHalo"></div>
                         <img id="me" src="img_web/irene_avatar.png"
                             onerror="this.onerror=null;this.src='irene_avatar.png'" alt="Irene Puche Armero"
                             loading="eager">
@@ -2829,6 +3347,8 @@
         </section>
         </div>
         <input type="file" id="avatar-input" class="hidden-file-input" accept="image/*">
+
+        <div class="section-transition" data-transition="1"><canvas></canvas></div>
 
         <!-- SECTION: EXPERTISE — EXPANDABLE WORDS ON DARK -->
         <section class="section-block section-expertise-new" id="about">
@@ -3087,6 +3607,8 @@
             </div>
         </section>
 
+        <div class="section-transition" data-transition="2"><canvas></canvas></div>
+
         <!-- SECTION: TRAYECTORIA — TIMELINE DRAW -->
         <section class="section-block" id="trayectoria" style="background: var(--bg-alt); border-bottom: 1px solid var(--line);">
             <div class="wrap">
@@ -3203,202 +3725,131 @@
             </div>
         </section>
 
-        <!-- FULL-WIDTH DARK SECTION: SELECTED WORK / PROYECTOS -->
-        <section class="section-block section-selected-work" id="proj">
-            <div class="wrap">
-                <div class="section-header-editorial">
-                    <div>
-                        <h2 class="section-title-editorial" data-k="n4">Proyectos</h2>
-                        <a href="#contact" class="section-subtitle-link" style="margin-top: 4px; font-size: 0.8rem;">VER
-                            TODOS LOS PROYECTOS ⟶</a>
+        <!-- FULL-WIDTH DARK SECTION: SELECTED WORK / PROYECTOS — HORIZONTAL SCROLL -->
+        <section class="section-block section-selected-work projects-hscroll-wrapper" id="proj">
+            <div class="projects-hscroll-pin">
+                <div class="projects-hscroll" id="projectsTrack">
+                    <!-- Slide 01: TFG -->
+                    <div class="project-slide" style="background: linear-gradient(135deg, var(--dark-bg), #1a1535);">
+                        <div class="project-slide-inner">
+                            <div class="project-slide-info">
+                                <div class="project-slide-num">01 · TFG</div>
+                                <h3 class="project-slide-title">Optimización UI/UX WordPress</h3>
+                                <p class="project-slide-desc">Optimización de la interfaz y experiencia de usuario (UI/UX) para PYME tecnológica basada en las 10 heurísticas de Nielsen y 16 de Tognazzini.</p>
+                                <div class="project-slide-meta">✦ Grado en Gestión de la Información (UMU)<br>Tutores: José Alberto García Berná & Juan Manuel Carrillo de Gea</div>
+                                <div class="project-slide-actions">
+                                    <button class="btn-header" onclick="openProjectModal('tfg')" style="background: var(--lilac-soft); color: var(--lilac-primary); border-color: var(--lilac-border); font-weight: 700;">PREVISUALIZAR TFG</button>
+                                </div>
+                            </div>
+                            <div class="project-slide-img">
+                                <img src="img_web/tfg_preview.png" alt="TFG UI/UX Preview" loading="lazy">
+                            </div>
+                        </div>
                     </div>
 
-                    <div class="slider-nav-controls">
-                        <button class="slider-arrow-btn" id="proj-slide-prev" title="Proyecto anterior"
-                            aria-label="Anterior">‹</button>
-                        <div class="slider-dots-indicator" id="proj-slider-dots"></div>
-                        <button class="slider-arrow-btn" id="proj-slide-next" title="Siguiente proyecto"
-                            aria-label="Siguiente">›</button>
+                    <!-- Slide 02: TFM -->
+                    <div class="project-slide" style="background: linear-gradient(135deg, #1a1535, #1c1230);">
+                        <div class="project-slide-inner">
+                            <div class="project-slide-info">
+                                <div class="project-slide-num">02 · TFM</div>
+                                <h3 class="project-slide-title">Gamebooker Transmedia</h3>
+                                <p class="project-slide-desc">Diseño e implementación del proyecto transmedia GameBooker (universo Luminara & Amira) para el fomento de la lectura juvenil en la Generación Z.</p>
+                                <div class="project-slide-meta">✦ Máster en Comunicación Móvil y Contenido Digital (UMU)<br>Tutora: Tatiana Abellán Aguilar</div>
+                                <div class="project-slide-actions">
+                                    <button class="btn-header" onclick="openProjectModal('tfm')" style="background: var(--lilac-soft); color: var(--lilac-primary); border-color: var(--lilac-border); font-weight: 700;">PREVISUALIZAR TFM</button>
+                                </div>
+                            </div>
+                            <div class="project-slide-img">
+                                <img src="img_web/tfm_preview.png" alt="TFM GameBooker Preview" loading="lazy">
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Slide 03: Lokura PC -->
+                    <div class="project-slide" style="background: linear-gradient(135deg, #1c1230, #181028);">
+                        <div class="project-slide-inner">
+                            <div class="project-slide-info">
+                                <div class="project-slide-num">03 · LOKURA PC</div>
+                                <h3 class="project-slide-title">LokuraPC · Web & TikTok</h3>
+                                <p class="project-slide-desc">Maquetación y desarrollo web en WordPress (UI/UX) y gestión integral de redes sociales, siendo la cara visible principal de la empresa en TikTok.</p>
+                                <div class="project-slide-meta">✦ Creación Web WordPress · TikTok & Redes Sociales<br>Web: lokurapcshop.es · TikTok: @lokura_pc</div>
+                                <div class="project-slide-actions">
+                                    <button class="btn-header" onclick="openProjectModal('lokura')" style="background: var(--lilac-soft); color: var(--lilac-primary); border-color: var(--lilac-border); font-weight: 700;">DETALLES</button>
+                                    <a href="https://lokurapcshop.es/" target="_blank" rel="noopener noreferrer" onclick="event.stopPropagation()" class="btn-header" style="background: var(--dark-surf); color: var(--lilac-primary); border-color: var(--lilac-border); font-weight: 700;">WEB ↗</a>
+                                    <a href="https://www.tiktok.com/@lokura_pc" target="_blank" rel="noopener noreferrer" onclick="event.stopPropagation()" class="btn-header" style="background: #ff0050; color: #fff; border-color: #ff0050; font-weight: 700;">TIKTOK ↗</a>
+                                </div>
+                            </div>
+                            <div class="project-slide-img">
+                                <img src="img_web/lokura_preview.png" alt="LokuraPC Preview" loading="lazy">
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Slide 04: Thex -->
+                    <div class="project-slide" style="background: linear-gradient(135deg, #181028, #140e22);">
+                        <div class="project-slide-inner">
+                            <div class="project-slide-info">
+                                <div class="project-slide-num">04 · THEX</div>
+                                <h3 class="project-slide-title">Thex Digital</h3>
+                                <p class="project-slide-desc">Gestión de diversos proyectos y sus redes sociales, marketing digital, creación de contenido audiovisual y diseño de marca web.</p>
+                                <div class="project-slide-meta">✦ Marketing & Creative Content Manager<br>Estrategia multicanal & Content Creation</div>
+                                <div class="project-slide-actions">
+                                    <a href="https://www.linkedin.com/company/thexofficial/" target="_blank" rel="noopener noreferrer" class="btn-header" style="background: #0077b5; color: #fff; border-color: #0077b5; font-weight: 700;">VER EN LINKEDIN ↗</a>
+                                </div>
+                            </div>
+                            <div class="project-slide-img">
+                                <img src="img_web/thex_cover.png" alt="Thex Digital Preview" loading="lazy">
+                            </div>
+                        </div>
                     </div>
                 </div>
 
-                <div class="selected-work-grid">
-                    <!-- Project 01: TFG -->
-                    <div class="work-card" onclick="openProjectModal('tfg')" style="cursor: pointer;"
-                        title="Haz clic para previsualizar el TFG completo">
-                        <div>
-                            <div class="work-num">01 · TFG</div>
-                            <h3 class="work-title">OPTIMIZACIÓN UI/UX WORDPRESS</h3>
-                            <p class="work-sub" data-k="p1t">Optimización de la interfaz y experiencia de usuario
-                                (UI/UX) para PYME tecnológica basada en las 10 heurísticas de Nielsen y 16 de
-                                Tognazzini.</p>
-                            <div
-                                style="font-size: 0.78rem; color: var(--lilac-accent); margin-top: -12px; margin-bottom: 16px; line-height: 1.4;">
-                                <span>✦ Grado en Gestión de la Información (UMU)</span><br>
-                                <span style="opacity: 0.85;">Tutores: José Alberto García Berná & Juan Manuel Carrillo
-                                    de Gea</span>
-                            </div>
-                        </div>
-                        <div class="work-preview-device">
-                            <img id="proj1-img" src="img_web/tfg_preview.png"
-                                onerror="this.onerror=null;this.src='tfg_preview.png'" alt="TFG UI/UX Preview"
-                                loading="lazy" decoding="async">
-                        </div>
-                        <button class="btn-header"
-                            style="margin-top: 16px; background: var(--lilac-soft); color: var(--lilac-primary); border-color: var(--lilac-border); font-weight: 700; width: 100%;">
-                            PREVISUALIZAR TFG
-                        </button>
-                    </div>
-
-                    <!-- Project 02: TFM Gamebooker -->
-                    <div class="work-card" onclick="openProjectModal('tfm')" style="cursor: pointer;"
-                        title="Haz clic para previsualizar el TFM completo">
-                        <div>
-                            <div class="work-num">02 · TFM</div>
-                            <h3 class="work-title">GAMEBOOKER TRANSMEDIA</h3>
-                            <p class="work-sub" data-k="p2t">Diseño e implementación del proyecto transmedia GameBooker
-                                (universo Luminara & Amira) para el fomento de la lectura juvenil en la Generación Z.
-                            </p>
-                            <div
-                                style="font-size: 0.78rem; color: var(--lilac-accent); margin-top: -12px; margin-bottom: 16px; line-height: 1.4;">
-                                <span>✦ Máster en Comunicación Móvil y Contenido Digital (UMU)</span><br>
-                                <span style="opacity: 0.85;">Tutora: Tatiana Abellán Aguilar</span>
-                            </div>
-                        </div>
-                        <div class="work-preview-device">
-                            <img id="proj2-img" src="img_web/tfm_preview.png"
-                                onerror="this.onerror=null;this.src='tfm_preview.png'"
-                                alt="TFM GameBooker Transmedia Preview" loading="lazy" decoding="async">
-                        </div>
-                        <button class="btn-header"
-                            style="margin-top: 16px; background: var(--lilac-soft); color: var(--lilac-primary); border-color: var(--lilac-border); font-weight: 700; width: 100%;">
-                            PREVISUALIZAR TFM
-                        </button>
-                    </div>
-
-                    <!-- Project 03: Lokura PC Web & TikTok -->
-                    <div class="work-card" onclick="openProjectModal('lokura')" style="cursor: pointer;"
-                        title="Haz clic para ver el proyecto de Lokura PC">
-                        <div>
-                            <div class="work-num">03 · LOKURA PC</div>
-                            <h3 class="work-title">LOKURAPC · CREACIÓN WEB & TIKTOK BRAND FACE</h3>
-                            <p class="work-sub">Maquetación y desarrollo web en WordPress (UI/UX) y gestión integral de
-                                redes sociales, siendo la cara visible principal de la empresa en TikTok para la
-                                creación de contenido en vídeo y comunidad.</p>
-                            <div
-                                style="font-size: 0.78rem; color: var(--lilac-accent); margin-top: -12px; margin-bottom: 16px; line-height: 1.4;">
-                                <span>✦ Creación Web WordPress · TikTok & Redes Sociales</span><br>
-                                <span style="opacity: 0.85;">Web: lokurapcshop.es · TikTok: @lokura_pc</span>
-                            </div>
-                        </div>
-                        <div class="work-preview-device">
-                            <img id="proj3-lokura-img" src="img_web/lokura_preview.png"
-                                onerror="this.onerror=null;this.src='lokura_preview.png'"
-                                alt="LokuraPC Web y TikTok Preview" loading="lazy" decoding="async">
-                        </div>
-                        <div style="display:flex; gap:8px; margin-top:16px; flex-wrap:wrap;">
-                            <button class="btn-header"
-                                style="background: var(--lilac-soft); color: var(--lilac-primary); border-color: var(--lilac-border); font-weight: 700; flex:1;">
-                                DETALLES ⟶
-                            </button>
-                            <a href="https://lokurapcshop.es/" target="_blank" rel="noopener noreferrer"
-                                onclick="event.stopPropagation()" class="btn-header"
-                                style="background: var(--dark-surf); color: var(--lilac-primary); border-color: var(--lilac-border); font-weight: 700; display:inline-flex; align-items:center; gap:4px;"
-                                title="Visitar lokurapcshop.es">
-                                WEB ↗
-                            </a>
-                            <a href="https://www.tiktok.com/@lokura_pc" target="_blank" rel="noopener noreferrer"
-                                onclick="event.stopPropagation()" class="btn-header"
-                                style="background: #ff0050; color: #ffffff; border-color: #ff0050; font-weight: 700; display:inline-flex; align-items:center; gap:4px;"
-                                title="Ver perfil oficial de TikTok @lokura_pc">
-                                🎵 TIKTOK ↗
-                            </a>
-                        </div>
-                    </div>
-
-                    <!-- Project 04: Thex Arqé -->
-                    <div class="work-card"
-                        onclick="window.open('https://www.linkedin.com/company/thexofficial/', '_blank')"
-                        style="cursor: pointer;" title="Haz clic para abrir el perfil oficial de Thex en LinkedIn">
-                        <div>
-                            <div class="work-num">04 · THEX </div>
-                            <h3 class="work-title">THEX DIGITAL</h3>
-                            <p class="work-sub" data-k="x1t">Gestión de diversos proyectos y sus redes sociales,
-                                marketing digital, creación de contenido audiovisual y diseño de marca web.</p>
-                            <div
-                                style="font-size: 0.78rem; color: var(--lilac-accent); margin-top: -12px; margin-bottom: 16px; line-height: 1.4;">
-                                <span>✦ Marketing & Creative Content Manager</span><br>
-                                <span style="opacity: 0.85;">Estrategia multicanal & Content Creation</span>
-                            </div>
-                        </div>
-                        <div class="work-preview-device">
-                            <img id="proj3-img" src="img_web/thex_cover.png"
-                                onerror="this.onerror=null;this.src='thex_cover.png'" alt="Thex Digital Cover Preview"
-                                loading="lazy" decoding="async">
-                        </div>
-                        <a href="https://www.linkedin.com/company/thexofficial/" target="_blank"
-                            rel="noopener noreferrer" onclick="event.stopPropagation()" class="btn-header"
-                            style="margin-top: 16px; background: #0077b5; color: #ffffff; border-color: #0077b5; font-weight: 700; width: 100%; display: flex; align-items: center; justify-content: center; gap: 8px;"
-                            title="Ver página oficial de Thex en LinkedIn">
-                            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
-                                <path
-                                    d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14m-.5 15.5v-5.3a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.28 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-.77.62-1.4 1.39-1.4a1.4 1.4 0 0 1 1.4 1.4v4.93h2.75M6.46 10.9v8.37H9.25V10.9H6.46M7.86 6.78a1.62 1.62 0 1 0 0 3.24 1.62 1.62 0 0 0 0-3.24z" />
-                            </svg>
-                            VER EN LINKEDIN ↗
-                        </a>
-                    </div>
-                </div>
+                <div class="hscroll-counter" id="hscrollCounter">01 / 04</div>
+                <div class="hscroll-progress"><div class="hscroll-progress-fill" id="hscrollFill"></div></div>
             </div>
         </section>
 
-        <!-- PHOTOGRAPHY GALLERY SECTION (CARRUSEL AUTOMÁTICO E INFINITO) -->
+        <div class="section-transition" data-transition="3"><canvas></canvas></div>
+
+        <!-- PHOTOGRAPHY — SCATTERED ISLANDS WITH MOUSE REPULSION -->
         <section class="section-block section-photo" id="photo">
             <div class="wrap">
                 <div class="studio-header">
                     <div>
                         <div class="studio-title-badge">📷 Galería Visual & Encuadre</div>
-                        <h2
-                            style="font-family: var(--font-display); font-size: 2.2rem; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase;">
-                            FOTOGRAFÍA</h2>
-                        <p style="color: var(--mute); font-size: 0.95rem; max-width: 54ch; margin-top: 4px;"
-                            data-k="photo_s">
-                            Una mirada que empezó a los 12 años. Carrusel continuo automático (pásale el ratón por
-                            encima para pausar y hacer clic).
+                        <h2 style="font-family: var(--font-display); font-size: 2.2rem; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase;">FOTOGRAFÍA</h2>
+                        <p style="color: var(--mute); font-size: 0.95rem; max-width: 54ch; margin-top: 4px;" data-k="photo_s">
+                            Una mirada que empezó a los 12 años. Mueve el cursor para explorar las imágenes flotantes.
                         </p>
                     </div>
                     <div class="filters" id="filters" style="margin-bottom:0;"></div>
                 </div>
             </div>
 
-            <!-- PISTA DEL CARRUSEL AUTOMÁTICO INFINITO DE FOTOGRAFÍA -->
-            <div class="photo-carousel-track-wrapper">
-                <div class="photo-carousel-track" id="photo-car"></div>
+            <div class="photo-scattered-container" id="photoScattered">
+                <!-- Islands are generated dynamically by JS -->
             </div>
             <input type="file" id="gallery-photo-input" class="hidden-file-input" accept="image/*">
         </section>
 
-        <!-- FIGURAS 3D STUDIO (CARRUSEL AUTOMÁTICO E INFINITO MARQUEE) -->
-        <section class="section-block section-figures-studio" id="figs">
-            <div class="bg-decor-circle decor-ring-studio"></div>
+        <div class="section-transition" data-transition="4"><canvas></canvas></div>
 
+        <!-- 3D PRINTING LAB — WORKBENCH CONCEPT -->
+        <section class="section-block section-figures-studio section-lab" id="figs">
             <div class="wrap">
                 <div class="studio-header">
                     <div>
-                        <div class="studio-title-badge">🎨 Taller Creativo & Pintura</div>
-                        <h2
-                            style="font-family: var(--font-display); font-size: 2.2rem; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase;">
-                            FIGURAS 3D</h2>
-                        <p style="color: var(--mute); font-size: 0.95rem; max-width: 54ch; margin-top: 4px;">
-                            Pintura de miniaturas e impresión 3D. Carrusel continuo automático (pásale el ratón por
-                            encima para pausar y hacer clic).
+                        <div class="studio-title-badge" style="color: #8cb88c;">🔬 Laboratorio de Impresión 3D</div>
+                        <h2 style="font-family: var(--font-display); font-size: 2.2rem; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: #d0d8c8;">FIGURAS 3D</h2>
+                        <p style="color: rgba(200,220,190,0.6); font-size: 0.95rem; max-width: 54ch; margin-top: 4px;">
+                            Pintura de miniaturas e impresión 3D. Cada pieza, capa a capa, desde el diseño hasta el acabado final.
                         </p>
                     </div>
                 </div>
-            </div>
 
-            <!-- PISTA DEL CARRUSEL AUTOMÁTICO INFINITO DE EXTREMO A EXTREMO -->
-            <div class="studio-carousel-track-wrapper">
-                <div class="studio-carousel-track" id="car"></div>
+                <div class="lab-workbench" id="labWorkbench">
+                    <!-- Lab items generated dynamically by JS -->
+                </div>
             </div>
             <input type="file" id="fig-upload-input" class="hidden-file-input" accept="image/*">
         </section>
@@ -4644,18 +5095,27 @@
             initInteractiveToolsStage();
             updateAvatar();
             initLightTrail();
-            initProjectSlider();
             initHeroPhotoParallax();
             initExpertiseAccordion();
             initTrayectoriaTimeline();
             initContactTyping();
 
+            /* Cinematographic systems */
+            initCustomCursor();
+            initCursorSectionColors();
+            initSideNavTracking();
+            initHeroHalo();
+            initSectionTransitions();
+            initPhotoScattered();
+            initLabWorkbench();
+            initSoundSystem();
+
             /* Hero typing with dot indicators */
             var heroDots = document.querySelectorAll('.typed-dots i');
             typeWriter('typed-hero', [
                 'Diseño experiencias digitales que inspiran, conectan y generan resultados.',
-                'Cuento historias que viajan entre pantallas, plataformas y personas.',
-                'Convierto ideas en marcas que se ven, se sienten y se recuerdan.'
+                'Marketing inmobiliario y turístico internacional.',
+                'Narrativa visual, branding y experiencias inmersivas con IA.'
             ], 38, 2600, function(i) {
                 heroDots.forEach(function(d, n) { d.classList.toggle('on', n === i); });
             });
@@ -4664,8 +5124,521 @@
                 gsap.from(".title-creative", { y: 40, opacity: 0, duration: 1, ease: "power3.out" });
                 gsap.from(".title-portfolio", { y: 50, opacity: 0, duration: 1.2, delay: 0.2, ease: "power3.out" });
                 initHeroReveal();
+                initProjectsHorizontalScroll();
             }
         });
+
+        /* =============================================
+           CINEMATOGRAPHIC ENGINE
+           ============================================= */
+
+        /* --- CUSTOM CURSOR --- */
+        function initCustomCursor() {
+            var dot = document.getElementById('cursorDot');
+            var halo = document.getElementById('cursorHalo');
+            if (!dot || !halo) return;
+            if (window.matchMedia('(pointer: coarse)').matches) return;
+
+            var mx = 0, my = 0, dx = 0, dy = 0, hx = 0, hy = 0;
+
+            document.addEventListener('mousemove', function(e) {
+                mx = e.clientX;
+                my = e.clientY;
+            });
+
+            function render() {
+                dx += (mx - dx) * 0.2;
+                dy += (my - dy) * 0.2;
+                hx += (mx - hx) * 0.1;
+                hy += (my - hy) * 0.1;
+                dot.style.left = dx + 'px';
+                dot.style.top = dy + 'px';
+                halo.style.left = hx + 'px';
+                halo.style.top = hy + 'px';
+                requestAnimationFrame(render);
+            }
+            render();
+
+            var hoverEls = document.querySelectorAll('a, button, .work-card, .photo-island, .lab-item, [onclick]');
+            hoverEls.forEach(function(el) {
+                el.addEventListener('mouseenter', function() { document.body.classList.add('cursor-expanded'); });
+                el.addEventListener('mouseleave', function() { document.body.classList.remove('cursor-expanded'); });
+            });
+        }
+
+        /* --- CURSOR SECTION COLOR TRACKING --- */
+        function initCursorSectionColors() {
+            if (window.matchMedia('(pointer: coarse)').matches) return;
+            var sections = [
+                { id: 'hero-stage', cls: 'cursor-hero' },
+                { id: 'proj', cls: 'cursor-proj' },
+                { id: 'photo', cls: 'cursor-photo' },
+                { id: 'figs', cls: 'cursor-figs' }
+            ];
+            var allClasses = sections.map(function(s) { return s.cls; });
+
+            var observer = new IntersectionObserver(function(entries) {
+                entries.forEach(function(entry) {
+                    if (entry.isIntersecting) {
+                        allClasses.forEach(function(c) { document.body.classList.remove(c); });
+                        var match = sections.find(function(s) { return s.id === entry.target.id; });
+                        if (match) document.body.classList.add(match.cls);
+                    }
+                });
+            }, { threshold: 0.3 });
+
+            sections.forEach(function(s) {
+                var el = document.getElementById(s.id);
+                if (el) observer.observe(el);
+            });
+        }
+
+        /* --- VERTICAL NAV ACTIVE TRACKING --- */
+        function initSideNavTracking() {
+            var items = document.querySelectorAll('.side-nav-item');
+            var sectionIds = [];
+            items.forEach(function(item) { sectionIds.push(item.getAttribute('data-section')); });
+
+            var observer = new IntersectionObserver(function(entries) {
+                entries.forEach(function(entry) {
+                    if (entry.isIntersecting) {
+                        items.forEach(function(item) {
+                            if (item.getAttribute('data-section') === entry.target.id) {
+                                item.classList.add('active');
+                            } else {
+                                item.classList.remove('active');
+                            }
+                        });
+                    }
+                });
+            }, { threshold: 0.25, rootMargin: '-10% 0px -10% 0px' });
+
+            sectionIds.forEach(function(id) {
+                var el = document.getElementById(id);
+                if (el) observer.observe(el);
+            });
+
+            /* Wire side nav buttons to match header functionality */
+            var sideTheme = document.getElementById('sideTheme');
+            var sideLang = document.getElementById('sideLang');
+            var headerTheme = document.getElementById('theme');
+            var headerLang = document.getElementById('lang');
+            if (sideTheme && headerTheme) {
+                sideTheme.addEventListener('click', function() { headerTheme.click(); });
+            }
+            if (sideLang && headerLang) {
+                sideLang.addEventListener('click', function() { headerLang.click(); });
+            }
+        }
+
+        /* --- HERO LIGHT HALO --- */
+        function initHeroHalo() {
+            var halo = document.getElementById('heroHalo');
+            var heroSection = document.querySelector('.section-hero');
+            if (!halo || !heroSection) return;
+            if (window.matchMedia('(pointer: coarse)').matches) return;
+
+            var colors = [
+                'radial-gradient(circle, rgba(157,114,255,0.4) 0%, rgba(196,181,253,0.15) 40%, transparent 70%)',
+                'radial-gradient(circle, rgba(255,180,100,0.35) 0%, rgba(255,200,150,0.12) 40%, transparent 70%)',
+                'radial-gradient(circle, rgba(100,180,255,0.35) 0%, rgba(150,200,255,0.12) 40%, transparent 70%)'
+            ];
+
+            heroSection.addEventListener('mousemove', function(e) {
+                var rect = heroSection.getBoundingClientRect();
+                var x = e.clientX - rect.left;
+                var y = e.clientY - rect.top;
+                halo.style.left = x + 'px';
+                halo.style.top = y + 'px';
+
+                var intensity = Math.min(1, Math.sqrt(
+                    Math.pow((x / rect.width - 0.5) * 2, 2) +
+                    Math.pow((y / rect.height - 0.5) * 2, 2)
+                ));
+                halo.style.width = (400 + intensity * 200) + 'px';
+                halo.style.height = (400 + intensity * 200) + 'px';
+
+                var colorIdx = Math.floor((x / rect.width) * colors.length);
+                colorIdx = Math.min(colorIdx, colors.length - 1);
+                halo.style.background = colors[colorIdx];
+            });
+        }
+
+        /* --- SECTION TRANSITION CANVASES --- */
+        function initSectionTransitions() {
+            var transitions = document.querySelectorAll('.section-transition');
+            transitions.forEach(function(t) {
+                var canvas = t.querySelector('canvas');
+                if (!canvas) return;
+                var ctx = canvas.getContext('2d');
+                var w, h;
+
+                function resize() {
+                    w = canvas.width = t.offsetWidth;
+                    h = canvas.height = t.offsetHeight;
+                }
+                resize();
+                window.addEventListener('resize', resize);
+
+                var particles = [];
+                for (var i = 0; i < 40; i++) {
+                    particles.push({
+                        x: Math.random() * w,
+                        y: Math.random() * h,
+                        r: Math.random() * 4 + 1,
+                        vx: (Math.random() - 0.5) * 0.6,
+                        vy: (Math.random() - 0.5) * 0.3,
+                        alpha: Math.random() * 0.4 + 0.1,
+                        color: Math.random() > 0.5 ? '157,114,255' : '196,181,253'
+                    });
+                }
+
+                var observer = new IntersectionObserver(function(entries) {
+                    if (entries[0].isIntersecting) animate();
+                }, { threshold: 0.1 });
+                observer.observe(t);
+
+                var animating = false;
+                function animate() {
+                    if (animating) return;
+                    animating = true;
+                    function frame() {
+                        ctx.clearRect(0, 0, w, h);
+
+                        var grad = ctx.createLinearGradient(0, 0, w, 0);
+                        grad.addColorStop(0, 'rgba(157,114,255,0.03)');
+                        grad.addColorStop(0.5, 'rgba(157,114,255,0.06)');
+                        grad.addColorStop(1, 'rgba(157,114,255,0.03)');
+                        ctx.fillStyle = grad;
+                        ctx.fillRect(0, 0, w, h);
+
+                        for (var i = 0; i < particles.length; i++) {
+                            var p = particles[i];
+                            p.x += p.vx;
+                            p.y += p.vy;
+                            if (p.x < 0) p.x = w;
+                            if (p.x > w) p.x = 0;
+                            if (p.y < 0) p.y = h;
+                            if (p.y > h) p.y = 0;
+
+                            ctx.beginPath();
+                            ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
+                            ctx.fillStyle = 'rgba(' + p.color + ',' + p.alpha + ')';
+                            ctx.fill();
+                        }
+
+                        for (var i = 0; i < particles.length; i++) {
+                            for (var j = i + 1; j < particles.length; j++) {
+                                var dx = particles[i].x - particles[j].x;
+                                var dy = particles[i].y - particles[j].y;
+                                var dist = Math.sqrt(dx * dx + dy * dy);
+                                if (dist < 80) {
+                                    ctx.beginPath();
+                                    ctx.moveTo(particles[i].x, particles[i].y);
+                                    ctx.lineTo(particles[j].x, particles[j].y);
+                                    ctx.strokeStyle = 'rgba(157,114,255,' + (0.1 * (1 - dist / 80)) + ')';
+                                    ctx.lineWidth = 0.5;
+                                    ctx.stroke();
+                                }
+                            }
+                        }
+
+                        requestAnimationFrame(frame);
+                    }
+                    frame();
+                }
+            });
+        }
+
+        /* --- PROJECTS HORIZONTAL SCROLL (GSAP) --- */
+        function initProjectsHorizontalScroll() {
+            if (typeof gsap === 'undefined') return;
+            gsap.registerPlugin(ScrollTrigger);
+
+            var track = document.getElementById('projectsTrack');
+            var wrapper = document.querySelector('.projects-hscroll-wrapper');
+            if (!track || !wrapper) return;
+
+            var slides = track.querySelectorAll('.project-slide');
+            var totalWidth = slides.length * window.innerWidth;
+
+            var counter = document.getElementById('hscrollCounter');
+            var fill = document.getElementById('hscrollFill');
+
+            gsap.to(track, {
+                x: function() { return -(totalWidth - window.innerWidth); },
+                ease: 'none',
+                scrollTrigger: {
+                    trigger: wrapper,
+                    pin: true,
+                    scrub: 1,
+                    end: function() { return '+=' + (totalWidth - window.innerWidth); },
+                    onUpdate: function(self) {
+                        var p = self.progress;
+                        if (fill) fill.style.width = (p * 100) + '%';
+                        var idx = Math.min(Math.floor(p * slides.length), slides.length - 1);
+                        if (counter) counter.textContent = '0' + (idx + 1) + ' / 0' + slides.length;
+                    }
+                }
+            });
+
+            slides.forEach(function(slide, idx) {
+                gsap.from(slide.querySelector('.project-slide-info'), {
+                    opacity: 0,
+                    x: -60,
+                    scrollTrigger: {
+                        trigger: slide,
+                        containerAnimation: gsap.getById ? undefined : undefined,
+                        start: 'left center',
+                        toggleActions: 'play none none reverse',
+                        horizontal: true
+                    }
+                });
+            });
+        }
+
+        /* --- PHOTOGRAPHY SCATTERED ISLANDS WITH REPULSION --- */
+        function initPhotoScattered() {
+            var container = document.getElementById('photoScattered');
+            if (!container) return;
+
+            var allPhotos = [];
+            if (typeof ALBUMS !== 'undefined') {
+                ALBUMS.forEach(function(album) {
+                    album.sections.forEach(function(sec) {
+                        sec.files.forEach(function(f) {
+                            allPhotos.push({ src: f, title: album.title });
+                        });
+                    });
+                });
+            }
+
+            var selected = [];
+            var used = {};
+            var maxIslands = Math.min(16, allPhotos.length);
+            while (selected.length < maxIslands && Object.keys(used).length < allPhotos.length) {
+                var idx = Math.floor(Math.random() * allPhotos.length);
+                if (!used[idx]) {
+                    used[idx] = true;
+                    selected.push(allPhotos[idx]);
+                }
+            }
+
+            if (selected.length === 0) return;
+
+            var cw = container.offsetWidth;
+            var ch = container.offsetHeight || 600;
+            container.style.minHeight = ch + 'px';
+
+            var islands = [];
+            var sizes = [
+                { w: 180, h: 130 }, { w: 220, h: 160 }, { w: 160, h: 200 },
+                { w: 250, h: 180 }, { w: 140, h: 140 }, { w: 200, h: 150 }
+            ];
+
+            selected.forEach(function(photo, i) {
+                var el = document.createElement('div');
+                el.className = 'photo-island';
+                var size = sizes[i % sizes.length];
+                var rotation = (Math.random() - 0.5) * 12;
+
+                var x = (i % 4) * (cw / 4) + Math.random() * (cw / 6);
+                var y = Math.floor(i / 4) * (ch / 4) + Math.random() * (ch / 6);
+                x = Math.max(10, Math.min(x, cw - size.w - 10));
+                y = Math.max(10, Math.min(y, ch - size.h - 10));
+
+                el.style.width = size.w + 'px';
+                el.style.height = size.h + 'px';
+                el.style.left = x + 'px';
+                el.style.top = y + 'px';
+                el.style.transform = 'rotate(' + rotation + 'deg)';
+                el.setAttribute('data-ox', x);
+                el.setAttribute('data-oy', y);
+                el.setAttribute('data-rot', rotation);
+
+                var img = document.createElement('img');
+                img.src = photo.src.replace('Fotografia/', 'Fotografia_web/thumb/');
+                img.alt = photo.title;
+                img.loading = 'lazy';
+                el.appendChild(img);
+
+                var info = document.createElement('div');
+                info.className = 'photo-island-info';
+                info.textContent = photo.title;
+                el.appendChild(info);
+
+                el.addEventListener('click', function() {
+                    openLightbox(photo.src);
+                });
+
+                container.appendChild(el);
+                islands.push({ el: el, x: x, y: y, ox: x, oy: y, rot: rotation, w: size.w, h: size.h });
+            });
+
+            if (window.matchMedia('(pointer: coarse)').matches) return;
+
+            var mouseX = -1000, mouseY = -1000;
+            container.addEventListener('mousemove', function(e) {
+                var rect = container.getBoundingClientRect();
+                mouseX = e.clientX - rect.left;
+                mouseY = e.clientY - rect.top;
+            });
+            container.addEventListener('mouseleave', function() {
+                mouseX = -1000;
+                mouseY = -1000;
+            });
+
+            function repulsionLoop() {
+                var repelRadius = 180;
+                var repelStrength = 30;
+
+                islands.forEach(function(island) {
+                    var cx = island.ox + island.w / 2;
+                    var cy = island.oy + island.h / 2;
+                    var dx = cx - mouseX;
+                    var dy = cy - mouseY;
+                    var dist = Math.sqrt(dx * dx + dy * dy);
+
+                    var tx = island.ox, ty = island.oy;
+                    if (dist < repelRadius && dist > 0) {
+                        var force = (1 - dist / repelRadius) * repelStrength;
+                        tx = island.ox + (dx / dist) * force;
+                        ty = island.oy + (dy / dist) * force;
+                    }
+
+                    island.x += (tx - island.x) * 0.08;
+                    island.y += (ty - island.y) * 0.08;
+
+                    island.el.style.left = island.x + 'px';
+                    island.el.style.top = island.y + 'px';
+                });
+
+                requestAnimationFrame(repulsionLoop);
+            }
+            repulsionLoop();
+        }
+
+        function openLightbox(src) {
+            var lb = document.getElementById('lb');
+            var lbc = document.getElementById('lbc');
+            if (!lb || !lbc) return;
+            lbc.innerHTML = '<img src="' + src + '" alt="Photo" style="max-width:90vw;max-height:90vh;object-fit:contain;border-radius:8px;">';
+            lb.classList.add('show');
+        }
+
+        /* --- 3D LAB WORKBENCH --- */
+        function initLabWorkbench() {
+            var bench = document.getElementById('labWorkbench');
+            if (!bench) return;
+
+            var figures3D = [
+                { name: 'Gengar', img: 'img_web/GENGAR.jpg', material: 'PLA · Pintado a mano' },
+                { name: 'Kratos', img: 'img_web/Kratos.jpg', material: 'Resina · Detalle alto' },
+                { name: 'Power', img: 'img_web/Power.png', material: 'PLA · Acrílico' },
+                { name: 'Granda Jinx', img: 'img_web/Granda Jinx.png', material: 'PLA · Pintado a mano' },
+                { name: 'Toradora', img: 'img_web/Toradora.jpg', material: 'Resina · Acrílico' },
+                { name: 'Candelabro', img: 'img_web/Candelabro Halloween.png', material: 'PLA · Halloween Edition' },
+                { name: 'Calabaza', img: 'img_web/Calabaza Halloween.png', material: 'PLA · Halloween Edition' },
+                { name: 'Pistola Joker', img: 'img_web/Pistola Joker.png', material: 'PLA · Props & Cosplay' },
+                { name: 'Rata Ciberelectrónica', img: 'img_web/Rata Ciberelectronica.png', material: 'PLA · Mecánico' },
+                { name: 'FIFA World Cup', img: 'img_web/Fifa WorldCup.png', material: 'PLA · Trofeo' }
+            ];
+
+            figures3D.forEach(function(fig, idx) {
+                var item = document.createElement('div');
+                item.className = 'lab-item';
+
+                var layerNum = String(idx + 1).padStart(2, '0');
+
+                item.innerHTML = '<div class="lab-layer-indicator">' + layerNum + '</div>' +
+                    '<img src="' + fig.img + '" alt="' + fig.name + '" loading="lazy">' +
+                    '<div class="lab-item-info">' +
+                    '<div class="lab-item-name">' + fig.name + '</div>' +
+                    '<div class="lab-item-material">' + fig.material + '</div>' +
+                    '</div>';
+
+                item.addEventListener('click', function() {
+                    openLightbox(fig.img);
+                });
+
+                bench.appendChild(item);
+            });
+
+            var labItems = bench.querySelectorAll('.lab-item');
+            var observer = new IntersectionObserver(function(entries) {
+                entries.forEach(function(entry) {
+                    if (entry.isIntersecting) {
+                        var delay = Array.from(labItems).indexOf(entry.target) * 120;
+                        setTimeout(function() {
+                            entry.target.classList.add('visible');
+                        }, delay);
+                    }
+                });
+            }, { threshold: 0.15 });
+
+            labItems.forEach(function(item) { observer.observe(item); });
+        }
+
+        /* --- SOUND SYSTEM --- */
+        var soundEnabled = false;
+        var audioCtx = null;
+
+        function initSoundSystem() {
+            var toggle = document.getElementById('soundToggle');
+            if (!toggle) return;
+
+            toggle.addEventListener('click', function() {
+                soundEnabled = !soundEnabled;
+                toggle.textContent = soundEnabled ? '🔊' : '🔇';
+                toggle.classList.toggle('active', soundEnabled);
+
+                if (soundEnabled && !audioCtx) {
+                    audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+                }
+            });
+
+            var lastSection = '';
+            var sectionObserver = new IntersectionObserver(function(entries) {
+                entries.forEach(function(entry) {
+                    if (entry.isIntersecting && entry.target.id !== lastSection) {
+                        lastSection = entry.target.id;
+                        if (soundEnabled) playWhoosh();
+                    }
+                });
+            }, { threshold: 0.35 });
+
+            ['hero-stage', 'about', 'proj', 'photo', 'figs', 'contact'].forEach(function(id) {
+                var el = document.getElementById(id);
+                if (el) sectionObserver.observe(el);
+            });
+        }
+
+        function playWhoosh() {
+            if (!audioCtx || !soundEnabled) return;
+            try {
+                var osc = audioCtx.createOscillator();
+                var gain = audioCtx.createGain();
+                var filter = audioCtx.createBiquadFilter();
+
+                filter.type = 'lowpass';
+                filter.frequency.setValueAtTime(2000, audioCtx.currentTime);
+                filter.frequency.exponentialRampToValueAtTime(200, audioCtx.currentTime + 0.3);
+
+                osc.type = 'sawtooth';
+                osc.frequency.setValueAtTime(200, audioCtx.currentTime);
+                osc.frequency.exponentialRampToValueAtTime(80, audioCtx.currentTime + 0.25);
+
+                gain.gain.setValueAtTime(0.04, audioCtx.currentTime);
+                gain.gain.exponentialRampToValueAtTime(0.001, audioCtx.currentTime + 0.35);
+
+                osc.connect(filter);
+                filter.connect(gain);
+                gain.connect(audioCtx.destination);
+
+                osc.start(audioCtx.currentTime);
+                osc.stop(audioCtx.currentTime + 0.4);
+            } catch(e) {}
+        }
     </script>
 </body>
 
