@@ -2547,6 +2547,335 @@
             }
         }
 
+        /* =========================================================
+           PLANETARY SKILLS SYSTEM (UNIVERSE DE ESPECIALIDADES)
+           ========================================================= */
+        .planets-universe-container {
+            position: relative;
+            width: 100%;
+            min-height: 500px;
+            background: radial-gradient(circle at 50% 50%, rgba(35, 22, 58, 0.95) 0%, rgba(10, 8, 18, 0.98) 75%);
+            border-radius: 32px;
+            border: 1px solid rgba(196, 181, 253, 0.2);
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5), inset 0 0 70px rgba(157, 114, 255, 0.1);
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 50px 20px;
+            margin: 10px 0 30px 0;
+        }
+
+        .universe-orbits {
+            position: absolute;
+            inset: 0;
+            pointer-events: none;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .orbit-ring {
+            position: absolute;
+            border: 1px dashed rgba(196, 181, 253, 0.15);
+            border-radius: 50%;
+        }
+        .orbit-ring-1 { width: 280px; height: 280px; animation: spinOrbit 45s linear infinite; }
+        .orbit-ring-2 { width: 500px; height: 500px; animation: spinOrbit 70s linear infinite reverse; }
+
+        @keyframes spinOrbit {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        .galaxy-core {
+            position: absolute;
+            width: 95px;
+            height: 95px;
+            border-radius: 50%;
+            background: radial-gradient(circle, var(--lilac-primary) 0%, rgba(139, 92, 246, 0.4) 60%, transparent 100%);
+            box-shadow: 0 0 40px var(--lilac-primary), 0 0 80px rgba(157, 114, 255, 0.4);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            color: #fff;
+            font-family: var(--font-display);
+            font-size: 0.78rem;
+            font-weight: 700;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            z-index: 2;
+            animation: corePulse 4s ease-in-out infinite alternate;
+        }
+
+        @keyframes corePulse {
+            0% { transform: scale(1); box-shadow: 0 0 35px var(--lilac-primary); }
+            100% { transform: scale(1.08); box-shadow: 0 0 55px var(--lilac-accent), 0 0 90px rgba(157, 114, 255, 0.6); }
+        }
+
+        .planets-grid {
+            position: relative;
+            z-index: 3;
+            width: 100%;
+            max-width: 920px;
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 24px;
+            align-items: center;
+            justify-items: center;
+        }
+
+        @media (max-width: 850px) {
+            .planets-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 40px 20px;
+            }
+            .galaxy-core {
+                display: none;
+            }
+            .orbit-ring {
+                display: none;
+            }
+        }
+
+        .planet-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            cursor: pointer;
+            background: none;
+            border: none;
+            padding: 12px;
+            transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+            outline: none;
+            text-decoration: none;
+        }
+
+        .planet-item:hover {
+            transform: translateY(-8px) scale(1.08);
+        }
+
+        .planet-item:nth-child(1) { animation: floatPlanet1 6s ease-in-out infinite alternate; }
+        .planet-item:nth-child(2) { animation: floatPlanet2 7s ease-in-out 0.5s infinite alternate; }
+        .planet-item:nth-child(3) { animation: floatPlanet3 6.5s ease-in-out 1s infinite alternate; }
+        .planet-item:nth-child(4) { animation: floatPlanet4 7.5s ease-in-out 1.5s infinite alternate; }
+
+        @keyframes floatPlanet1 { 0% { transform: translateY(0px); } 100% { transform: translateY(-12px); } }
+        @keyframes floatPlanet2 { 0% { transform: translateY(0px); } 100% { transform: translateY(14px); } }
+        @keyframes floatPlanet3 { 0% { transform: translateY(0px); } 100% { transform: translateY(-10px); } }
+        @keyframes floatPlanet4 { 0% { transform: translateY(0px); } 100% { transform: translateY(12px); } }
+
+        .planet-sphere {
+            position: relative;
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: var(--font-display);
+            font-size: 1.25rem;
+            font-weight: 800;
+            color: #ffffff;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.6), inset -15px -15px 25px rgba(0, 0, 0, 0.7);
+            transition: box-shadow 0.4s ease, filter 0.4s ease;
+        }
+
+        .planet-item:hover .planet-sphere {
+            box-shadow: 0 0 35px var(--lilac-primary), inset -10px -10px 20px rgba(0, 0, 0, 0.4);
+            filter: brightness(1.15);
+        }
+
+        .planet-p1 {
+            background: radial-gradient(circle at 35% 35%, #d8b4fe 0%, #8b5cf6 45%, #2e1065 100%);
+        }
+        .planet-p2 {
+            background: radial-gradient(circle at 35% 35%, #f472b6 0%, #c084fc 50%, #4c1d95 100%);
+        }
+        .planet-p3 {
+            background: radial-gradient(circle at 35% 35%, #38bdf8 0%, #6366f1 55%, #1e1b4b 100%);
+        }
+        .planet-p4 {
+            background: radial-gradient(circle at 35% 35%, #a7f3d0 0%, #3b82f6 50%, #0f172a 100%);
+        }
+
+        .planet-ring {
+            position: absolute;
+            width: 135px;
+            height: 38px;
+            border: 2px solid rgba(216, 180, 254, 0.7);
+            border-radius: 50%;
+            transform: rotate(-25deg);
+            pointer-events: none;
+            box-shadow: 0 0 15px rgba(196, 181, 253, 0.4);
+        }
+
+        .planet-label-box {
+            margin-top: 14px;
+            text-align: center;
+        }
+
+        .planet-num-badge {
+            font-size: 0.7rem;
+            font-weight: 700;
+            color: var(--lilac-primary);
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            display: block;
+            margin-bottom: 2px;
+        }
+
+        .planet-title-text {
+            font-family: var(--font-display);
+            font-size: 0.88rem;
+            font-weight: 700;
+            color: #ffffff;
+            letter-spacing: 0.05em;
+            text-transform: uppercase;
+            margin: 0;
+            line-height: 1.2;
+            transition: color 0.3s ease;
+        }
+
+        .planet-item:hover .planet-title-text {
+            color: var(--lilac-primary);
+        }
+
+        .planet-click-hint {
+            display: inline-block;
+            margin-top: 6px;
+            font-size: 0.72rem;
+            color: rgba(255, 255, 255, 0.65);
+            padding: 3px 10px;
+            border-radius: 12px;
+            background: rgba(255, 255, 255, 0.08);
+            border: 1px solid rgba(255, 255, 255, 0.12);
+            transition: all 0.3s ease;
+        }
+
+        .planet-item:hover .planet-click-hint {
+            background: var(--lilac-primary);
+            color: #0a0812;
+            font-weight: 700;
+        }
+
+        /* Planet Details Modal */
+        .planet-modal-overlay {
+            position: fixed;
+            inset: 0;
+            z-index: 9999;
+            background: rgba(10, 8, 18, 0.85);
+            backdrop-filter: blur(12px);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.35s ease;
+        }
+
+        .planet-modal-overlay.active {
+            opacity: 1;
+            pointer-events: auto;
+        }
+
+        .planet-modal-card {
+            position: relative;
+            width: 100%;
+            max-width: 520px;
+            background: rgba(23, 18, 38, 0.95);
+            border: 1px solid rgba(196, 181, 253, 0.3);
+            border-radius: 28px;
+            padding: 36px;
+            box-shadow: 0 30px 70px rgba(0, 0, 0, 0.7), 0 0 50px rgba(157, 114, 255, 0.25);
+            transform: scale(0.85) translateY(20px);
+            transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+            color: #ffffff;
+        }
+
+        .planet-modal-overlay.active .planet-modal-card {
+            transform: scale(1) translateY(0);
+        }
+
+        .planet-modal-close {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.08);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            color: #ffffff;
+            font-size: 1.2rem;
+            cursor: pointer;
+            display: grid;
+            place-items: center;
+            transition: all 0.25s ease;
+        }
+
+        .planet-modal-close:hover {
+            background: var(--lilac-primary);
+            color: #0a0812;
+            transform: rotate(90deg);
+        }
+
+        .modal-planet-icon-header {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            margin-bottom: 20px;
+        }
+
+        .modal-mini-planet {
+            width: 54px;
+            height: 54px;
+            border-radius: 50%;
+            box-shadow: 0 0 20px rgba(157, 114, 255, 0.4);
+            flex-shrink: 0;
+        }
+
+        .modal-title-tag {
+            font-size: 0.75rem;
+            font-weight: 700;
+            color: var(--lilac-primary);
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+        }
+
+        .modal-planet-title {
+            font-family: var(--font-display);
+            font-size: 1.45rem;
+            font-weight: 700;
+            color: #ffffff;
+            margin: 2px 0 0 0;
+        }
+
+        .modal-planet-desc {
+            font-size: 1.02rem;
+            line-height: 1.6;
+            color: rgba(255, 255, 255, 0.88);
+            margin-bottom: 24px;
+        }
+
+        .modal-pills-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+
+        .modal-pill-item {
+            font-size: 0.82rem;
+            font-weight: 600;
+            padding: 6px 14px;
+            border-radius: 20px;
+            background: rgba(196, 181, 253, 0.12);
+            color: var(--lilac-primary);
+            border: 1px solid rgba(196, 181, 253, 0.25);
+        }
+
         /* === SECTION REVEAL TRANSITION (SEAMLESS FULLSCREEN NO MARGINS) === */
         .section-reveal-overlay {
             position: absolute;
@@ -3795,79 +4124,93 @@
         </div>
         <input type="file" id="avatar-input" class="hidden-file-input" accept="image/*">
 
-        <!-- SECTION: EXPERTISE — EXPANDABLE WORDS ON DARK -->
+        <!-- SECTION: EXPERTISE — PLANETS UNIVERSE -->
         <section class="section-block section-expertise-new" id="about">
             <div class="wrap">
-                <div class="expertise-words-list">
-                    <div class="expertise-word-item" data-skill="0">
-                        <div class="expertise-word-top">
-                            <span class="expertise-word-num">01</span>
-                            <span class="expertise-word-title">UI / UX & DESIGN</span>
-                            <span class="expertise-word-arrow">↗</span>
-                        </div>
-                        <div class="expertise-word-expand">
-                            <p>Interfaces web intuitivas, responsive y diseñadas con enfoque en el usuario. Prototipado
-                                en Figma y validación mediante heurísticas de usabilidad.</p>
-                            <div class="expertise-tags-pills">
-                                <span class="tag-pill">Figma</span>
-                                <span class="tag-pill">UI Design</span>
-                                <span class="tag-pill">UX Research</span>
-                                <span class="tag-pill">Nielsen</span>
-                            </div>
-                        </div>
+                <div class="planets-universe-container">
+                    <!-- Cosmic Orbital Rings -->
+                    <div class="universe-orbits">
+                        <div class="orbit-ring orbit-ring-1"></div>
+                        <div class="orbit-ring orbit-ring-2"></div>
                     </div>
-                    <div class="expertise-word-item" data-skill="1">
-                        <div class="expertise-word-top">
-                            <span class="expertise-word-num">02</span>
-                            <span class="expertise-word-title">MARKETING DIGITAL</span>
-                            <span class="expertise-word-arrow">↗</span>
-                        </div>
-                        <div class="expertise-word-expand">
-                            <p>Estrategias de contenido, redes sociales y posicionamiento orgánico de marca. Gestión de
-                                comunidades y analítica de audiencias.</p>
-                            <div class="expertise-tags-pills">
-                                <span class="tag-pill">Redes Sociales</span>
-                                <span class="tag-pill">Estrategia</span>
-                                <span class="tag-pill">Branding</span>
-                                <span class="tag-pill">Analytics</span>
-                            </div>
-                        </div>
+
+                    <!-- Center Galaxy Core -->
+                    <div class="galaxy-core">
+                        <span>✦</span>
+                        <span>SKILLS</span>
                     </div>
-                    <div class="expertise-word-item" data-skill="2">
-                        <div class="expertise-word-top">
-                            <span class="expertise-word-num">03</span>
-                            <span class="expertise-word-title">TRANSMEDIA</span>
-                            <span class="expertise-word-arrow">↗</span>
-                        </div>
-                        <div class="expertise-word-expand">
-                            <p>Narrativas multicanal que conectan ideas, plataformas y audiencias. Gamificación y
-                                storytelling interactivo aplicado a proyectos culturales.</p>
-                            <div class="expertise-tags-pills">
-                                <span class="tag-pill">Storytelling</span>
-                                <span class="tag-pill">Contenido Móvil</span>
-                                <span class="tag-pill">Gamificación</span>
+
+                    <!-- Planets Grid -->
+                    <div class="planets-grid">
+                        <!-- Planet 1 -->
+                        <button class="planet-item" onclick="openPlanetModal(0)" aria-label="Ver detalles de UI/UX & Design">
+                            <div class="planet-sphere planet-p1">
+                                <span>01</span>
+                                <div class="planet-ring"></div>
                             </div>
-                        </div>
-                    </div>
-                    <div class="expertise-word-item" data-skill="3">
-                        <div class="expertise-word-top">
-                            <span class="expertise-word-num">04</span>
-                            <span class="expertise-word-title">GESTIÓN DE INFORMACIÓN</span>
-                            <span class="expertise-word-arrow">↗</span>
-                        </div>
-                        <div class="expertise-word-expand">
-                            <p>Estructuración de datos, curaduría de contenidos y gestión de recursos documentales.
-                                Organización y arquitectura de la información.</p>
-                            <div class="expertise-tags-pills">
-                                <span class="tag-pill">Contenidos</span>
-                                <span class="tag-pill">Organización</span>
-                                <span class="tag-pill">Documentación</span>
+                            <div class="planet-label-box">
+                                <span class="planet-num-badge">Planeta 01</span>
+                                <h3 class="planet-title-text">UI / UX & DESIGN</h3>
+                                <span class="planet-click-hint">Pulsa para ver ✦</span>
                             </div>
-                        </div>
+                        </button>
+
+                        <!-- Planet 2 -->
+                        <button class="planet-item" onclick="openPlanetModal(1)" aria-label="Ver detalles de Marketing Digital">
+                            <div class="planet-sphere planet-p2">
+                                <span>02</span>
+                            </div>
+                            <div class="planet-label-box">
+                                <span class="planet-num-badge">Planeta 02</span>
+                                <h3 class="planet-title-text">MARKETING DIGITAL</h3>
+                                <span class="planet-click-hint">Pulsa para ver ✦</span>
+                            </div>
+                        </button>
+
+                        <!-- Planet 3 -->
+                        <button class="planet-item" onclick="openPlanetModal(2)" aria-label="Ver detalles de Transmedia">
+                            <div class="planet-sphere planet-p3">
+                                <span>03</span>
+                                <div class="planet-ring"></div>
+                            </div>
+                            <div class="planet-label-box">
+                                <span class="planet-num-badge">Planeta 03</span>
+                                <h3 class="planet-title-text">TRANSMEDIA</h3>
+                                <span class="planet-click-hint">Pulsa para ver ✦</span>
+                            </div>
+                        </button>
+
+                        <!-- Planet 4 -->
+                        <button class="planet-item" onclick="openPlanetModal(3)" aria-label="Ver detalles de Gestión de Información">
+                            <div class="planet-sphere planet-p4">
+                                <span>04</span>
+                            </div>
+                            <div class="planet-label-box">
+                                <span class="planet-num-badge">Planeta 04</span>
+                                <h3 class="planet-title-text">GESTIÓN DE INFORMACIÓN</h3>
+                                <span class="planet-click-hint">Pulsa para ver ✦</span>
+                            </div>
+                        </button>
                     </div>
                 </div>
             </div>
         </section>
+
+        <!-- PLANET DETAILS MODAL -->
+        <div class="planet-modal-overlay" id="planetModal" onclick="closePlanetModalOnBackdrop(event)">
+            <div class="planet-modal-card">
+                <button class="planet-modal-close" onclick="closePlanetModal()" aria-label="Cerrar modal">&times;</button>
+                <div class="modal-planet-icon-header">
+                    <div class="modal-mini-planet" id="modalMiniPlanet"></div>
+                    <div>
+                        <span class="modal-title-tag" id="modalPlanetTag">PLANETA 01</span>
+                        <h3 class="modal-planet-title" id="modalPlanetTitle">UI / UX & DESIGN</h3>
+                    </div>
+                </div>
+                <p class="modal-planet-desc" id="modalPlanetDesc"></p>
+                <div class="modal-pills-container" id="modalPlanetPills"></div>
+            </div>
+        </div>
 
         <!-- SECTION: HERRAMIENTAS & SOFTWARE (INTERACTIVAS AL MOVER EL RATÓN) -->
         <section class="section-block section-tools" id="tools"
@@ -6121,6 +6464,64 @@
                 var el = document.getElementById(id);
                 if (el) sectionObserver.observe(el);
             });
+        }
+
+        /* PLANET SKILLS MODAL FUNCTIONS */
+        const skillsPlanetData = [
+            {
+                num: 'PLANETA 01',
+                title: 'UI / UX & DESIGN',
+                desc: 'Interfaces web intuitivas, responsive y diseñadas con enfoque en el usuario. Prototipado en Figma y validación mediante heurísticas de usabilidad.',
+                pills: ['Figma', 'UI Design', 'UX Research', 'Nielsen'],
+                class: 'planet-p1'
+            },
+            {
+                num: 'PLANETA 02',
+                title: 'MARKETING DIGITAL',
+                desc: 'Estrategias de contenido, redes sociales y posicionamiento orgánico de marca. Gestión de comunidades y analítica de audiencias.',
+                pills: ['Redes Sociales', 'Estrategia', 'Branding', 'Analytics'],
+                class: 'planet-p2'
+            },
+            {
+                num: 'PLANETA 03',
+                title: 'TRANSMEDIA',
+                desc: 'Narrativas multicanal que conectan ideas, plataformas y audiencias. Gamificación y storytelling interactivo aplicado a proyectos culturales.',
+                pills: ['Storytelling', 'Contenido Móvil', 'Gamificación'],
+                class: 'planet-p3'
+            },
+            {
+                num: 'PLANETA 04',
+                title: 'GESTIÓN DE INFORMACIÓN',
+                desc: 'Estructuración de datos, curaduría de contenidos y gestión de recursos documentales. Organización y arquitectura de la información.',
+                pills: ['Contenidos', 'Organización', 'Documentación'],
+                class: 'planet-p4'
+            }
+        ];
+
+        function openPlanetModal(index) {
+            const data = skillsPlanetData[index];
+            if (!data) return;
+            document.getElementById('modalPlanetTag').textContent = data.num;
+            document.getElementById('modalPlanetTitle').textContent = data.title;
+            document.getElementById('modalPlanetDesc').textContent = data.desc;
+            
+            const miniPlanet = document.getElementById('modalMiniPlanet');
+            miniPlanet.className = 'modal-mini-planet ' + data.class;
+
+            const pillsBox = document.getElementById('modalPlanetPills');
+            pillsBox.innerHTML = data.pills.map(p => `<span class="modal-pill-item">${p}</span>`).join('');
+
+            document.getElementById('planetModal').classList.add('active');
+        }
+
+        function closePlanetModal() {
+            document.getElementById('planetModal').classList.remove('active');
+        }
+
+        function closePlanetModalOnBackdrop(e) {
+            if (e.target.id === 'planetModal') {
+                closePlanetModal();
+            }
         }
 
         function playWhoosh() {
