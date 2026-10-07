@@ -2518,18 +2518,30 @@
         }
 
         .draw-line-path {
-            animation: drawLineProgress 3.0s cubic-bezier(0.22, 1, 0.36, 1) 0.3s forwards;
+            animation: drawLineProgress 3.0s cubic-bezier(0.22, 1, 0.36, 1) 0.3s forwards, flowPulseLine 7s ease-in-out 3.3s infinite alternate;
             filter: none;
         }
 
         .draw-line-path-delay {
-            animation: drawLineProgress 3.5s cubic-bezier(0.22, 1, 0.36, 1) 0.7s forwards;
+            animation: drawLineProgress 3.5s cubic-bezier(0.22, 1, 0.36, 1) 0.7s forwards, flowPulseLine 8s ease-in-out 4.2s infinite alternate;
             filter: none;
         }
 
         @keyframes drawLineProgress {
             to {
                 stroke-dashoffset: 0;
+            }
+        }
+
+        @keyframes flowPulseLine {
+            0% {
+                stroke-dashoffset: 0;
+            }
+            50% {
+                stroke-dashoffset: -90;
+            }
+            100% {
+                stroke-dashoffset: 60;
             }
         }
 
@@ -3723,14 +3735,31 @@
                             <div class="hero-photo-frame">
                                 <svg class="hero-photo-line-svg" viewBox="0 0 560 640" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
                                     <defs>
-                                        <linearGradient id="heroTitleGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-                                            <stop offset="0%" stop-color="var(--ink)" stop-opacity="0.9" />
-                                            <stop offset="50%" stop-color="var(--ink)" stop-opacity="0.8" />
-                                            <stop offset="100%" stop-color="var(--lilac-primary)" stop-opacity="0.95" />
+                                        <linearGradient id="heroTitleGrad" x1="0%" y1="0%" x2="100%" y2="100%" gradientUnits="userSpaceOnUse" x1="0" y1="0" x2="560" y2="640">
+                                            <animateTransform 
+                                                attributeName="gradientTransform" 
+                                                type="rotate" 
+                                                from="0 280 320" 
+                                                to="360 280 320" 
+                                                dur="6s" 
+                                                repeatCount="indefinite" />
+                                            <stop offset="0%" stop-color="var(--ink)" stop-opacity="0.95" />
+                                            <stop offset="35%" stop-color="var(--lilac-primary)" stop-opacity="0.95" />
+                                            <stop offset="70%" stop-color="var(--lilac-accent)" stop-opacity="0.95" />
+                                            <stop offset="100%" stop-color="var(--ink)" stop-opacity="0.95" />
                                         </linearGradient>
-                                        <linearGradient id="heroTitleGradAccent" x1="100%" y1="0%" x2="0%" y2="100%">
-                                            <stop offset="0%" stop-color="var(--lilac-primary)" stop-opacity="0.95" />
-                                            <stop offset="100%" stop-color="var(--ink)" stop-opacity="0.75" />
+
+                                        <linearGradient id="heroTitleGradAccent" x1="100%" y1="0%" x2="0%" y2="100%" gradientUnits="userSpaceOnUse" x1="560" y1="0" x2="0" y2="640">
+                                            <animateTransform 
+                                                attributeName="gradientTransform" 
+                                                type="rotate" 
+                                                from="360 280 320" 
+                                                to="0 280 320" 
+                                                dur="8s" 
+                                                repeatCount="indefinite" />
+                                            <stop offset="0%" stop-color="var(--lilac-accent)" stop-opacity="0.95" />
+                                            <stop offset="45%" stop-color="var(--lilac-primary)" stop-opacity="0.9" />
+                                            <stop offset="100%" stop-color="var(--ink)" stop-opacity="0.85" />
                                         </linearGradient>
                                     </defs>
 
