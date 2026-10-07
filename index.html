@@ -21,9 +21,9 @@
 
     <style>
         :root {
-            /* Editorial Palette: Warm Cream Base + Deep Dark + Subtle Lilac Highlights */
-            --bg: #f7f4ee;
-            --bg-alt: #eee8dc;
+            /* Editorial Palette: White Base + Deep Dark + Subtle Lilac Highlights */
+            --bg: #ffffff;
+            --bg-alt: #ffffff;
             --surf: #ffffff;
             --surf-card: rgba(255, 255, 255, 0.94);
 
@@ -4106,10 +4106,1593 @@
             background: var(--dark-bg) !important;
             color: var(--dark-ink) !important;
         }
+        /* =====================================================================
+           IP · DE TRAYECTORIA A FIGURAS 3D (versión lila con fondo en profundidad)
+           Todo usa las variables de color de la web: sigue al modo claro/oscuro.
+           ===================================================================== */
+        :root {
+            --ip-figs-bg: #e6dcfb;
+        }
+
+        [data-theme="dark"] {
+            --ip-figs-bg: #2a2046;
+        }
+
+        .ip-off {
+            display: none !important;
+        }
+
+        /* --- Fondo en profundidad (marcos, anillos, recorrido de puntos y ✦) --- */
+        .ip-host {
+            overflow: clip;
+        }
+
+        .ip-scene {
+            position: sticky;
+            top: 0;
+            display: block;
+            width: 100%;
+            height: 100vh;
+            margin-bottom: -100vh;
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        .ip-host>.wrap {
+            position: relative;
+            z-index: 1;
+        }
+
+        /* --- Trayectoria: agrupada por años --- */
+        .ip-tray-filters {
+            margin-bottom: 18px;
+        }
+
+        .ip-years {
+            position: relative;
+            padding-left: 26px;
+            max-width: 1080px;
+        }
+
+        .ip-years .trayectoria-timeline-line {
+            left: 0;
+            transform: none;
+        }
+
+        .ip-year {
+            display: grid;
+            grid-template-columns: minmax(0, 10.5rem) minmax(0, 1fr);
+            gap: clamp(20px, 4vw, 64px);
+            padding: 34px 0;
+            border-top: 1px solid var(--line);
+        }
+
+        .ip-year__n {
+            align-self: start;
+            font-family: var(--font-display);
+            font-weight: 700;
+            font-size: clamp(2.8rem, 5.6vw, 4.6rem);
+            line-height: 0.9;
+            letter-spacing: 0.02em;
+            color: var(--lilac-primary);
+        }
+
+        @supports (-webkit-text-stroke: 1px black) {
+            .ip-year__n {
+                color: transparent;
+                -webkit-text-stroke: 1.5px var(--lilac-primary);
+            }
+        }
+
+        .ip-year__list {
+            display: grid;
+            gap: 30px;
+        }
+
+        #trayectoria.ip-host {
+            background: var(--surf) !important;
+        }
+
+        .ip-years .tray-stop-content {
+            opacity: 1;
+            transform: none;
+            transition: none;
+            background: none;
+            border: 0;
+            border-radius: 0;
+            padding: 0;
+            box-shadow: none;
+        }
+
+        .ip-kind {
+            display: inline-block;
+            margin-bottom: 8px;
+            padding: 3px 12px;
+            border-radius: var(--radius-pill);
+            background: var(--lilac-soft);
+            color: var(--lilac-primary);
+            font-size: 0.72rem;
+            font-weight: 700;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+        }
+
+        .ip-years .trayectoria-item-title {
+            font-size: 1.22rem;
+        }
+
+        .ip-years .trayectoria-item-desc {
+            font-size: 0.93rem;
+            max-width: 64ch;
+        }
+
+        /* --- Fotografía: visor con lista de álbumes --- */
+        .ip-photo {
+            background: var(--lilac-soft);
+        }
+
+        .ip-visor {
+            display: grid;
+            grid-template-columns: minmax(0, 19rem) minmax(0, 1fr);
+            gap: clamp(24px, 5vw, 76px);
+            align-items: start;
+        }
+
+        .ip-albums {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            border-top: 1px solid var(--line-strong);
+        }
+
+        .ip-album {
+            display: block;
+            width: 100%;
+            padding: 16px 6px 16px 0;
+            border: 0;
+            border-bottom: 1px solid var(--line-strong);
+            background: none;
+            text-align: left;
+            font: inherit;
+            color: var(--mute);
+            transition: padding 0.3s ease, color 0.3s ease;
+        }
+
+        .ip-album__t {
+            display: block;
+            font-family: var(--font-display);
+            font-size: 1.45rem;
+            font-weight: 700;
+            letter-spacing: 0.07em;
+            text-transform: uppercase;
+        }
+
+        .ip-album__m {
+            display: block;
+            font-size: 0.82rem;
+        }
+
+        .ip-album:hover,
+        .ip-album.on {
+            padding-left: 16px;
+            color: var(--ink);
+        }
+
+        .ip-album.on .ip-album__t {
+            color: var(--lilac-primary);
+        }
+
+        .ip-view {
+            padding: 16px;
+            width: 100%;
+            max-width: calc(64vh * 1.5 + 32px);
+        }
+
+        .ip-view__frame {
+            position: relative;
+            display: block;
+            width: 100%;
+            aspect-ratio: 3/2;
+            padding: 0;
+            border: 0;
+            background: var(--surf);
+            box-shadow: var(--shadow-md);
+        }
+
+        .ip-view__frame img {
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+
+        .ip-brk i {
+            position: absolute;
+            width: 30px;
+            height: 30px;
+            border: 3px solid var(--lilac-primary);
+            transition: transform 0.3s ease;
+        }
+
+        .ip-brk i:nth-child(1) {
+            left: -14px;
+            top: -14px;
+            border-right: 0;
+            border-bottom: 0;
+        }
+
+        .ip-brk i:nth-child(2) {
+            right: -14px;
+            top: -14px;
+            border-left: 0;
+            border-bottom: 0;
+        }
+
+        .ip-brk i:nth-child(3) {
+            left: -14px;
+            bottom: -14px;
+            border-right: 0;
+            border-top: 0;
+        }
+
+        .ip-brk i:nth-child(4) {
+            right: -14px;
+            bottom: -14px;
+            border-left: 0;
+            border-top: 0;
+        }
+
+        .ip-view__frame:hover .ip-brk i:nth-child(1) {
+            transform: translate(6px, 6px);
+        }
+
+        .ip-view__frame:hover .ip-brk i:nth-child(2) {
+            transform: translate(-6px, 6px);
+        }
+
+        .ip-view__frame:hover .ip-brk i:nth-child(3) {
+            transform: translate(6px, -6px);
+        }
+
+        .ip-view__frame:hover .ip-brk i:nth-child(4) {
+            transform: translate(-6px, -6px);
+        }
+
+        .ip-view__bar {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            gap: 6px 18px;
+            margin-top: 22px;
+        }
+
+        .ip-view__title {
+            font-family: var(--font-script);
+            font-size: 2.1rem;
+            line-height: 1;
+            color: var(--ink);
+        }
+
+        .ip-view__count {
+            margin-right: auto;
+            font-size: 0.85rem;
+            color: var(--mute);
+            font-variant-numeric: tabular-nums;
+        }
+
+        .ip-thumbs {
+            display: flex;
+            gap: 10px;
+            margin-top: 16px;
+            padding-bottom: 6px;
+            overflow-x: auto;
+        }
+
+        .ip-thumb {
+            flex: none;
+            width: 92px;
+            height: 64px;
+            padding: 0;
+            border: 2px solid transparent;
+            background: var(--surf);
+            opacity: 0.6;
+            transition: opacity 0.25s ease, border-color 0.25s ease;
+        }
+
+        .ip-thumb img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+
+        .ip-thumb:hover,
+        .ip-thumb.on {
+            opacity: 1;
+            border-color: var(--lilac-primary);
+        }
+
+        /* --- Figuras 3D: una pieza en el centro y el resto en órbita --- */
+        .ip-figs {
+            background: var(--ip-figs-bg);
+            color: var(--ink);
+        }
+
+        .ip-turn {
+            display: grid;
+            grid-template-columns: minmax(0, 1.1fr) minmax(0, 0.9fr);
+            gap: clamp(28px, 5vw, 84px);
+            align-items: center;
+        }
+
+        .ip-orbit {
+            position: relative;
+            width: min(100%, 540px, 68vh);
+            aspect-ratio: 1;
+            margin: 0 auto;
+        }
+
+        .ip-ring {
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            border: 1px solid var(--lilac-border);
+            border-radius: 50%;
+            transform: translate(-50%, -50%);
+            pointer-events: none;
+        }
+
+        .ip-ring--1 {
+            width: 62%;
+            height: 62%;
+        }
+
+        .ip-ring--2 {
+            width: 84%;
+            height: 84%;
+            border-style: dashed;
+            border-color: var(--lilac-primary);
+        }
+
+        .ip-ring--3 {
+            width: 100%;
+            height: 100%;
+        }
+
+        .ip-orbit__center {
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            width: 52%;
+            height: 52%;
+            padding: 0;
+            border: 4px solid var(--surf);
+            border-radius: 50%;
+            overflow: hidden;
+            background: var(--lilac-soft);
+            box-shadow: var(--shadow-lg), var(--shadow-lilac);
+            transform: translate(-50%, -50%);
+        }
+
+        .ip-orbit__center img,
+        .ip-orbit__t img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+
+        .ip-orbit__t {
+            position: absolute;
+            width: 15%;
+            height: 15%;
+            padding: 0;
+            border: 2px solid var(--surf);
+            border-radius: 50%;
+            overflow: hidden;
+            background: var(--lilac-soft);
+            box-shadow: var(--shadow-sm);
+            transform: translate(-50%, -50%);
+            transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .ip-orbit__t:hover,
+        .ip-orbit__t.on {
+            border-color: var(--lilac-primary);
+            box-shadow: var(--shadow-lilac);
+            transform: translate(-50%, -50%) scale(1.18);
+            z-index: 2;
+        }
+
+        .ip-figinfo__count {
+            font-family: var(--font-display);
+            font-size: 0.95rem;
+            font-weight: 700;
+            letter-spacing: 0.14em;
+            color: var(--lilac-primary);
+            font-variant-numeric: tabular-nums;
+        }
+
+        .ip-figinfo__name {
+            margin: 6px 0 12px;
+            font-family: var(--font-display);
+            font-size: clamp(2rem, 4.2vw, 3.4rem);
+            font-weight: 700;
+            line-height: 1;
+            letter-spacing: 0.05em;
+            text-transform: uppercase;
+        }
+
+        .ip-figinfo__desc {
+            margin: 0 0 16px;
+            max-width: 46ch;
+            color: var(--ink-sub);
+        }
+
+        .ip-figinfo__tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 6px;
+        }
+
+        .ip-figs .studio-technique-tag {
+            background: var(--surf);
+        }
+
+        .ip-pots {
+            display: flex;
+            gap: 8px;
+            min-height: 22px;
+            margin-top: 18px;
+        }
+
+        .ip-pots i {
+            width: 22px;
+            height: 22px;
+            border-radius: 50%;
+            border: 2px solid var(--surf);
+            box-shadow: var(--shadow-sm);
+        }
+
+        .ip-figinfo__nav {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-top: 24px;
+        }
+
+        /* El cursor propio de estas dos secciones, también en lila */
+        .cursor-photo .custom-cursor,
+        .cursor-figs .custom-cursor {
+            background: var(--lilac-primary);
+            box-shadow: 0 0 14px var(--lilac-glow);
+        }
+
+        .cursor-photo .cursor-halo,
+        .cursor-figs .cursor-halo {
+            border-color: var(--lilac-border);
+            opacity: 1;
+        }
+
+        @media (max-width: 900px) {
+
+            .ip-visor,
+            .ip-turn {
+                grid-template-columns: 1fr;
+            }
+
+            .ip-year {
+                grid-template-columns: 1fr;
+                gap: 14px;
+                padding: 26px 0;
+            }
+
+            .ip-year__n {
+                position: static;
+                font-size: 2.8rem;
+            }
+
+            .ip-photo .studio-header {
+                flex-wrap: wrap;
+                align-items: flex-start;
+                gap: 16px;
+            }
+
+            .ip-scene {
+                opacity: 0.5;
+            }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+
+            .ip-album,
+            .ip-brk i,
+            .ip-thumb,
+            .ip-orbit__t {
+                transition: none;
+            }
+        }
+
+        /* =====================================================================
+           IP · PLANETAS: sistema en órbita (versión lila)
+           ===================================================================== */
+        .ip-sys-head {
+            position: relative;
+            z-index: 5;
+            text-align: center;
+            margin-bottom: 10px;
+        }
+
+        .ip-sys-head__tag {
+            font-family: var(--font-display);
+            font-size: 0.85rem;
+            font-weight: 700;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            color: var(--lilac-accent);
+        }
+
+        .ip-sys-head h2 {
+            margin: 6px 0 0;
+            font-family: var(--font-display);
+            font-size: clamp(2.2rem, 5vw, 3.6rem);
+            font-weight: 700;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            color: var(--dark-ink);
+        }
+
+        .ip-sys-head p {
+            margin: 8px 0 0;
+            font-size: 0.95rem;
+            color: var(--dark-mute);
+        }
+
+        .ip-about .planets-universe-container {
+            display: block;
+            min-height: 0;
+        }
+
+        .ip-sys {
+            position: relative;
+            z-index: 5;
+            width: 100%;
+            max-width: 1120px;
+            aspect-ratio: 2 / 1;
+            margin: 0 auto;
+        }
+
+        .ip-sys__orbit {
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            border: 1px solid rgba(196, 181, 253, 0.24);
+            border-radius: 50%;
+            transform: translate(-50%, -50%);
+            pointer-events: none;
+            transition: border-color 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .ip-sys__orbit.on {
+            border-color: rgba(196, 181, 253, 0.85);
+            box-shadow: 0 0 22px rgba(157, 114, 255, 0.35);
+        }
+
+        .ip-sys__sun {
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            z-index: 2;
+            width: clamp(70px, 9.5vw, 118px);
+            aspect-ratio: 1;
+            border-radius: 50%;
+            transform: translate(-50%, -50%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: clamp(1.4rem, 2.6vw, 2.2rem);
+            color: #5b3fb0;
+            background: radial-gradient(circle at 42% 38%, #ffffff 0%, #efe6ff 38%, #b79cff 78%, #8b6cf0 100%);
+            box-shadow: 0 0 60px rgba(183, 156, 255, 0.75), 0 0 140px rgba(157, 114, 255, 0.35);
+            pointer-events: none;
+        }
+
+        .ip-pl {
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            padding: 0;
+            border: 0;
+            background: none;
+            transform: translate(-50%, -50%);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 12px;
+            font: inherit;
+            color: var(--dark-ink);
+        }
+
+        .ip-sph {
+            position: relative;
+            display: block;
+            width: var(--d, 76px);
+            aspect-ratio: 1;
+            border-radius: 50%;
+            transform: scale(var(--s, 1));
+            box-shadow: 0 12px 34px rgba(0, 0, 0, 0.6), inset -14px -14px 26px rgba(20, 10, 50, 0.6);
+            transition: box-shadow 0.35s ease, filter 0.35s ease;
+        }
+
+        .ip-pl:hover .ip-sph,
+        .ip-pl:focus-visible .ip-sph {
+            filter: brightness(1.15);
+            box-shadow: 0 0 44px var(--lilac-primary), inset -10px -10px 20px rgba(20, 10, 50, 0.35);
+        }
+
+        .ip-sph__ring {
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            width: 168%;
+            height: 44%;
+            border: 2px solid rgba(221, 214, 254, 0.8);
+            border-radius: 50%;
+            transform: translate(-50%, -50%) rotate(-22deg);
+            pointer-events: none;
+        }
+
+        .ip-sph__moon {
+            position: absolute;
+            right: -22%;
+            top: -8%;
+            width: 24%;
+            aspect-ratio: 1;
+            border-radius: 50%;
+            background: radial-gradient(circle at 35% 35%, #ffffff, #c4b5fd 70%, #7b68b8);
+        }
+
+        .ip-pl__label {
+            display: block;
+            white-space: nowrap;
+            padding: 5px 14px;
+            border-radius: 999px;
+            border: 1px solid rgba(196, 181, 253, 0.3);
+            background: rgba(15, 12, 28, 0.82);
+            font-family: var(--font-display);
+            font-size: 0.78rem;
+            font-weight: 700;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            transition: border-color 0.3s ease, background-color 0.3s ease;
+        }
+
+        .ip-pl__label b {
+            margin-right: 6px;
+            color: var(--lilac-accent);
+            font-weight: 700;
+        }
+
+        .ip-pl:hover .ip-pl__label,
+        .ip-pl:focus-visible .ip-pl__label {
+            border-color: var(--lilac-accent);
+            background: rgba(91, 63, 176, 0.9);
+        }
+
+        /* Los cuatro planetas, todos dentro de la gama lila */
+        .planet-p1 {
+            background: radial-gradient(circle at 34% 30%, #f3ebff 0%, #b79cff 46%, #5b3fb0 100%);
+        }
+
+        .planet-p2 {
+            background: radial-gradient(circle at 34% 30%, #fae8ff 0%, #d19bf7 48%, #7a2fb5 100%);
+        }
+
+        .planet-p3 {
+            background: radial-gradient(circle at 34% 30%, #dcd6ff 0%, #7c6cf0 50%, #2a1c66 100%);
+        }
+
+        .planet-p4 {
+            background:
+                radial-gradient(circle at 62% 64%, rgba(91, 63, 176, 0.35) 0 9%, transparent 10%),
+                radial-gradient(circle at 38% 58%, rgba(91, 63, 176, 0.28) 0 6%, transparent 7%),
+                radial-gradient(circle at 56% 34%, rgba(91, 63, 176, 0.25) 0 7%, transparent 8%),
+                radial-gradient(circle at 34% 30%, #ffffff 0%, #ddd2fb 48%, #8571c4 100%);
+        }
+
+        @media (max-width: 768px) {
+            .ip-sys {
+                aspect-ratio: auto;
+                display: grid;
+                grid-template-columns: repeat(2, minmax(0, 1fr));
+                gap: 34px 10px;
+                padding: 26px 0 6px;
+            }
+
+            .ip-sys__orbit,
+            .ip-sys__sun {
+                display: none;
+            }
+
+            .ip-pl {
+                position: static;
+                transform: none;
+            }
+
+            .ip-pl__label {
+                white-space: normal;
+                text-align: center;
+                font-size: 0.72rem;
+            }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+
+            .ip-sph,
+            .ip-sys__orbit,
+            .ip-pl__label {
+                transition: none;
+            }
+        }
+
+        /* Nombres de los planetas: solo al pasar el cursor (en pantallas táctiles se quedan visibles) */
+        @media (hover: hover) and (pointer: fine) {
+            .ip-pl__label {
+                opacity: 0;
+                transform: translateY(6px);
+                pointer-events: none;
+                transition: opacity 0.3s ease, transform 0.3s ease, border-color 0.3s ease, background-color 0.3s ease;
+            }
+
+            .ip-pl:hover .ip-pl__label,
+            .ip-pl:focus-visible .ip-pl__label {
+                opacity: 1;
+                transform: none;
+            }
+        }
+
+        /* Textos de la cabecera: aparecen al llegar con el scroll */
+        .ip-rv {
+            opacity: 0;
+            transform: translateY(26px);
+            transition: opacity 0.8s ease, transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+            transition-delay: var(--rd, 0s);
+        }
+
+        .ip-rv.in {
+            opacity: 1;
+            transform: none;
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            .ip-rv {
+                opacity: 1;
+                transform: none;
+                transition: none;
+            }
+        }
+
+        /* Sin beige: el cursor de la portada también pasa a lila */
+        .cursor-hero .custom-cursor {
+            background: var(--lilac-primary);
+            box-shadow: 0 0 14px var(--lilac-glow);
+        }
+
+        .cursor-hero .cursor-halo {
+            border-color: var(--lilac-border);
+        }
+
+        /* =====================================================================
+           IP · PROYECTOS: fichas completas en vertical, sobre fondo oscuro
+           ===================================================================== */
+        .ip-proj {
+            padding: 110px 0 120px;
+        }
+
+        .ip-proj__head {
+            max-width: 760px;
+            margin-bottom: 34px;
+        }
+
+        .ip-proj__tag {
+            font-family: var(--font-display);
+            font-size: 0.85rem;
+            font-weight: 700;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            color: var(--lilac-accent);
+        }
+
+        .ip-proj__head h2 {
+            margin: 6px 0 10px;
+            font-family: var(--font-display);
+            font-size: clamp(2.4rem, 6vw, 4.4rem);
+            font-weight: 700;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            line-height: 1;
+            color: var(--dark-ink);
+        }
+
+        .ip-proj__head p {
+            margin: 0;
+            font-size: 1rem;
+            line-height: 1.6;
+            color: var(--dark-mute);
+        }
+
+        .ip-proj__tabs {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-bottom: 30px;
+        }
+
+        .ip-proj__tabs a {
+            display: inline-flex;
+            align-items: baseline;
+            gap: 8px;
+            padding: 9px 20px;
+            border-radius: var(--radius-pill);
+            border: 1px solid rgba(196, 181, 253, 0.3);
+            color: var(--dark-ink);
+            text-decoration: none;
+            font-family: var(--font-display);
+            font-size: 0.85rem;
+            font-weight: 700;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            transition: background-color 0.3s ease, border-color 0.3s ease;
+        }
+
+        .ip-proj__tabs a b {
+            color: var(--lilac-accent);
+            font-weight: 700;
+        }
+
+        .ip-proj__tabs a:hover,
+        .ip-proj__tabs a:focus-visible {
+            background: rgba(157, 114, 255, 0.22);
+            border-color: var(--lilac-accent);
+        }
+
+        .ip-proj__pin {
+            position: relative;
+            z-index: 1;
+        }
+
+        .ip-proj__tabs a.on {
+            background: #9d72ff;
+            border-color: #9d72ff;
+            color: #ffffff;
+        }
+
+        .ip-proj__tabs a.on b {
+            color: #ffffff;
+        }
+
+        .ip-proj__bar {
+            display: none;
+        }
+
+        .ip-case {
+            padding: clamp(46px, 7vw, 90px) 0;
+            border-top: 1px solid rgba(196, 181, 253, 0.18);
+            scroll-margin-top: 90px;
+        }
+
+        .ip-case__in {
+            display: grid;
+            grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+            gap: clamp(28px, 5vw, 80px);
+            align-items: center;
+        }
+
+        .ip-case__hd {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: baseline;
+            gap: 6px 20px;
+        }
+
+        .ip-case:nth-of-type(even) .ip-case__info {
+            order: 2;
+        }
+
+        .ip-case__n {
+            font-family: var(--font-display);
+            font-weight: 700;
+            font-size: clamp(3.4rem, 7vw, 5.6rem);
+            line-height: 0.9;
+            letter-spacing: 0.02em;
+            color: #b8a0f5;
+        }
+
+        @supports (-webkit-text-stroke: 1px black) {
+            .ip-case__n {
+                color: transparent;
+                -webkit-text-stroke: 1.5px #b8a0f5;
+            }
+        }
+
+        .ip-case__kicker {
+            font-family: var(--font-display);
+            font-size: 0.85rem;
+            font-weight: 700;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            color: var(--lilac-accent);
+        }
+
+        .ip-case h3 {
+            margin: 8px 0 14px;
+            font-family: var(--font-display);
+            font-size: clamp(1.8rem, 3.6vw, 3rem);
+            font-weight: 700;
+            letter-spacing: 0.05em;
+            text-transform: uppercase;
+            line-height: 1.08;
+            color: var(--dark-ink);
+        }
+
+        .ip-case__desc {
+            margin: 0;
+            max-width: 56ch;
+            font-size: 1rem;
+            line-height: 1.7;
+            color: var(--dark-ink);
+        }
+
+        .ip-case__facts {
+            margin: 22px 0 0;
+            border-top: 1px solid rgba(196, 181, 253, 0.18);
+        }
+
+        .ip-case__facts div {
+            display: grid;
+            grid-template-columns: 7.5rem minmax(0, 1fr);
+            gap: 14px;
+            padding: 10px 0;
+            border-bottom: 1px solid rgba(196, 181, 253, 0.18);
+            font-size: 0.92rem;
+            line-height: 1.5;
+        }
+
+        .ip-case__facts dt {
+            color: var(--lilac-accent);
+            font-weight: 700;
+        }
+
+        .ip-case__facts dd {
+            margin: 0;
+            color: var(--dark-ink);
+        }
+
+        .ip-case__facts a {
+            color: var(--lilac-accent);
+        }
+
+        .ip-case__chips {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin: 18px 0 0;
+            padding: 0;
+            list-style: none;
+        }
+
+        .ip-case__chips li {
+            padding: 4px 13px;
+            border-radius: var(--radius-pill);
+            border: 1px solid rgba(196, 181, 253, 0.3);
+            font-size: 0.8rem;
+            font-weight: 600;
+            color: var(--lilac-accent);
+        }
+
+        .ip-case__actions {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-top: 24px;
+        }
+
+        .ip-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            padding: 11px 24px;
+            border-radius: var(--radius-pill);
+            border: 1px solid #9d72ff;
+            background: #9d72ff;
+            color: #ffffff;
+            font-family: var(--font-sans);
+            font-size: 0.86rem;
+            font-weight: 700;
+            letter-spacing: 0.04em;
+            text-transform: uppercase;
+            text-decoration: none;
+            cursor: pointer;
+            transition: background-color 0.3s ease, color 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .ip-btn:hover,
+        .ip-btn:focus-visible {
+            background: #7c4dff;
+            box-shadow: 0 10px 30px rgba(157, 114, 255, 0.35);
+        }
+
+        .ip-btn--ghost {
+            background: transparent;
+            color: var(--lilac-accent);
+            border-color: rgba(196, 181, 253, 0.45);
+        }
+
+        .ip-btn--ghost:hover,
+        .ip-btn--ghost:focus-visible {
+            background: rgba(157, 114, 255, 0.22);
+            color: #ffffff;
+        }
+
+        .ip-case__img {
+            position: relative;
+            margin: 14px;
+        }
+
+        .ip-case__pic {
+            position: relative;
+            display: block;
+            aspect-ratio: 16 / 10;
+            overflow: hidden;
+            border-radius: var(--radius-md);
+            background: #262038;
+            box-shadow: 0 24px 60px rgba(0, 0, 0, 0.55);
+        }
+
+        .ip-case__pic img {
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: 50% 0;
+            display: block;
+            transition: transform 0.6s ease;
+        }
+
+        .ip-case__img:hover .ip-case__pic img {
+            transform: scale(1.03);
+        }
+
+        .ip-case__pic span {
+            position: absolute;
+            inset: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 1rem;
+            text-align: center;
+            font-family: var(--font-display);
+            font-size: 1.1rem;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            color: var(--dark-mute);
+        }
+
+        .ip-case__img .ip-brk i {
+            border-color: #b8a0f5;
+        }
+
+        @media (max-width: 900px) {
+            .ip-proj {
+                padding: 80px 0 90px;
+            }
+
+            .ip-case__in {
+                grid-template-columns: 1fr;
+            }
+
+            .ip-case:nth-of-type(even) .ip-case__info {
+                order: 0;
+            }
+
+            .ip-case__facts div {
+                grid-template-columns: 1fr;
+                gap: 2px;
+            }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+
+            .ip-proj__tabs a,
+            .ip-btn,
+            .ip-case__pic img {
+                transition: none;
+            }
+        }
+
+        /* --- Modo horizontal (pantallas anchas): la sección se queda fija y los
+               proyectos pasan de lado al hacer scroll. Lo activa ipInitProj. --- */
+        .ip-proj--h {
+            padding: 0;
+        }
+
+        .ip-proj--h .ip-proj__pin {
+            position: sticky;
+            top: 0;
+            height: 100vh;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            font-size: clamp(12.5px, 2.15vh, 16px);
+        }
+
+        .ip-proj--h .ip-proj__top {
+            display: flex;
+            align-items: flex-end;
+            justify-content: space-between;
+            gap: 2em;
+            padding-top: 4.4em;
+            padding-bottom: 1.1em;
+            border-bottom: 1px solid rgba(196, 181, 253, 0.18);
+        }
+
+        .ip-proj--h .ip-proj__head {
+            margin: 0;
+        }
+
+        .ip-proj--h .ip-proj__tag {
+            font-size: 0.8em;
+        }
+
+        .ip-proj--h .ip-proj__head h2 {
+            margin: 0.1em 0 0;
+            font-size: 2.6em;
+        }
+
+        .ip-proj--h .ip-proj__head p {
+            display: none;
+        }
+
+        .ip-proj--h .ip-proj__tabs {
+            margin: 0;
+            gap: 0.6em;
+        }
+
+        .ip-proj--h .ip-proj__tabs a {
+            padding: 0.55em 1.2em;
+            font-size: 0.82em;
+        }
+
+        .ip-proj--h .ip-proj__track {
+            flex: 1 1 auto;
+            min-height: 0;
+            display: flex;
+            will-change: transform;
+        }
+
+        .ip-proj--h .ip-case {
+            flex: 0 0 100vw;
+            width: 100vw;
+            padding: 0;
+            border-top: 0;
+            display: flex;
+            align-items: center;
+        }
+
+        .ip-proj--h .ip-case__in {
+            gap: 4em;
+        }
+
+        .ip-proj--h .ip-case:nth-of-type(even) .ip-case__info {
+            order: 0;
+        }
+
+        .ip-proj--h .ip-case__n {
+            font-size: 3.6em;
+        }
+
+        .ip-proj--h .ip-case__kicker {
+            font-size: 0.82em;
+        }
+
+        .ip-proj--h .ip-case h3 {
+            margin: 0.25em 0 0.4em;
+            font-size: 2.5em;
+        }
+
+        .ip-proj--h .ip-case__desc {
+            font-size: 0.98em;
+            line-height: 1.6;
+        }
+
+        .ip-proj--h .ip-case__facts {
+            margin-top: 1.1em;
+        }
+
+        .ip-proj--h .ip-case__facts div {
+            grid-template-columns: 7.5em minmax(0, 1fr);
+            gap: 0.9em;
+            padding: 0.55em 0;
+            font-size: 0.9em;
+        }
+
+        .ip-proj--h .ip-case__chips {
+            margin-top: 1em;
+            gap: 0.5em;
+        }
+
+        .ip-proj--h .ip-case__chips li {
+            padding: 0.25em 0.85em;
+            font-size: 0.78em;
+        }
+
+        .ip-proj--h .ip-case__actions {
+            margin-top: 1.3em;
+        }
+
+        .ip-proj--h .ip-btn {
+            padding: 0.7em 1.6em;
+            font-size: 0.84em;
+        }
+
+        .ip-proj--h .ip-case__img {
+            width: 100%;
+            max-width: calc((100vh - 17em) * 1.6);
+            justify-self: center;
+        }
+
+        .ip-proj--h .ip-proj__bar {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 1.2em;
+            padding: 0.9em 0 1.5em;
+        }
+
+        .ip-proj__count {
+            font-family: var(--font-display);
+            font-size: 0.82em;
+            font-weight: 700;
+            letter-spacing: 0.15em;
+            color: #b8a0f5;
+            font-variant-numeric: tabular-nums;
+        }
+
+        .ip-proj__prog {
+            position: relative;
+            width: 200px;
+            height: 3px;
+            border-radius: 2px;
+            background: rgba(157, 114, 255, 0.2);
+        }
+
+        .ip-proj__prog i {
+            position: absolute;
+            left: 0;
+            top: 0;
+            height: 100%;
+            width: 0;
+            border-radius: 2px;
+            background: #9d72ff;
+        }
+
+        /* =====================================================================
+           IP · FOTOGRAFÍA: universo de imágenes (una por apartado) sobre blanco
+           ===================================================================== */
+        .ip-photo {
+            background: var(--surf);
+        }
+
+        .ip-ph {
+            position: relative;
+            display: block;
+            overflow: hidden;
+            background: var(--lilac-soft);
+        }
+
+        .ip-ph img {
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+
+        .ip-uni {
+            display: grid;
+            grid-template-columns: repeat(5, minmax(0, 1fr));
+            padding-bottom: 60px;
+        }
+
+        /* cada imagen vive dentro de su propia celda: por eso nunca pisa a las demás */
+        .ip-star {
+            position: relative;
+            aspect-ratio: 1 / 1.3;
+            padding: 22px;
+        }
+
+        .ip-star--low {
+            top: 40px;
+        }
+
+        .ip-star__btn {
+            display: block;
+            width: var(--w, 66%);
+            margin-left: calc((100% - var(--w, 66%)) * var(--fx, 0.5));
+            margin-top: calc(var(--fy, 0) * 12%);
+            padding: 0;
+            border: 0;
+            background: none;
+            text-align: center;
+            font: inherit;
+            color: inherit;
+            will-change: transform;
+        }
+
+        .ip-star__float {
+            display: block;
+            animation: ipFloat var(--dur, 7s) ease-in-out var(--del, 0s) infinite alternate;
+        }
+
+        @keyframes ipFloat {
+            from {
+                transform: translateY(-5px);
+            }
+
+            to {
+                transform: translateY(5px);
+            }
+        }
+
+        .ip-star .ip-ph {
+            aspect-ratio: var(--ar, 4/5);
+            border-radius: var(--radius-md);
+            box-shadow: var(--shadow-md);
+            transition: transform 0.35s ease, box-shadow 0.35s ease;
+        }
+
+        .ip-star__btn:hover .ip-ph,
+        .ip-star__btn:focus-visible .ip-ph {
+            transform: scale(1.04);
+            box-shadow: var(--shadow-lg), var(--shadow-lilac);
+        }
+
+        .ip-star__cap {
+            display: block;
+            margin-top: 9px;
+            font-family: var(--font-script);
+            font-size: 1.45rem;
+            line-height: 1;
+            color: var(--ink-sub);
+        }
+
+        @media (max-width: 1199px) {
+            .ip-uni {
+                grid-template-columns: repeat(4, minmax(0, 1fr));
+            }
+        }
+
+        @media (max-width: 899px) {
+            .ip-uni {
+                grid-template-columns: repeat(3, minmax(0, 1fr));
+            }
+
+            .ip-star {
+                padding: 16px;
+            }
+        }
+
+        @media (max-width: 599px) {
+            .ip-uni {
+                grid-template-columns: repeat(2, minmax(0, 1fr));
+            }
+
+            .ip-star {
+                aspect-ratio: 1 / 1.5;
+                padding: 14px;
+            }
+
+            .ip-star--low {
+                top: 26px;
+            }
+
+            .ip-star__cap {
+                font-size: 1.25rem;
+            }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            .ip-star__float {
+                animation: none;
+            }
+
+            .ip-star .ip-ph {
+                transition: none;
+            }
+        }
+
+        /* ==========================================================================
+           INTRO PRELOADER / FIRMA ELEGANTE SIN RECUADRO
+           ========================================================================== */
+        body.intro-active {
+            overflow: hidden !important;
+            height: 100vh !important;
+        }
+
+        body.intro-active *:not(.intro-screen):not(.intro-screen *) {
+            animation-play-state: paused !important;
+        }
+
+        .intro-screen {
+            position: fixed;
+            inset: 0;
+            z-index: 999999;
+            background: radial-gradient(circle at 50% 45%, #2a1b42 0%, #1a102b 55%, #11091e 100%);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 2rem;
+            transition: opacity 0.85s cubic-bezier(0.16, 1, 0.3, 1), transform 0.85s cubic-bezier(0.16, 1, 0.3, 1), filter 0.85s ease;
+            will-change: opacity, transform, filter;
+            user-select: none;
+        }
+
+        .intro-screen.is-hiding {
+            opacity: 0;
+            transform: scale(1.03) translateY(-20px);
+            filter: blur(12px);
+            pointer-events: none;
+        }
+
+        .intro-ambient-glow {
+            position: absolute;
+            inset: 0;
+            background: radial-gradient(circle at 50% 48%, rgba(157, 114, 255, 0.42) 0%, rgba(124, 77, 255, 0.22) 40%, rgba(20, 13, 33, 0) 75%);
+            pointer-events: none;
+        }
+
+        .intro-content {
+            position: relative;
+            z-index: 2;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            max-width: 800px;
+            width: 100%;
+            text-align: center;
+        }
+
+        .intro-sig-box {
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-bottom: 2.5rem;
+            width: 100%;
+        }
+
+        .intro-sig-text {
+            font-family: var(--font-script, 'Reenie Beanie'), 'Playfair Display', cursive, serif;
+            font-size: clamp(3rem, 7vw, 5.5rem);
+            font-weight: 400;
+            color: #ffffff;
+            letter-spacing: 0.03em;
+            margin: 0;
+            line-height: 1.1;
+            text-shadow: 0 0 25px rgba(197, 160, 255, 0.4);
+            position: relative;
+            display: inline-block;
+        }
+
+        .intro-sig-clip {
+            display: inline-block;
+            transition: clip-path 0.05s linear;
+            will-change: clip-path;
+        }
+
+        .intro-flourish-wrap {
+            width: 100%;
+            max-width: 650px;
+            height: 60px;
+            margin-top: -10px;
+        }
+
+        .intro-flourish-svg {
+            width: 100%;
+            height: 100%;
+            overflow: visible;
+            filter: drop-shadow(0 0 10px rgba(197, 160, 255, 0.4));
+        }
+
+        .intro-flourish-path {
+            fill: none;
+            stroke: url(#sigLineGrad);
+            stroke-width: 2.8;
+            stroke-linecap: round;
+        }
+
+        .intro-flourish-guide {
+            fill: none;
+            stroke: rgba(255, 255, 255, 0.06);
+            stroke-width: 1;
+        }
+
+        .pencil-group {
+            will-change: transform;
+            filter: drop-shadow(0 2px 6px rgba(0,0,0,0.9));
+        }
+
+        .intro-meta {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 12px;
+            width: 100%;
+            max-width: 280px;
+        }
+
+        .intro-counter-num {
+            font-family: var(--font-serif, serif);
+            font-size: 2.4rem;
+            font-weight: 300;
+            color: rgba(255, 255, 255, 0.95);
+            letter-spacing: 0.08em;
+            text-shadow: 0 0 15px rgba(197, 160, 255, 0.5);
+        }
+
     </style>
 </head>
 
-<body>
+<body class="intro-active">
+
+    <!-- INTRO PRELOADER - ULTRA SOPHISTICATED FULL-SCREEN SIGNATURE -->
+    <div class="intro-screen" id="introScreen" role="dialog" aria-modal="true" aria-label="Pantalla de inicio">
+        <div class="intro-ambient-glow"></div>
+        
+        <div class="intro-content">
+            <div class="intro-sig-box">
+                <!-- Highly legible handwritten signature text with smooth reveal clip -->
+                <h1 class="intro-sig-text" aria-label="Irene Puche Armero">
+                    <span class="intro-sig-clip" id="introSigClip" style="clip-path: inset(0 100% 0 0);">Irene Puche Armero</span>
+                </h1>
+                
+                <!-- Underline Flourish SVG with animated Pencil Tip -->
+                <div class="intro-flourish-wrap">
+                    <svg class="intro-flourish-svg" viewBox="0 0 700 80" preserveAspectRatio="xMidYMid meet">
+                        <defs>
+                            <linearGradient id="sigLineGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+                                <stop offset="0%" stop-color="rgba(197, 160, 255, 0.1)" />
+                                <stop offset="40%" stop-color="#dfc8ff" />
+                                <stop offset="100%" stop-color="#ffffff" />
+                            </linearGradient>
+                        </defs>
+                        <!-- Faint guide curve -->
+                        <path class="intro-flourish-guide" d="M 40,35 Q 200,65 350,30 T 660,40" />
+                        <!-- Animated stroke line -->
+                        <path class="intro-flourish-path" id="introSigPath" d="M 40,35 Q 200,65 350,30 T 660,40" />
+                        <!-- Pencil Tip Object moving along flourish curve -->
+                        <g id="pencilTipGroup" class="pencil-group" transform="translate(40,35)">
+                            <polygon points="0,0 -4,-18 4,-18" fill="#1b1625" />
+                            <polygon points="0,0 -2,-8 2,-8" fill="#e2c8ff" />
+                            <circle cx="0" cy="0" r="2.5" fill="#ffffff" />
+                            <circle cx="0" cy="0" r="5" fill="rgba(197, 160, 255, 0.6)" />
+                        </g>
+                    </svg>
+                </div>
+            </div>
+
+            <!-- Percentage Counter -->
+            <div class="intro-meta">
+                <div class="intro-counter-num" id="introCounter">0%</div>
+            </div>
+        </div>
+    </div>
 
     <!-- CUSTOM CURSOR -->
     <div class="custom-cursor" id="cursorDot"></div>
@@ -4201,10 +5784,6 @@
                                 web
                                 en <strong>Thex Arqé</strong>.
                             </p>
-
-                            <div class="hero-signature"
-                                style="font-family: var(--font-script); font-size: 2.8rem; color: var(--lilac-primary); margin-top: -8px;">
-                                Irene Puche Armero</div>
                         </div>
 
                         <div class="hero-photo-clean" id="hero-photo-el">
@@ -4270,7 +5849,7 @@
         <input type="file" id="avatar-input" class="hidden-file-input" accept="image/*">
 
         <!-- SECTION: EXPERTISE — PLANETS UNIVERSE -->
-        <section class="section-block section-expertise-new" id="about">
+        <section class="section-block section-expertise-new ip-about" id="about">
             <div class="wrap">
                 <div class="planets-universe-container">
                     <!-- Galaxy Background Starfield (Full Bleed Viewport Width 100vw including extreme left/right margins) -->
@@ -4291,37 +5870,32 @@
                         <span class="sparkle-star" style="top: 52%; left: 24%; animation-delay: 2.4s;">✦</span>
                     </div>
 
-                    <!-- Minimalist Hint Badge -->
-                    <div class="planets-hint-badge">✦ Pulsa los planetas para explorar</div>
+                    <div class="ip-sys-head">
+                        <span class="ip-sys-head__tag" data-k="ab_tag">✦ Áreas de especialización</span>
+                        <p data-k="ab_p">Cuatro planetas, cuatro áreas. Pasa el cursor por uno para ver cuál es y púlsalo para explorarla.</p>
+                    </div>
 
-                    <!-- Organic Non-Linear Constellation -->
-                    <div class="planets-constellation">
-                        <!-- Planet 1 -->
-                        <button class="planet-item planet-item-1" onclick="openPlanetModal(0)" aria-label="UI/UX & Design">
-                            <div class="planet-sphere planet-p1 size-lg">
-                                <div class="planet-ring-1"></div>
-                            </div>
-                            <span class="planet-tooltip-title">UI / UX & DESIGN</span>
+                    <!-- Sistema en órbita: las posiciones las calcula ipInitSystem -->
+                    <div class="ip-sys" id="ipSys">
+                        <span class="ip-sys__orbit" aria-hidden="true"></span>
+                        <span class="ip-sys__orbit" aria-hidden="true"></span>
+                        <span class="ip-sys__orbit" aria-hidden="true"></span>
+                        <span class="ip-sys__orbit" aria-hidden="true"></span>
+                        <button type="button" class="ip-pl" onclick="openPlanetModal(0)" aria-label="UI / UX &amp; Design">
+                            <span class="ip-sph planet-sphere planet-p1" style="--d:clamp(46px, 7.4vw, 96px)"><span class="ip-sph__ring"></span></span>
+                            <span class="ip-pl__label"><b>01</b>UI / UX &amp; Design</span>
                         </button>
-
-                        <!-- Planet 2 -->
-                        <button class="planet-item planet-item-2" onclick="openPlanetModal(1)" aria-label="Marketing Digital">
-                            <div class="planet-sphere planet-p2 size-sm"></div>
-                            <span class="planet-tooltip-title">MARKETING DIGITAL</span>
+                        <button type="button" class="ip-pl" onclick="openPlanetModal(1)" aria-label="Marketing digital">
+                            <span class="ip-sph planet-sphere planet-p2" style="--d:clamp(46px, 6vw, 78px)"></span>
+                            <span class="ip-pl__label"><b>02</b>Marketing digital</span>
                         </button>
-
-                        <!-- Planet 3 -->
-                        <button class="planet-item planet-item-3" onclick="openPlanetModal(2)" aria-label="Transmedia">
-                            <div class="planet-sphere planet-p3 size-xl">
-                                <div class="planet-ring-3"></div>
-                            </div>
-                            <span class="planet-tooltip-title">TRANSMEDIA</span>
+                        <button type="button" class="ip-pl" onclick="openPlanetModal(2)" aria-label="Transmedia">
+                            <span class="ip-sph planet-sphere planet-p3" style="--d:clamp(46px, 8.6vw, 112px)"><span class="ip-sph__ring"></span></span>
+                            <span class="ip-pl__label"><b>03</b>Transmedia</span>
                         </button>
-
-                        <!-- Planet 4 -->
-                        <button class="planet-item planet-item-4" onclick="openPlanetModal(3)" aria-label="Gestión de Información">
-                            <div class="planet-sphere planet-p4 size-md"></div>
-                            <span class="planet-tooltip-title">GESTIÓN DE INFORMACIÓN</span>
+                        <button type="button" class="ip-pl" onclick="openPlanetModal(3)" aria-label="Gestión de información">
+                            <span class="ip-sph planet-sphere planet-p4" style="--d:clamp(46px, 6.6vw, 86px)"><span class="ip-sph__moon"></span></span>
+                            <span class="ip-pl__label"><b>04</b>Gestión de información</span>
                         </button>
                     </div>
                 </div>
@@ -4470,16 +6044,13 @@
             </div>
         </section>
 
-        <div class="section-transition" data-transition="2"><canvas></canvas></div>
 
         <!-- SECTION: TRAYECTORIA — TIMELINE DRAW -->
-        <section class="section-block" id="trayectoria"
+        <section class="section-block ip-host" id="trayectoria"
             style="background: var(--bg-alt); border-bottom: 1px solid var(--line);">
+            <canvas class="ip-scene" data-ip-scene="tray" aria-hidden="true"></canvas>
             <div class="wrap">
                 <div style="margin-bottom: 40px;">
-                    <span
-                        style="font-family: var(--font-display); font-size: 0.85rem; font-weight: 700; color: var(--lilac-primary); letter-spacing: 0.15em; text-transform: uppercase;">✦
-                        MI RECORRIDO</span>
                     <h2 data-k="n2_n3"
                         style="font-family: var(--font-display); font-size: 2.2rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; margin: 4px 0 0 0;">
                         Trayectoria & Formación</h2>
@@ -4487,43 +6058,22 @@
                         cada parada es un hito.</p>
                 </div>
 
-                <div style="position: relative; padding: 20px 0;">
+                <div class="filters ip-tray-filters" id="ipTrayFilters" role="group" aria-label="Filtrar trayectoria">
+                    <button type="button" class="filter-btn on" data-ip-f="all" data-k="tf_all" aria-pressed="true">Todo</button>
+                    <button type="button" class="filter-btn" data-ip-f="trabajo" data-k="tf_work" aria-pressed="false">Trabajo</button>
+                    <button type="button" class="filter-btn" data-ip-f="formacion" data-k="tf_edu" aria-pressed="false">Formación</button>
+                    <button type="button" class="filter-btn" data-ip-f="eventos" data-k="tf_events" aria-pressed="false">Eventos</button>
+                </div>
+
+                <div class="ip-years" id="ipTime">
                     <div class="trayectoria-timeline-line">
                         <div class="fill" id="tray-fill"></div>
                     </div>
-
-                    <div class="tray-stop">
-                        <div class="tray-stop-content">
-                            <div class="trayectoria-item-date">22/09/2026 · Taller Práctico & IA</div>
-                            <div class="trayectoria-item-title" data-k="gpts_title">Asistencia al Taller de GPTs
-                                Personalizados</div>
-                            <div class="trayectoria-item-institution" data-k="gpts_inst">AICS · Asociación de
-                                Inteligencia Artificial y Ciencia</div>
-                            <div class="trayectoria-item-desc" data-k="gpts_desc">Capacitación práctica especializada en
-                                el diseño, configuración, entrenamiento de instrucciones y despliegue de asistentes GPTs
-                                personalizados.</div>
-                        </div>
-                        <div class="tray-stop-dot"></div>
-                        <div class="tray-stop-space"></div>
-                    </div>
-
-                    <div class="tray-stop">
-                        <div class="tray-stop-space"></div>
-                        <div class="tray-stop-dot"></div>
-                        <div class="tray-stop-content">
-                            <div class="trayectoria-item-date" data-k="sherpa_tag">07/09/2026 – 09/09/2026 · Ponencias &
-                                Talleres</div>
-                            <div class="trayectoria-item-title" data-k="sherpa_title">Asistencia a ponencias y talleres
-                                de SherpaDigital</div>
-                            <div class="trayectoria-item-institution">SherpaDigital</div>
-                            <div class="trayectoria-item-desc" data-k="sherpa_desc">Formación complementaria a través de
-                                ponencias y talleres prácticos sobre el ecosistema digital, marketing y creación de
-                                contenido.</div>
-                        </div>
-                    </div>
-
-                    <div class="tray-stop">
-                        <div class="tray-stop-content">
+                    <div class="ip-year">
+                        <div class="ip-year__n" aria-hidden="true">2026</div>
+                        <div class="ip-year__list">
+                            <article class="ip-entry" data-ip-k="trabajo">
+                                <div class="tray-stop-content">
                             <div class="trayectoria-item-date" data-k="x1d">03/2026 – actualidad</div>
                             <div class="trayectoria-item-title" data-k="x1">Responsable de Marketing, Diseño y Contenido
                                 Visual</div>
@@ -4535,15 +6085,39 @@
                             </div>
                             <div class="trayectoria-item-desc" data-k="x1t">Gestiono las redes sociales, el marketing
                                 digital, la creación de contenido y el desarrollo web del equipo.</div>
+                                </div>
+                            </article>
+                            <article class="ip-entry" data-ip-k="eventos">
+                                <div class="tray-stop-content">
+                            <div class="trayectoria-item-date">22/09/2026 · Taller Práctico & IA</div>
+                            <div class="trayectoria-item-title" data-k="gpts_title">Asistencia al Taller de GPTs
+                                Personalizados</div>
+                            <div class="trayectoria-item-institution" data-k="gpts_inst">AICS · Asociación de
+                                Inteligencia Artificial y Ciencia</div>
+                            <div class="trayectoria-item-desc" data-k="gpts_desc">Capacitación práctica especializada en
+                                el diseño, configuración, entrenamiento de instrucciones y despliegue de asistentes GPTs
+                                personalizados.</div>
+                                </div>
+                            </article>
+                            <article class="ip-entry" data-ip-k="eventos">
+                                <div class="tray-stop-content">
+                            <div class="trayectoria-item-date" data-k="sherpa_tag">07/09/2026 – 09/09/2026 · Ponencias &
+                                Talleres</div>
+                            <div class="trayectoria-item-title" data-k="sherpa_title">Asistencia a ponencias y talleres
+                                de SherpaDigital</div>
+                            <div class="trayectoria-item-institution">SherpaDigital</div>
+                            <div class="trayectoria-item-desc" data-k="sherpa_desc">Formación complementaria a través de
+                                ponencias y talleres prácticos sobre el ecosistema digital, marketing y creación de
+                                contenido.</div>
+                                </div>
+                            </article>
                         </div>
-                        <div class="tray-stop-dot"></div>
-                        <div class="tray-stop-space"></div>
                     </div>
-
-                    <div class="tray-stop">
-                        <div class="tray-stop-space"></div>
-                        <div class="tray-stop-dot"></div>
-                        <div class="tray-stop-content">
+                    <div class="ip-year">
+                        <div class="ip-year__n" aria-hidden="true">2025</div>
+                        <div class="ip-year__list">
+                            <article class="ip-entry" data-ip-k="formacion">
+                                <div class="tray-stop-content">
                             <div class="trayectoria-item-date">2025 – 06/2026</div>
                             <div class="trayectoria-item-title" data-k="e2">Máster en Comunicación Móvil y Contenido
                                 Digital</div>
@@ -4552,12 +6126,32 @@
                             <div class="trayectoria-item-desc"><strong>TFM:</strong> <em>Diseño de un Proyecto
                                     Transmedia para el Fomento de la Lectura Juvenil: GameBooker</em><br><span
                                     style="font-size:0.8rem; color:var(--lilac-primary);">Tutora: Tatiana Abellán
-                                    Aguilar</span></div>
+                                    Aguilar</span>
+                                <div style="margin-top:10px; display:flex; gap:8px; flex-wrap:wrap;">
+                                    <button type="button" onclick="openProjectModal('tfm')" style="padding:4px 12px; border-radius:14px; background:var(--lilac-soft); color:var(--lilac-primary); border:1px solid var(--lilac-border); font-size:0.78rem; font-weight:700; cursor:pointer;">📄 Memoria TFM (GameBooker)</button>
+                                    <button type="button" onclick="openProjectModal('biblia')" style="padding:4px 12px; border-radius:14px; background:var(--lilac-soft); color:var(--lilac-primary); border:1px solid var(--lilac-border); font-size:0.78rem; font-weight:700; cursor:pointer;">📕 Biblia Transmedia (TeAbrazo / AyudaYa) ↗</button>
+                                </div>
+                            </div>
+                                </div>
+                            </article>
+                            <article class="ip-entry" data-ip-k="trabajo">
+                                <div class="tray-stop-content">
+                            <div class="trayectoria-item-date" data-k="x2d">02/2025 – 05/2025</div>
+                            <div class="trayectoria-item-title" data-k="x2">Auxiliar de biblioteca</div>
+                            <div class="trayectoria-item-institution" data-k="x2c">Biblioteca Pública Municipal de
+                                Alcantarilla · Prácticas</div>
+                            <div class="trayectoria-item-desc" data-k="x2t">Prácticas como auxiliar en la biblioteca
+                                pública de mi localidad, en contacto directo con la gestión de información y usuarios.
+                            </div>
+                                </div>
+                            </article>
                         </div>
                     </div>
-
-                    <div class="tray-stop">
-                        <div class="tray-stop-content">
+                    <div class="ip-year">
+                        <div class="ip-year__n" aria-hidden="true">2024</div>
+                        <div class="ip-year__list">
+                            <article class="ip-entry" data-ip-k="trabajo">
+                                <div class="tray-stop-content">
                             <div class="trayectoria-item-date">2024 – 2025 · Redes & Web</div>
                             <div class="trayectoria-item-title" data-k="x_lokura_title">Creación Web, Redes Sociales &
                                 Cara de la Empresa (TikTok)</div>
@@ -4568,15 +6162,44 @@
                             <div class="trayectoria-item-desc" data-k="x_lokura_desc">Diseño y maquetación web en
                                 WordPress (UI/UX), estrategia de contenidos y gestión integral de redes sociales,
                                 actuando como la cara visible principal de la marca en TikTok.</div>
+                                </div>
+                            </article>
                         </div>
-                        <div class="tray-stop-dot"></div>
-                        <div class="tray-stop-space"></div>
                     </div>
-
-                    <div class="tray-stop">
-                        <div class="tray-stop-space"></div>
-                        <div class="tray-stop-dot"></div>
-                        <div class="tray-stop-content">
+                    <div class="ip-year">
+                        <div class="ip-year__n" aria-hidden="true">2023</div>
+                        <div class="ip-year__list">
+                            <article class="ip-entry" data-ip-k="trabajo">
+                                <div class="tray-stop-content">
+                            <div class="trayectoria-item-date">2023 – 2025 · TikTok &amp; Contenido</div>
+                            <div class="trayectoria-item-title">Cara de TikTok (Ocasionalmente)</div>
+                            <div class="trayectoria-item-institution">Murcia PC</div>
+                            <div class="trayectoria-item-desc">Creación de contenido en vídeo vertical y participación ocasional como la cara visible de la marca en TikTok para la tienda de tecnología Murcia PC.</div>
+                                </div>
+                            </article>
+                        </div>
+                    </div>
+                    <div class="ip-year">
+                        <div class="ip-year__n" aria-hidden="true">2022</div>
+                        <div class="ip-year__list">
+                            <article class="ip-entry" data-ip-k="eventos">
+                                <div class="tray-stop-content">
+                            <div class="trayectoria-item-date">2022 · Participación Voluntaria</div>
+                            <div class="trayectoria-item-title" data-k="manga_title">Voluntariado en el Salón del Manga
+                                de Murcia</div>
+                            <div class="trayectoria-item-institution">Salón del Manga de Murcia (SeRemanga)</div>
+                            <div class="trayectoria-item-desc" data-k="manga_desc">Colaboración en la organización,
+                                soporte logístico, comunicación y atención a los asistentes en uno de los eventos
+                                culturales más concurridos de la región.</div>
+                                </div>
+                            </article>
+                        </div>
+                    </div>
+                    <div class="ip-year">
+                        <div class="ip-year__n" aria-hidden="true">2021</div>
+                        <div class="ip-year__list">
+                            <article class="ip-entry" data-ip-k="formacion">
+                                <div class="tray-stop-content">
                             <div class="trayectoria-item-date">09/2021 – 06/2025</div>
                             <div class="trayectoria-item-title" data-k="e1">Grado en Gestión de la Información y
                                 Contenidos Digitales</div>
@@ -4586,169 +6209,188 @@
                                     (UI) y Experiencia del Usuario (UX) de una Web en WordPress para mejorar la
                                     percepción de una PYME (Caso LokuraPC)</em><br><span
                                     style="font-size:0.8rem; color:var(--lilac-primary);">Tutor: José Alberto García
-                                    Berná · Cotutor: Juan Manuel Carrillo de Gea</span></div>
-                        </div>
-                    </div>
-
-                    <div class="tray-stop">
-                        <div class="tray-stop-content">
-                            <div class="trayectoria-item-date" data-k="x2d">02/2025 – 05/2025</div>
-                            <div class="trayectoria-item-title" data-k="x2">Auxiliar de biblioteca</div>
-                            <div class="trayectoria-item-institution" data-k="x2c">Biblioteca Pública Municipal de
-                                Alcantarilla · Prácticas</div>
-                            <div class="trayectoria-item-desc" data-k="x2t">Prácticas como auxiliar en la biblioteca
-                                pública de mi localidad, en contacto directo con la gestión de información y usuarios.
+                                    Berná · Cotutor: Juan Manuel Carrillo de Gea</span>
+                                <div style="margin-top:10px; display:flex; gap:8px; flex-wrap:wrap;">
+                                    <button type="button" onclick="openProjectModal('tfg')" style="padding:4px 12px; border-radius:14px; background:var(--lilac-soft); color:var(--lilac-primary); border:1px solid var(--lilac-border); font-size:0.78rem; font-weight:700; cursor:pointer;">📄 Memoria TFG</button>
+                                    <button type="button" onclick="openProjectModal('tfg_presentacion')" style="padding:4px 12px; border-radius:14px; background:var(--lilac-soft); color:var(--lilac-primary); border:1px solid var(--lilac-border); font-size:0.78rem; font-weight:700; cursor:pointer;">📊 Presentación TFG ↗</button>
+                                </div>
                             </div>
+                                </div>
+                            </article>
                         </div>
-                        <div class="tray-stop-dot"></div>
-                        <div class="tray-stop-space"></div>
                     </div>
-
-                    <div class="tray-stop">
-                        <div class="tray-stop-space"></div>
-                        <div class="tray-stop-dot"></div>
-                        <div class="tray-stop-content">
+                    <div class="ip-year">
+                        <div class="ip-year__n" aria-hidden="true">2019</div>
+                        <div class="ip-year__list">
+                            <article class="ip-entry" data-ip-k="formacion">
+                                <div class="tray-stop-content">
                             <div class="trayectoria-item-date">2019 · Certificación Oficial</div>
                             <div class="trayectoria-item-title" data-k="b1_title">Certificado de Idioma Inglés B1</div>
                             <div class="trayectoria-item-institution" data-k="b1_inst">EOI · Escuela Oficial de Idiomas
                             </div>
                             <div class="trayectoria-item-desc">Dominio fluido a nivel intermedio (B1) de inglés técnico
                                 y profesional.</div>
+                                </div>
+                            </article>
                         </div>
-                    </div>
-
-                    <div class="tray-stop">
-                        <div class="tray-stop-content">
-                            <div class="trayectoria-item-date">Participación Voluntaria</div>
-                            <div class="trayectoria-item-title" data-k="manga_title">Voluntariado en el Salón del Manga
-                                de Murcia</div>
-                            <div class="trayectoria-item-institution">Salón del Manga de Murcia (SeRemanga)</div>
-                            <div class="trayectoria-item-desc" data-k="manga_desc">Colaboración en la organización,
-                                soporte logístico, comunicación y atención a los asistentes en uno de los eventos
-                                culturales más concurridos de la región.</div>
-                        </div>
-                        <div class="tray-stop-dot"></div>
-                        <div class="tray-stop-space"></div>
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- FULL-WIDTH DARK SECTION: SELECTED WORK / PROYECTOS — HORIZONTAL SCROLL -->
-        <section class="section-block section-selected-work projects-hscroll-wrapper" id="proj">
-            <div class="projects-hscroll-pin">
-                <div class="projects-hscroll" id="projectsTrack">
-                    <!-- Slide 01: TFG -->
-                    <div class="project-slide" style="background: linear-gradient(135deg, var(--dark-bg), #1a1535);">
-                        <div class="project-slide-inner">
-                            <div class="project-slide-info">
-                                <div class="project-slide-num">01 · TFG</div>
-                                <h3 class="project-slide-title">Optimización UI/UX WordPress</h3>
-                                <p class="project-slide-desc">Optimización de la interfaz y experiencia de usuario
-                                    (UI/UX) para PYME tecnológica basada en las 10 heurísticas de Nielsen y 16 de
-                                    Tognazzini.</p>
-                                <div class="project-slide-meta">✦ Grado en Gestión de la Información (UMU)<br>Tutores:
-                                    José Alberto García Berná & Juan Manuel Carrillo de Gea</div>
-                                <div class="project-slide-actions">
-                                    <button class="btn-header" onclick="openProjectModal('tfg')"
-                                        style="background: var(--lilac-soft); color: var(--lilac-primary); border-color: var(--lilac-border); font-weight: 700;">PREVISUALIZAR
-                                        TFG</button>
-                                </div>
-                            </div>
-                            <div class="project-slide-img">
-                                <img src="img_web/tfg_preview.png" alt="TFG UI/UX Preview" loading="lazy">
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Slide 02: TFM -->
-                    <div class="project-slide" style="background: linear-gradient(135deg, #1a1535, #1c1230);">
-                        <div class="project-slide-inner">
-                            <div class="project-slide-info">
-                                <div class="project-slide-num">02 · TFM</div>
-                                <h3 class="project-slide-title">Gamebooker Transmedia</h3>
-                                <p class="project-slide-desc">Diseño e implementación del proyecto transmedia GameBooker
-                                    (universo Luminara & Amira) para el fomento de la lectura juvenil en la Generación
-                                    Z.</p>
-                                <div class="project-slide-meta">✦ Máster en Comunicación Móvil y Contenido Digital
-                                    (UMU)<br>Tutora: Tatiana Abellán Aguilar</div>
-                                <div class="project-slide-actions">
-                                    <button class="btn-header" onclick="openProjectModal('tfm')"
-                                        style="background: var(--lilac-soft); color: var(--lilac-primary); border-color: var(--lilac-border); font-weight: 700;">PREVISUALIZAR
-                                        TFM</button>
-                                </div>
-                            </div>
-                            <div class="project-slide-img">
-                                <img src="img_web/tfm_preview.png" alt="TFM GameBooker Preview" loading="lazy">
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Slide 03: Lokura PC -->
-                    <div class="project-slide" style="background: linear-gradient(135deg, #1c1230, #181028);">
-                        <div class="project-slide-inner">
-                            <div class="project-slide-info">
-                                <div class="project-slide-num">03 · LOKURA PC</div>
-                                <h3 class="project-slide-title">LokuraPC · Web & TikTok</h3>
-                                <p class="project-slide-desc">Maquetación y desarrollo web en WordPress (UI/UX) y
-                                    gestión integral de redes sociales, siendo la cara visible principal de la empresa
-                                    en TikTok.</p>
-                                <div class="project-slide-meta">✦ Creación Web WordPress · TikTok & Redes
-                                    Sociales<br>Web: lokurapcshop.es · TikTok: @lokura_pc</div>
-                                <div class="project-slide-actions">
-                                    <button class="btn-header" onclick="openProjectModal('lokura')"
-                                        style="background: var(--lilac-soft); color: var(--lilac-primary); border-color: var(--lilac-border); font-weight: 700;">DETALLES</button>
-                                    <a href="https://lokurapcshop.es/" target="_blank" rel="noopener noreferrer"
-                                        onclick="event.stopPropagation()" class="btn-header"
-                                        style="background: var(--dark-surf); color: var(--lilac-primary); border-color: var(--lilac-border); font-weight: 700;">WEB
-                                        ↗</a>
-                                    <a href="https://www.tiktok.com/@lokura_pc" target="_blank"
-                                        rel="noopener noreferrer" onclick="event.stopPropagation()" class="btn-header"
-                                        style="background: #ff0050; color: #fff; border-color: #ff0050; font-weight: 700;">TIKTOK
-                                        ↗</a>
-                                </div>
-                            </div>
-                            <div class="project-slide-img">
-                                <img src="img_web/lokura_preview.png" alt="LokuraPC Preview" loading="lazy">
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Slide 04: Thex -->
-                    <div class="project-slide" style="background: linear-gradient(135deg, #181028, #140e22);">
-                        <div class="project-slide-inner">
-                            <div class="project-slide-info">
-                                <div class="project-slide-num">04 · THEX</div>
-                                <h3 class="project-slide-title">Thex Digital</h3>
-                                <p class="project-slide-desc">Gestión de diversos proyectos y sus redes sociales,
-                                    marketing digital, creación de contenido audiovisual y diseño de marca web.</p>
-                                <div class="project-slide-meta">✦ Marketing & Creative Content Manager<br>Estrategia
-                                    multicanal & Content Creation</div>
-                                <div class="project-slide-actions">
-                                    <a href="https://www.linkedin.com/company/thexofficial/" target="_blank"
-                                        rel="noopener noreferrer" class="btn-header"
-                                        style="background: #0077b5; color: #fff; border-color: #0077b5; font-weight: 700;">VER
-                                        EN LINKEDIN ↗</a>
-                                </div>
-                            </div>
-                            <div class="project-slide-img">
-                                <img src="img_web/thex_cover.png" alt="Thex Digital Preview" loading="lazy">
-                            </div>
-                        </div>
-                    </div>
+        <!-- PROYECTOS — fichas completas en vertical (IP) -->
+        <section class="section-block section-selected-work ip-proj ip-host" id="proj">
+            <canvas class="ip-scene" data-ip-scene="proj" aria-hidden="true"></canvas>
+            <div class="ip-proj__pin">
+                <div class="wrap ip-proj__top">
+                <div class="ip-proj__head">
+                    <span class="ip-proj__tag" data-k="pj_tag">✦ Selected work</span>
+                    <h2 data-k="pj_h">Proyectos</h2>
+                    <p data-k="pj_p">Mis trabajos de fin de grado y de máster, y las dos empresas en las que he llevado web, contenido y redes.</p>
                 </div>
 
-                <div class="hscroll-counter" id="hscrollCounter">01 / 04</div>
-                <div class="hscroll-progress">
-                    <div class="hscroll-progress-fill" id="hscrollFill"></div>
+                <div class="ip-proj__tabs" role="navigation" aria-label="Ir a un proyecto">
+                    <a href="#ipCase1" data-ip-go="ipCase1"><b>01</b>TFG</a>
+                    <a href="#ipCase2" data-ip-go="ipCase2"><b>02</b>TFM</a>
+                    <a href="#ipCase3" data-ip-go="ipCase3"><b>03</b>Biblia Transmedia</a>
+                    <a href="#ipCase4" data-ip-go="ipCase4"><b>04</b>LokuraPC</a>
+                    <a href="#ipCase5" data-ip-go="ipCase5"><b>05</b>Thex</a>
+                </div>
+                </div>
+
+                <div class="ip-proj__track" id="ipProjTrack">
+                <!-- 01: TFG -->
+                <article class="ip-case" id="ipCase1">
+                    <div class="wrap ip-case__in">
+                    <div class="ip-case__info">
+                        <div class="ip-case__hd"><div class="ip-case__n" aria-hidden="true">01</div><div class="ip-case__kicker">TFG · Trabajo de Fin de Grado</div></div>
+                        <h3>Optimización UI/UX WordPress</h3>
+                        <p class="ip-case__desc">Optimización de la interfaz y experiencia de usuario (UI/UX) de una web en WordPress para mejorar la percepción de una PYME tecnológica (caso LokuraPC), basada en las 10 heurísticas de Nielsen y las 16 de Tognazzini. Incluye Memoria de Grado y Presentación de Defensa.</p>
+                        <dl class="ip-case__facts">
+                            <div><dt>Titulación</dt><dd>Grado en Gestión de la Información y Contenidos Digitales · Universidad de Murcia</dd></div>
+                            <div><dt>Tutores</dt><dd>José Alberto García Berná y Juan Manuel Carrillo de Gea</dd></div>
+                            <div><dt>Documentos</dt><dd>Memoria TFG (PDF) y Presentación Oficial (PDF)</dd></div>
+                        </dl>
+                        <ul class="ip-case__chips"><li>WordPress</li><li>UI / UX</li><li>Heurísticas de Nielsen</li><li>Tognazzini</li><li>Presentación TFG</li></ul>
+                        <div class="ip-case__actions">
+                            <button type="button" class="ip-btn" onclick="openProjectModal('tfg')">Memoria TFG (PDF)</button>
+                            <button type="button" class="ip-btn ip-btn--ghost" onclick="openProjectModal('tfg_presentacion')">Presentación TFG (PDF) ↗</button>
+                        </div>
+                    </div>
+                    <figure class="ip-case__img">
+                        <span class="ip-brk" aria-hidden="true"><i></i><i></i><i></i><i></i></span>
+                        <span class="ip-case__pic"><span>TFG</span><img src="img_web/tfg_preview.png" alt="Vista previa del TFG: optimización UI/UX en WordPress" loading="lazy"></span>
+                    </figure>
+                    </div>
+                </article>
+
+                <!-- 02: TFM -->
+                <article class="ip-case" id="ipCase2">
+                    <div class="wrap ip-case__in">
+                    <div class="ip-case__info">
+                        <div class="ip-case__hd"><div class="ip-case__n" aria-hidden="true">02</div><div class="ip-case__kicker">TFM · Trabajo de Fin de Máster</div></div>
+                        <h3>GameBooker Transmedia</h3>
+                        <p class="ip-case__desc">Diseño e implementación del proyecto transmedia GameBooker (universo Luminara &amp; Amira) para el fomento de la lectura juvenil en la Generación Z.</p>
+                        <dl class="ip-case__facts">
+                            <div><dt>Titulación</dt><dd>Máster en Comunicación Móvil y Contenido Digital · Universidad de Murcia</dd></div>
+                            <div><dt>Tutora</dt><dd>Tatiana Abellán Aguilar</dd></div>
+                            <div><dt>Documentos</dt><dd>Memoria TFM (PDF)</dd></div>
+                        </dl>
+                        <ul class="ip-case__chips"><li>Transmedia</li><li>Fomento de la lectura</li><li>Generación Z</li><li>Luminara &amp; Amira</li></ul>
+                        <div class="ip-case__actions">
+                            <button type="button" class="ip-btn" onclick="openProjectModal('tfm')">Memoria TFM (PDF) ↗</button>
+                        </div>
+                    </div>
+                    <figure class="ip-case__img">
+                        <span class="ip-brk" aria-hidden="true"><i></i><i></i><i></i><i></i></span>
+                        <span class="ip-case__pic"><span>GameBooker</span><img src="img_web/tfm_preview.png" alt="Vista previa del TFM GameBooker" loading="lazy"></span>
+                    </figure>
+                    </div>
+                </article>
+
+                <!-- 03: Biblia Transmedia -->
+                <article class="ip-case" id="ipCase3">
+                    <div class="wrap ip-case__in">
+                    <div class="ip-case__info">
+                        <div class="ip-case__hd"><div class="ip-case__n" aria-hidden="true">03</div><div class="ip-case__kicker">Proyecto Transmedia · TeAbrazo &amp; AyudaYa</div></div>
+                        <h3>Biblia Transmedia · TeAbrazo &amp; AyudaYa</h3>
+                        <p class="ip-case__desc">Diseño y desarrollo de la Biblia Transmedia oficial para la plataforma TeAbrazo y AyudaYa. Incluye la arquitectura de contenidos multicanal, definición del universo narrativo, diseño de experiencias e identidad transmedia.</p>
+                        <dl class="ip-case__facts">
+                            <div><dt>Proyecto</dt><dd>TeAbrazo &amp; AyudaYa · Universo Transmedia</dd></div>
+                            <div><dt>Documento</dt><dd>Biblia Transmedia Oficial (PDF completo)</dd></div>
+                        </dl>
+                        <ul class="ip-case__chips"><li>Biblia Transmedia</li><li>TeAbrazo</li><li>AyudaYa</li><li>Transmedia</li><li>Storytelling</li></ul>
+                        <div class="ip-case__actions">
+                            <button type="button" class="ip-btn" onclick="openProjectModal('biblia')">Biblia Transmedia (PDF) ↗</button>
+                        </div>
+                    </div>
+                    <figure class="ip-case__img">
+                        <span class="ip-brk" aria-hidden="true"><i></i><i></i><i></i><i></i></span>
+                        <span class="ip-case__pic"><span>TeAbrazo</span><img src="img_web/teabrazo_preview.png" onerror="this.onerror=null;this.src='teabrazo_preview.png'" alt="Vista previa Biblia Transmedia TeAbrazo y AyudaYa" loading="lazy"></span>
+                    </figure>
+                    </div>
+                </article>
+
+                <!-- 04: Lokura PC -->
+                <article class="ip-case" id="ipCase4">
+                    <div class="wrap ip-case__in">
+                    <div class="ip-case__info">
+                        <div class="ip-case__hd"><div class="ip-case__n" aria-hidden="true">04</div><div class="ip-case__kicker">Lokura PC · Desarrollo web &amp; branding</div></div>
+                        <h3>LokuraPC · Web &amp; TikTok</h3>
+                        <p class="ip-case__desc">Desarrollo y maquetación web en WordPress enfocada en la experiencia de usuario (UI/UX) para la tienda oficial. Gestión integral de redes sociales actuando como la cara visible principal de la empresa en TikTok, creando contenido en vídeo vertical, comunicación directa con la comunidad tech y branding corporativo.</p>
+                        <dl class="ip-case__facts">
+                            <div><dt>Mi papel</dt><dd>Creación web en WordPress, redes sociales y cara visible de la marca</dd></div>
+                            <div><dt>Web</dt><dd><a href="https://lokurapcshop.es/" target="_blank" rel="noopener noreferrer">lokurapcshop.es</a></dd></div>
+                            <div><dt>TikTok</dt><dd><a href="https://www.tiktok.com/@lokura_pc" target="_blank" rel="noopener noreferrer">@lokura_pc</a></dd></div>
+                        </dl>
+                        <ul class="ip-case__chips"><li>WordPress</li><li>UI / UX</li><li>TikTok</li><li>Vídeo vertical</li><li>Branding</li></ul>
+                        <div class="ip-case__actions">
+                            <a class="ip-btn" href="https://lokurapcshop.es/" target="_blank" rel="noopener noreferrer">Visitar la web ↗</a>
+                            <a class="ip-btn ip-btn--ghost" href="https://www.tiktok.com/@lokura_pc" target="_blank" rel="noopener noreferrer">TikTok ↗</a>
+                        </div>
+                    </div>
+                    <figure class="ip-case__img">
+                        <span class="ip-brk" aria-hidden="true"><i></i><i></i><i></i><i></i></span>
+                        <span class="ip-case__pic"><span>LokuraPC</span><img src="img_web/lokura_preview.png" alt="Vista previa de la web de LokuraPC" loading="lazy"></span>
+                    </figure>
+                    </div>
+                </article>
+
+                <!-- 05: Thex -->
+                <article class="ip-case" id="ipCase5">
+                    <div class="wrap ip-case__in">
+                    <div class="ip-case__info">
+                        <div class="ip-case__hd"><div class="ip-case__n" aria-hidden="true">05</div><div class="ip-case__kicker">Thex Arqé · Experiencia profesional</div></div>
+                        <h3>Thex Digital</h3>
+                        <p class="ip-case__desc">Gestión de diversos proyectos y sus redes sociales, marketing digital, creación de contenido audiovisual y diseño de marca web. Estrategia digital integral, contenido multimedia para redes sociales, desarrollo del sitio web corporativo y posicionamiento de marca.</p>
+                        <dl class="ip-case__facts">
+                            <div><dt>Mi papel</dt><dd>Marketing &amp; Creative Content Manager</dd></div>
+                            <div><dt>Enfoque</dt><dd>Estrategia multicanal y creación de contenido</dd></div>
+                        </dl>
+                        <ul class="ip-case__chips"><li>Marketing digital</li><li>Redes sociales</li><li>Contenido audiovisual</li><li>Marca web</li></ul>
+                        <div class="ip-case__actions">
+                            <a class="ip-btn" href="https://www.linkedin.com/company/thexofficial/" target="_blank" rel="noopener noreferrer">Ver en LinkedIn ↗</a>
+                        </div>
+                    </div>
+                    <figure class="ip-case__img">
+                        <span class="ip-brk" aria-hidden="true"><i></i><i></i><i></i><i></i></span>
+                        <span class="ip-case__pic"><span>Thex</span><img src="img_web/thex_cover.png" alt="Vista previa de Thex Digital" loading="lazy"></span>
+                    </figure>
+                    </div>
+                </article>
+                </div>
+
+                <div class="ip-proj__bar" aria-hidden="true">
+                    <span class="ip-proj__count" id="ipProjCount">01 / 04</span>
+                    <span class="ip-proj__prog"><i id="ipProjFill"></i></span>
                 </div>
             </div>
         </section>
 
-        <div class="section-transition" data-transition="3"><canvas></canvas></div>
 
         <!-- PHOTOGRAPHY — SCATTERED ISLANDS WITH MOUSE REPULSION -->
-        <section class="section-block section-photo" id="photo">
+        <section class="section-block section-photo ip-photo ip-host" id="photo">
+            <canvas class="ip-scene" data-ip-scene="photo" aria-hidden="true"></canvas>
             <div class="wrap">
                 <div class="studio-header">
                     <div>
@@ -4758,15 +6400,17 @@
                             FOTOGRAFÍA</h2>
                         <p style="color: var(--mute); font-size: 0.95rem; max-width: 54ch; margin-top: 4px;"
                             data-k="photo_s">
-                            Una mirada que empezó a los 12 años. Mueve el cursor para explorar las imágenes flotantes.
+                            Una mirada que empezó a los 12 años. Mueve el cursor para explorar y pulsa una imagen para abrir su álbum.
                         </p>
                     </div>
                     <div class="filters" id="filters" style="margin-bottom:0;"></div>
                 </div>
             </div>
 
-            <div class="photo-scattered-container" id="photoScattered">
-                <!-- Islands are generated dynamically by JS -->
+            <div class="wrap">
+                <div class="ip-uni" id="ipUni">
+                    <!-- Universo de imágenes: una por apartado, se genera desde ALBUMS (ipBuildUni) -->
+                </div>
             </div>
             <input type="file" id="gallery-photo-input" class="hidden-file-input" accept="image/*">
         </section>
@@ -4774,23 +6418,44 @@
         <div class="section-transition" data-transition="4"><canvas></canvas></div>
 
         <!-- 3D PRINTING LAB — WORKBENCH CONCEPT -->
-        <section class="section-block section-figures-studio section-lab" id="figs">
+        <section class="section-block section-figures-studio ip-figs ip-host" id="figs">
+            <canvas class="ip-scene" data-ip-scene="figs" aria-hidden="true"></canvas>
             <div class="wrap">
                 <div class="studio-header">
                     <div>
-                        <div class="studio-title-badge" style="color: #8cb88c;">🔬 Laboratorio de Impresión 3D</div>
+                        <div class="studio-title-badge">🎨 Taller de Pintura e Impresión 3D</div>
                         <h2
-                            style="font-family: var(--font-display); font-size: 2.2rem; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: #d0d8c8;">
+                            style="font-family: var(--font-display); font-size: 2.2rem; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase;">
                             FIGURAS 3D</h2>
-                        <p style="color: rgba(200,220,190,0.6); font-size: 0.95rem; max-width: 54ch; margin-top: 4px;">
+                        <p style="color: var(--mute); font-size: 0.95rem; max-width: 54ch; margin-top: 4px;">
                             Pintura de miniaturas e impresión 3D. Cada pieza, capa a capa, desde el diseño hasta el
                             acabado final.
                         </p>
                     </div>
                 </div>
 
-                <div class="lab-workbench" id="labWorkbench">
-                    <!-- Lab items generated dynamically by JS -->
+                <div class="ip-turn">
+                    <div class="ip-orbit" id="ipOrbit">
+                        <span class="ip-ring ip-ring--1" aria-hidden="true"></span>
+                        <span class="ip-ring ip-ring--2" aria-hidden="true"></span>
+                        <span class="ip-ring ip-ring--3" aria-hidden="true"></span>
+                        <button type="button" class="ip-orbit__center" id="ipFigMain">
+                            <img id="ipFigImg" alt="" decoding="async">
+                        </button>
+                        <!-- Miniaturas en órbita: se generan desde FIGS (ipBuildTurn) -->
+                    </div>
+                    <div class="ip-figinfo">
+                        <span class="ip-figinfo__count" id="ipFigCount"></span>
+                        <h3 class="ip-figinfo__name" id="ipFigName"></h3>
+                        <p class="ip-figinfo__desc" id="ipFigDesc"></p>
+                        <div class="ip-figinfo__tags" id="ipFigTags"></div>
+                        <div class="ip-pots" id="ipFigPots" aria-hidden="true"></div>
+                        <div class="ip-figinfo__nav">
+                            <button type="button" class="filter-btn" id="ipFigPrev" aria-label="Figura anterior">‹</button>
+                            <button type="button" class="filter-btn" id="ipFigNext" aria-label="Figura siguiente">›</button>
+                            <button type="button" class="filter-btn on" id="ipFigBig" data-k="ip_big">Ver en grande</button>
+                        </div>
+                    </div>
                 </div>
             </div>
             <input type="file" id="fig-upload-input" class="hidden-file-input" accept="image/*">
@@ -5053,7 +6718,8 @@
                 x2: "Auxiliar de biblioteca", x2d: "02/2025 – 05/2025", x2c: "Biblioteca Pública Municipal de Alcantarilla · Prácticas", x2t: "Prácticas como auxiliar en la biblioteca pública de mi localidad, en contacto directo con la gestión de información y usuarios.",
                 manga_title: "Voluntariado en el Salón del Manga de Murcia",
                 manga_desc: "Colaboración en la organización, soporte logístico, comunicación y atención a los asistentes en uno de los eventos culturales y de contenido más concurridos de la región.",
-                photo_s: "Una mirada que empezó a los 12 años. Filtra por categoría y pulsa cualquier imagen.",
+                photo_s: "Una mirada que empezó a los 12 años. Mueve el cursor para explorar y pulsa una imagen para abrir su álbum.",
+                tf_all: "Todo", tf_work: "Trabajo", tf_edu: "Formación", tf_events: "Eventos", ip_open: "Abrir álbum", ip_big: "Ver en grande", pj_tag: "✦ Selected work", pj_h: "Proyectos", pj_p: "Mis trabajos de fin de grado y de máster, y las dos empresas en las que he llevado web, contenido y redes.", ab_tag: "✦ Áreas de especialización", ab_h: "Lo que sé hacer", ab_p: "Cuatro planetas, cuatro áreas. Pasa el cursor por uno para ver cuál es y púlsalo para explorarla.",
                 c_all: "Todas", c_celeb: "Celebraciones", c_urb: "Urbanas", c_port: "Retrato",
                 figs_s: "Pintura de miniaturas e impresión 3D. Carrusel continuo automático (pásale el ratón por encima para pausar y hacer clic).",
                 ct_s: "¿Tienes un proyecto en mente o quieres colaborar? Hablemos y hagámoslo realidad."
@@ -5082,7 +6748,8 @@
                 x2: "Library Assistant", x2d: "02/2025 – 05/2025", x2c: "Alcantarilla Municipal Public Library · Internship", x2t: "Internship as an assistant at my town's public library, working directly with information management and users.",
                 manga_title: "Volunteer at Murcia Manga Fair",
                 manga_desc: "Collaborated in event logistics, organisation, communication, and visitor support at one of the region's largest cultural and digital content conventions.",
-                photo_s: "A perspective that started at age 12. Filter by category and click any image.",
+                photo_s: "A perspective that started at age 12. Move the cursor to explore and click an image to open its album.",
+                tf_all: "All", tf_work: "Work", tf_edu: "Education", tf_events: "Events", ip_open: "Open album", ip_big: "View larger", pj_tag: "✦ Selected work", pj_h: "Projects", pj_p: "My final degree and master's projects, and the two companies where I have run web, content and social media.", ab_tag: "✦ Areas of expertise", ab_h: "What I do", ab_p: "Four planets, four areas. Hover over one to see which it is and click to explore it.",
                 c_all: "All", c_celeb: "Celebrations", c_urb: "Urban", c_port: "Portrait",
                 figs_s: "Miniature painting & 3D printing. Automatic infinite carousel (hover to pause & click).",
                 ct_s: "Have a project in mind? Let's work together."
@@ -5215,12 +6882,33 @@
                     '<div class="project-modal-box" onclick="event.stopPropagation()" style="padding:0; overflow:hidden; border-radius:18px; max-width:1100px; width:95%; height:90vh; display:flex; flex-direction:column; background:#14111d;">' +
                     '<div style="background:#14111d; padding:12px 22px; display:flex; align-items:center; justify-content:space-between; border-bottom:1.5px solid var(--lilac-primary); flex-shrink:0;">' +
                     '<div style="display:flex; align-items:center; gap:12px; flex-wrap:wrap;">' +
-                    '<span style="padding:4px 12px; border-radius:999px; background:var(--lilac-soft); color:var(--lilac-primary); font-weight:700; font-size:0.8rem; text-transform:uppercase;">✦ PREVISUALIZADOR PDF PROTEGIDO</span>' +
-                    '<span style="font-size:0.85rem; color:var(--dark-mute);">Trabajo de Fin de Grado · Irene Puche Armero · UMU</span>' +
+                    '<span style="padding:4px 12px; border-radius:999px; background:var(--lilac-soft); color:var(--lilac-primary); font-weight:700; font-size:0.8rem; text-transform:uppercase;">✦ MEMORIA TFG (PDF)</span>' +
+                    '<span style="font-size:0.85rem; color:var(--dark-mute);">Trabajo de Fin de Grado · Irene Puche Armero</span>' +
+                    '<div style="display:flex; gap:6px; margin-left:10px;">' +
+                    '<button onclick="openProjectModal(\'tfg\')" style="padding:5px 14px; border-radius:16px; background:var(--lilac-primary); color:#fff; border:none; font-size:0.78rem; font-weight:700; cursor:pointer;">📄 Memoria TFG</button>' +
+                    '<button onclick="openProjectModal(\'tfg_presentacion\')" style="padding:5px 14px; border-radius:16px; background:rgba(255,255,255,0.08); color:var(--dark-mute); border:1px solid rgba(255,255,255,0.15); font-size:0.78rem; font-weight:600; cursor:pointer;">📊 Presentación TFG</button>' +
+                    '</div>' +
                     '</div>' +
                     '<button class="project-modal-close" onclick="$(\'#lb\').classList.remove(\'show\')" style="position:static; width:34px; height:34px; font-size:1rem;" title="Cerrar previsualización">✕</button>' +
                     '</div>' +
                     '<iframe id="tfg-iframe" src="TFG.pdf#toolbar=0&navpanes=0&scrollbar=1" style="width:100%; height:calc(90vh - 58px); border:none; background:#191526;" title="Previsualización PDF TFG"></iframe>' +
+                    '</div>';
+                $("#lb").classList.add("show");
+            } else if (type === 'tfg_presentacion') {
+                container.innerHTML =
+                    '<div class="project-modal-box" onclick="event.stopPropagation()" style="padding:0; overflow:hidden; border-radius:18px; max-width:1100px; width:95%; height:90vh; display:flex; flex-direction:column; background:#14111d;">' +
+                    '<div style="background:#14111d; padding:12px 22px; display:flex; align-items:center; justify-content:space-between; border-bottom:1.5px solid var(--lilac-primary); flex-shrink:0;">' +
+                    '<div style="display:flex; align-items:center; gap:12px; flex-wrap:wrap;">' +
+                    '<span style="padding:4px 12px; border-radius:999px; background:var(--lilac-soft); color:var(--lilac-primary); font-weight:700; font-size:0.8rem; text-transform:uppercase;">✦ PRESENTACIÓN TFG (PDF)</span>' +
+                    '<span style="font-size:0.85rem; color:var(--dark-mute);">Defensa de TFG · Irene Puche Armero</span>' +
+                    '<div style="display:flex; gap:6px; margin-left:10px;">' +
+                    '<button onclick="openProjectModal(\'tfg\')" style="padding:5px 14px; border-radius:16px; background:rgba(255,255,255,0.08); color:var(--dark-mute); border:1px solid rgba(255,255,255,0.15); font-size:0.78rem; font-weight:600; cursor:pointer;">📄 Memoria TFG</button>' +
+                    '<button onclick="openProjectModal(\'tfg_presentacion\')" style="padding:5px 14px; border-radius:16px; background:var(--lilac-primary); color:#fff; border:none; font-size:0.78rem; font-weight:700; cursor:pointer;">📊 Presentación TFG</button>' +
+                    '</div>' +
+                    '</div>' +
+                    '<button class="project-modal-close" onclick="$(\'#lb\').classList.remove(\'show\')" style="position:static; width:34px; height:34px; font-size:1rem;" title="Cerrar previsualización">✕</button>' +
+                    '</div>' +
+                    '<iframe id="tfg-pres-iframe" src="TFG%20Presentaci%C3%B3n.pdf#toolbar=0&navpanes=0&scrollbar=1" style="width:100%; height:calc(90vh - 58px); border:none; background:#191526;" title="Previsualización PDF Presentación TFG"></iframe>' +
                     '</div>';
                 $("#lb").classList.add("show");
             } else if (type === 'tfm') {
@@ -5228,12 +6916,25 @@
                     '<div class="project-modal-box" onclick="event.stopPropagation()" style="padding:0; overflow:hidden; border-radius:18px; max-width:1100px; width:95%; height:90vh; display:flex; flex-direction:column; background:#14111d;">' +
                     '<div style="background:#14111d; padding:12px 22px; display:flex; align-items:center; justify-content:space-between; border-bottom:1.5px solid var(--lilac-primary); flex-shrink:0;">' +
                     '<div style="display:flex; align-items:center; gap:12px; flex-wrap:wrap;">' +
-                    '<span style="padding:4px 12px; border-radius:999px; background:var(--lilac-soft); color:var(--lilac-primary); font-weight:700; font-size:0.8rem; text-transform:uppercase;">✦ PREVISUALIZADOR PDF PROTEGIDO</span>' +
-                    '<span style="font-size:0.85rem; color:var(--dark-mute);">Trabajo de Fin de Máster · Irene Puche Armero · UMU</span>' +
+                    '<span style="padding:4px 12px; border-radius:999px; background:var(--lilac-soft); color:var(--lilac-primary); font-weight:700; font-size:0.8rem; text-transform:uppercase;">✦ MEMORIA TFM (PDF)</span>' +
+                    '<span style="font-size:0.85rem; color:var(--dark-mute);">GameBooker Transmedia · Irene Puche Armero</span>' +
                     '</div>' +
                     '<button class="project-modal-close" onclick="$(\'#lb\').classList.remove(\'show\')" style="position:static; width:34px; height:34px; font-size:1rem;" title="Cerrar previsualización">✕</button>' +
                     '</div>' +
-                    '<iframe id="tfm-iframe" src="TFM.pdf#toolbar=0&navpanes=0&scrollbar=1" style="width:100%; height:calc(90vh - 58px); border:none; background:#191526;" title="Previsualización PDF TFM"></iframe>' +
+                    '<iframe id="tfm-iframe" src="TFM.pdf#toolbar=0&navpanes=0&scrollbar=1" style="width:100%; height:calc(90vh - 58px); border:none; background:#191526;" title="Previsualización PDF TFM GameBooker"></iframe>' +
+                    '</div>';
+                $("#lb").classList.add("show");
+            } else if (type === 'biblia') {
+                container.innerHTML =
+                    '<div class="project-modal-box" onclick="event.stopPropagation()" style="padding:0; overflow:hidden; border-radius:18px; max-width:1100px; width:95%; height:90vh; display:flex; flex-direction:column; background:#14111d;">' +
+                    '<div style="background:#14111d; padding:12px 22px; display:flex; align-items:center; justify-content:space-between; border-bottom:1.5px solid var(--lilac-primary); flex-shrink:0;">' +
+                    '<div style="display:flex; align-items:center; gap:12px; flex-wrap:wrap;">' +
+                    '<span style="padding:4px 12px; border-radius:999px; background:var(--lilac-soft); color:var(--lilac-primary); font-weight:700; font-size:0.8rem; text-transform:uppercase;">✦ BIBLIA TRANSMEDIA (PDF)</span>' +
+                    '<span style="font-size:0.85rem; color:var(--dark-mute);">TeAbrazo &amp; AyudaYa · Irene Puche Armero</span>' +
+                    '</div>' +
+                    '<button class="project-modal-close" onclick="$(\'#lb\').classList.remove(\'show\')" style="position:static; width:34px; height:34px; font-size:1rem;" title="Cerrar previsualización">✕</button>' +
+                    '</div>' +
+                    '<iframe id="biblia-iframe" src="BIBLIA%20TRANSMEDIA.pdf#toolbar=0&navpanes=0&scrollbar=1" style="width:100%; height:calc(90vh - 58px); border:none; background:#191526;" title="Previsualización Biblia Transmedia TeAbrazo y AyudaYa"></iframe>' +
                     '</div>';
                 $("#lb").classList.add("show");
             } else if (type === 'thex') {
@@ -5622,6 +7323,8 @@
                 b.onclick = function () { filt = k; buildGallery(); };
                 if (f) f.appendChild(b);
             });
+
+            if (typeof ipBuildUni === "function") ipBuildUni();
 
             var track = $("#photo-car"); if (!track) return;
             track.innerHTML = "";
@@ -6025,7 +7728,7 @@
             observer.observe(el.closest('.section-contact'));
         }
 
-        window.addEventListener("DOMContentLoaded", function () {
+        function initHeroAndHomeScripts() {
             applyLanguage();
             initInteractiveToolsStage();
             updateAvatar();
@@ -6061,7 +7764,7 @@
                 initHeroReveal();
                 initProjectsHorizontalScroll();
             }
-        });
+        }
 
         /* =============================================
            CINEMATOGRAPHIC ENGINE
@@ -6627,6 +8330,737 @@
                 osc.stop(audioCtx.currentTime + 0.4);
             } catch (e) { }
         }
+        /* =====================================================================
+           IP · DE TRAYECTORIA A FIGURAS 3D (versión lila con fondo en profundidad)
+           ===================================================================== */
+        function ipId(id) { return document.getElementById(id); }
+
+        function ipSetImg(img, first, second) {
+            img.style.visibility = '';
+            img.removeAttribute('data-fb');
+            img.onerror = function () {
+                if (second && !img.getAttribute('data-fb')) { img.setAttribute('data-fb', '1'); img.src = encodeURI(second); }
+                else { img.onerror = null; img.style.visibility = 'hidden'; }
+            };
+            img.src = encodeURI(first);
+        }
+
+        /* --- Aparición al llegar con el scroll (clase ip-rv) --- */
+        function ipReveal(els, step) {
+            if (!window.IntersectionObserver || !els || !els.length) return;
+            var io = new IntersectionObserver(function (en) {
+                en.forEach(function (e) {
+                    if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); }
+                });
+            }, { threshold: 0.3, rootMargin: '0px 0px -10% 0px' });
+            Array.prototype.forEach.call(els, function (el, i) {
+                el.classList.add('ip-rv');
+                el.style.setProperty('--rd', (i * (step || 0)) + 's');
+                io.observe(el);
+            });
+        }
+
+        /* --- Aparición ligada al scroll: cada elemento se va mostrando a medida
+               que sube por la pantalla y, una vez visible, se queda --- */
+        function ipScrub(nodes) {
+            var noop = function () { };
+            var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+            if (!nodes || !nodes.length) return noop;
+            var st = Array.prototype.map.call(nodes, function (el) {
+                el.style.opacity = '0';
+                return { el: el, p: 0 };
+            });
+            var queued = false;
+            function update() {
+                queued = false;
+                var vh = window.innerHeight;
+                st.forEach(function (o) {
+                    if (o.p >= 1) return;
+                    var r = o.el.getBoundingClientRect();
+                    if (!r.width && !r.height) return;
+                    var p = Math.max(0, Math.min(1, (vh * 0.9 - r.top) / (vh * 0.34)));
+                    if (p <= o.p) return;
+                    o.p = p;
+                    o.el.style.opacity = p.toFixed(3);
+                    o.el.style.transform = (p >= 1 || reduce) ? '' : 'translateY(' + ((1 - p) * 48).toFixed(1) + 'px)';
+                });
+            }
+            function request() { if (!queued) { queued = true; requestAnimationFrame(update); } }
+            window.addEventListener('scroll', request, { passive: true });
+            window.addEventListener('resize', request);
+            update();
+            return request;
+        }
+
+        /* --- Trayectoria: filtro por tipo de hito --- */
+        function ipInitTray() {
+            var box = ipId('ipTrayFilters');
+            if (!box) return;
+            var ipTrayUpdate = ipScrub(document.querySelectorAll(
+                '#trayectoria > .wrap > div:first-child > *, #ipTrayFilters, #ipTime .ip-year__n, #ipTime .ip-entry'));
+            var btns = box.querySelectorAll('button');
+            var entries = document.querySelectorAll('#ipTime .ip-entry');
+            var years = document.querySelectorAll('#ipTime .ip-year');
+            Array.prototype.forEach.call(btns, function (b) {
+                b.addEventListener('click', function () {
+                    var k = b.getAttribute('data-ip-f');
+                    Array.prototype.forEach.call(btns, function (x) {
+                        x.classList.toggle('on', x === b);
+                        x.setAttribute('aria-pressed', x === b ? 'true' : 'false');
+                    });
+                    Array.prototype.forEach.call(entries, function (en) {
+                        en.classList.toggle('ip-off', !(k === 'all' || en.getAttribute('data-ip-k') === k));
+                    });
+                    Array.prototype.forEach.call(years, function (y) {
+                        y.classList.toggle('ip-off', !y.querySelector('.ip-entry:not(.ip-off)'));
+                    });
+                    try {
+                        if (typeof ScrollTrigger !== 'undefined') ScrollTrigger.refresh();
+                        window.dispatchEvent(new Event('scroll'));
+                    } catch (e) { }
+                    ipTrayUpdate();
+                });
+            });
+        }
+
+        /* --- Fotografía: universo de imágenes. Una sola imagen por apartado
+               (Bautizo, Boda, Comuniones, Aesthetic, Blanco y negro y cada Sesión),
+               cada una en su celda para que nunca se pisen, y se mueven con el cursor --- */
+        var ipUniParts = [];
+
+        function ipRand(i, k) {
+            var v = Math.sin(i * 12.9898 + k * 78.233) * 43758.5453;
+            return v - Math.floor(v);
+        }
+
+        function ipUniCols() {
+            var grid = ipId('ipUni');
+            if (!grid) return;
+            var cols = (getComputedStyle(grid).gridTemplateColumns || '').split(' ').filter(Boolean).length || 1;
+            Array.prototype.forEach.call(grid.children, function (cell, i) {
+                cell.classList.toggle('ip-star--low', (i % cols) % 2 === 1);
+            });
+        }
+
+        function ipBuildUni() {
+            var grid = ipId('ipUni');
+            if (!grid || typeof ALBUMS === 'undefined') return;
+            grid.innerHTML = '';
+            ipUniParts = [];
+
+            var list = [];
+            ALBUMS.forEach(function (a) {
+                if (!(filt === 'all' || a.c === filt)) return;
+                if (/^sesiones$/i.test(a.title)) {
+                    a.sections.forEach(function (sec, k) {
+                        if (sec.files && sec.files.length) list.push({ a: a, src: sec.files[0], label: sec.name || ('Sesión ' + (k + 1)) });
+                    });
+                } else if (a.photos && a.photos.length) {
+                    list.push({ a: a, src: a.cover || a.photos[0], label: a.title });
+                }
+            });
+
+            var shapes = [
+                { ar: '4/5', w0: 56, w1: 66 },
+                { ar: '3/2', w0: 80, w1: 92 },
+                { ar: '1/1', w0: 64, w1: 76 }
+            ];
+            list.forEach(function (it, i) {
+                var sh = shapes[(i + Math.floor(ipRand(i, 1) * 3)) % 3];
+                var cell = document.createElement('div'), b = document.createElement('button');
+                cell.className = 'ip-star';
+                b.type = 'button';
+                b.className = 'ip-star__btn';
+                b.style.setProperty('--w', (sh.w0 + ipRand(i, 2) * (sh.w1 - sh.w0)).toFixed(1) + '%');
+                b.style.setProperty('--fx', ipRand(i, 3).toFixed(3));
+                b.style.setProperty('--fy', ipRand(i, 4).toFixed(3));
+                b.innerHTML = '<span class="ip-star__float"><span class="ip-ph"><img alt="" loading="lazy" decoding="async"></span>' +
+                    '<span class="ip-star__cap"></span></span>';
+                var fl = b.querySelector('.ip-star__float');
+                fl.style.setProperty('--dur', (6 + ipRand(i, 5) * 5).toFixed(1) + 's');
+                fl.style.setProperty('--del', (-ipRand(i, 6) * 6).toFixed(1) + 's');
+                b.querySelector('.ip-ph').style.setProperty('--ar', sh.ar);
+                var img = b.querySelector('img');
+                img.alt = it.label;
+                ipSetImg(img, getThumb(it.src), it.src);
+                b.querySelector('.ip-star__cap').textContent = it.label;
+                b.onclick = function () { openAlbum(it.a, Math.max(0, it.a.photos.indexOf(it.src))); };
+                cell.appendChild(b);
+                grid.appendChild(cell);
+                ipUniParts.push({ el: b, d: 0.35 + 0.65 * ipRand(i, 7), x: 0, y: 0 });
+            });
+            ipUniCols();
+        }
+
+        function ipInitUni() {
+            var sec = ipId('photo');
+            if (!sec || !ipId('ipUni')) return;
+            ipBuildUni();
+            window.addEventListener('resize', ipUniCols);
+
+            var mm = window.matchMedia ? window.matchMedia.bind(window) : function () { return { matches: false }; };
+            if (mm('(pointer: coarse)').matches || mm('(prefers-reduced-motion: reduce)').matches) return;
+            var tx = 0, ty = 0;
+            window.addEventListener('pointermove', function (e) {
+                if (e.pointerType === 'touch') return;
+                var r = sec.getBoundingClientRect();
+                if (e.clientY < r.top || e.clientY > r.bottom) { tx = 0; ty = 0; return; }
+                tx = (e.clientX / window.innerWidth - 0.5) * 2;
+                ty = (e.clientY / window.innerHeight - 0.5) * 2;
+            }, { passive: true });
+            document.documentElement.addEventListener('mouseleave', function () { tx = 0; ty = 0; });
+
+            function loop() {
+                requestAnimationFrame(loop);
+                var r = sec.getBoundingClientRect();
+                if (r.bottom < 0 || r.top > window.innerHeight) return;
+                ipUniParts.forEach(function (o) {
+                    var gx = -tx * o.d * 22, gy = -ty * o.d * 16;
+                    o.x += (gx - o.x) * 0.08;
+                    o.y += (gy - o.y) * 0.08;
+                    o.el.style.transform = 'translate3d(' + o.x.toFixed(2) + 'px,' + o.y.toFixed(2) + 'px,0)';
+                });
+            }
+            requestAnimationFrame(loop);
+        }
+
+        /* --- Botes de pintura sacados de los colores de la propia foto --- */
+        function ipPots(img, el) {
+            el.innerHTML = '';
+            try {
+                var S = 28, c = document.createElement('canvas');
+                c.width = S; c.height = S;
+                var x = c.getContext('2d');
+                x.drawImage(img, 0, 0, S, S);
+                var d = x.getImageData(0, 0, S, S).data, bins = {};
+                for (var i = 0; i < d.length; i += 4) {
+                    if (d[i + 3] < 200) continue;
+                    var r = d[i], g = d[i + 1], b = d[i + 2];
+                    var mx = Math.max(r, g, b), mn = Math.min(r, g, b);
+                    if (mx < 35 || mn > 235) continue;
+                    var sat = mx === 0 ? 0 : (mx - mn) / mx;
+                    var key = (r >> 5) + '-' + (g >> 5) + '-' + (b >> 5);
+                    var o = bins[key] || (bins[key] = { n: 0, r: 0, g: 0, b: 0, s: 0 });
+                    o.n++; o.r += r; o.g += g; o.b += b; o.s += sat;
+                }
+                var list = Object.keys(bins).map(function (k) {
+                    var o = bins[k];
+                    return { r: o.r / o.n, g: o.g / o.n, b: o.b / o.n, score: o.n * (0.3 + o.s / o.n) };
+                }).sort(function (a, b) { return b.score - a.score; });
+                var out = [];
+                list.forEach(function (q) {
+                    if (out.length >= 4) return;
+                    var far = out.every(function (p) {
+                        return Math.abs(p.r - q.r) + Math.abs(p.g - q.g) + Math.abs(p.b - q.b) > 90;
+                    });
+                    if (far) out.push(q);
+                });
+                out.forEach(function (q) {
+                    var dot = document.createElement('i');
+                    dot.style.background = 'rgb(' + Math.round(q.r) + ',' + Math.round(q.g) + ',' + Math.round(q.b) + ')';
+                    el.appendChild(dot);
+                });
+            } catch (e) { /* si el navegador no deja leer la imagen, se queda sin botes */ }
+        }
+
+        /* --- Figuras 3D: una pieza en el centro y el resto en órbita (datos de FIGS) --- */
+        var ipFigList = [], ipFig = 0;
+
+        function ipShowFig() {
+            var it = ipFigList[ipFig];
+            if (!it) return;
+            var img = ipId('ipFigImg'), pots = ipId('ipFigPots'), tags = ipId('ipFigTags');
+            var name = it.title || ('Figura ' + (ipFig + 1));
+            img.alt = name;
+            img.onload = function () { ipPots(img, pots); };
+            ipSetImg(img, 'img_web/' + it.s, it.s);
+            ipId('ipFigName').textContent = name;
+            ipId('ipFigDesc').textContent = it.desc || '';
+            ipId('ipFigCount').textContent = String(ipFig + 1).padStart(2, '0') + ' / ' + String(ipFigList.length).padStart(2, '0');
+            tags.innerHTML = '';
+            [it.tag, it.mat].forEach(function (txt, k) {
+                if (!txt) return;
+                var sp = document.createElement('span');
+                sp.className = 'studio-technique-tag' + (k === 1 ? ' tag-mat' : '');
+                sp.textContent = '✦ ' + txt;
+                tags.appendChild(sp);
+            });
+            Array.prototype.forEach.call(document.querySelectorAll('#ipOrbit .ip-orbit__t'), function (t, i) {
+                t.classList.toggle('on', i === ipFig);
+            });
+        }
+
+        function ipBuildTurn() {
+            var orbit = ipId('ipOrbit');
+            if (!orbit || typeof FIGS === 'undefined') return;
+            ipFigList = FIGS.filter(function (f) { return !!f.s; });
+            if (!ipFigList.length) return;
+            var n = ipFigList.length;
+            ipFigList.forEach(function (it, i) {
+                var ang = i / n * Math.PI * 2;
+                var t = document.createElement('button'), im = document.createElement('img');
+                t.type = 'button';
+                t.className = 'ip-orbit__t';
+                t.title = it.title || '';
+                t.style.left = (50 + 42 * Math.sin(ang)).toFixed(2) + '%';
+                t.style.top = (50 - 42 * Math.cos(ang)).toFixed(2) + '%';
+                im.alt = it.title || ('Figura ' + (i + 1));
+                im.loading = 'lazy';
+                ipSetImg(im, 'img_web/' + it.s, it.s);
+                t.appendChild(im);
+                t.onclick = function () { ipFig = i; ipShowFig(); };
+                orbit.appendChild(t);
+            });
+
+            function big() {
+                var it = ipFigList[ipFig], lbc = ipId('lbc'), lb = ipId('lb');
+                if (!it || !lbc || !lb) return;
+                lbc.innerHTML = '';
+                var im = document.createElement('img');
+                im.alt = it.title || '';
+                im.src = ipId('ipFigImg').src;
+                lbc.appendChild(im);
+                lb.classList.add('show');
+            }
+            ipId('ipFigMain').onclick = big;
+            ipId('ipFigBig').onclick = big;
+            ipId('ipFigPrev').onclick = function () { ipFig = (ipFig - 1 + n) % n; ipShowFig(); };
+            ipId('ipFigNext').onclick = function () { ipFig = (ipFig + 1) % n; ipShowFig(); };
+            ipShowFig();
+        }
+
+        /* --- Fondo en profundidad: marcos con esquinas de visor, anillos,
+               recorrido de puntos y ✦ que pasan junto a la cámara al hacer scroll --- */
+        function ipInitScenes() {
+            var cvs = document.querySelectorAll('canvas.ip-scene');
+            if (!cvs.length) return;
+            var TAU = Math.PI * 2, rootEl = document.documentElement;
+            var reduce = window.matchMedia ? window.matchMedia('(prefers-reduced-motion: reduce)') : { matches: false };
+            function clamp(v, a, b) { return v < a ? a : (v > b ? b : v); }
+
+            function build(kind) {
+                var items = [], lines = [], L = 46, i, u;
+                function frame(x, y, z, w, h, rot, fill, br) { items.push({ k: 'f', x: x, y: y, z: z, w: w, h: h, rot: rot, fill: fill, br: br }); }
+                function star(x, y, z, s) { items.push({ k: 's', x: x, y: y, z: z, w: s }); }
+                function ring(x, y, z, r) { items.push({ k: 'r', x: x, y: y, z: z, w: r }); }
+                function dot(x, y, z, r) { items.push({ k: 'd', x: x, y: y, z: z, w: r }); }
+                if (kind === 'tray') {
+                    L = 58;
+                    var th = [];
+                    for (i = 0; i <= 96; i++) {
+                        u = i / 96;
+                        th.push([1.6 + 1.3 * Math.sin(u * 11), 0.2 + 1.5 * Math.sin(u * 7 + 1), 3 - u * 66]);
+                        if (i % 6 === 3) dot(th[i][0], th[i][1], th[i][2], 0.11);
+                    }
+                    lines.push(th);
+                } else if (kind === 'proj') {
+                    L = 62;
+                    for (i = 0; i < 12; i++) {
+                        var sd = i % 2 ? 1 : -1;
+                        frame(sd * (6.4 + (i * 29 % 7) * 0.3), -2 + (i * 47 % 11) * 0.4, 1 - i * 5.8,
+                            i % 3 ? 2.2 : 1.5, i % 3 ? 1.4 : 2, sd * (0.04 + (i % 4) * 0.02), 'none', i % 3 === 0);
+                    }
+                    for (i = 0; i < 9; i++) star((i % 2 ? 1 : -1) * (5 + (i * 31 % 6) * 0.6), 2.7 - (i * 43 % 10) * 0.5, -3 - i * 7, 0.14 + (i % 3) * 0.05);
+                } else if (kind === 'photo') {
+                    /* campo de estrellas: puntos pequeños y algunas ✦, en profundidad */
+                    L = 50;
+                    for (i = 0; i < 70; i++) dot(-9 + (i * 61 % 181) / 10, -3.4 + (i * 37 % 69) / 10, 3 - i * 0.82, 0.028 + (i % 4) * 0.012);
+                    for (i = 0; i < 12; i++) star(-8 + (i * 47 % 17), -2.8 + (i * 29 % 12) * 0.5, 0 - i * 4.6, 0.1 + (i % 3) * 0.04);
+                } else {
+                    L = 44;
+                    for (i = 0; i < 7; i++) ring((i % 2 ? 0.8 : -0.8), 0.2, -3 - i * 6.5, 3.4 + (i % 3) * 1.3);
+                    for (i = 0; i < 12; i++) star((i % 2 ? -1 : 1) * (4.8 + (i * 41 % 7) * 0.5), -2.4 + (i * 59 % 11) * 0.48, 0 - i * 4.4, 0.14 + (i % 4) * 0.045);
+                }
+                items.sort(function (a, b) { return a.z - b.z; });
+                return { items: items, lines: lines, L: L, cxk: kind === 'tray' ? 0.76 : 0.5 };
+            }
+
+            var scenes = Array.prototype.map.call(cvs, function (c) {
+                var sc = build(c.getAttribute('data-ip-scene'));
+                sc.c = c; sc.ctx = c.getContext ? c.getContext('2d') : null; sc.host = c.parentNode; sc.p = 0; sc.first = true;
+                return sc;
+            }).filter(function (sc) { return !!sc.ctx; });
+            if (!scenes.length) return;
+
+            var col = { line: '#9d72ff', sheet: '#ffffff', tint: '#c4b5fd' };
+            function readColors() {
+                var cs = getComputedStyle(rootEl);
+                var a = (cs.getPropertyValue('--lilac-primary') || '').trim(); if (a) col.line = a;
+                var b = (cs.getPropertyValue('--surf') || '').trim(); if (b) col.sheet = b;
+                var d = (cs.getPropertyValue('--lilac-accent') || '').trim(); if (d) col.tint = d;
+            }
+            readColors();
+            if (window.MutationObserver) new MutationObserver(readColors).observe(rootEl, { attributes: true, attributeFilter: ['data-theme'] });
+
+            var px = 0, py = 0, pxs = 0, pys = 0, last = 0, FAR = 34;
+            window.addEventListener('pointermove', function (e) {
+                if (e.pointerType === 'touch') return;
+                px = (e.clientX / window.innerWidth - 0.5) * 2;
+                py = (e.clientY / window.innerHeight - 0.5) * 2;
+            }, { passive: true });
+            function fog(dz) { return clamp((FAR - dz) / 22, 0, 1) * clamp((dz - 0.8) / 2.5, 0, 1); }
+
+            function draw(now) {
+                requestAnimationFrame(draw);
+                var dt = clamp((now - last) / 1000, 0.001, 0.05); last = now;
+                var still = reduce.matches, k = still ? 1 : 1 - Math.exp(-dt * 5), vh = window.innerHeight;
+                pxs += (px - pxs) * k; pys += (py - pys) * k;
+
+                scenes.forEach(function (sc) {
+                    var r = sc.host.getBoundingClientRect();
+                    if (r.bottom < 0 || r.top > vh) { sc.first = true; return; }
+                    var c = sc.c, ctx = sc.ctx, W = c.clientWidth, H = c.clientHeight;
+                    if (!W || !H) return;
+                    var dpr = Math.min(window.devicePixelRatio || 1, 1.5);
+                    if (c.width !== Math.round(W * dpr) || c.height !== Math.round(H * dpr)) { c.width = Math.round(W * dpr); c.height = Math.round(H * dpr); }
+                    var target = clamp((vh - r.top) / (r.height + vh), 0, 1);
+                    if (sc.first) { sc.p = target; sc.first = false; } else sc.p += (target - sc.p) * k;
+
+                    var cz = 7 - sc.p * sc.L, camx = still ? 0 : pxs * 0.45, camy = still ? 0 : -pys * 0.28;
+                    var F = Math.min(H * 0.9, W * 1.1), cx = W * sc.cxk, cy = H / 2, kx = W < 900 ? 0.5 : 1;
+                    ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+                    ctx.clearRect(0, 0, W, H);
+                    ctx.lineJoin = 'round'; ctx.lineCap = 'round'; ctx.strokeStyle = col.line; ctx.lineWidth = 1.25;
+
+                    sc.lines.forEach(function (Ln) {
+                        for (var j = 0; j < Ln.length - 1; j++) {
+                            var a = Ln[j], b = Ln[j + 1], da = cz - a[2], db = cz - b[2];
+                            if (da < 0.8 || db < 0.8) continue;
+                            var al = fog((da + db) / 2); if (al < 0.03) continue;
+                            ctx.globalAlpha = al * 0.8; ctx.beginPath();
+                            ctx.moveTo(cx + (a[0] * kx - camx) * F / da, cy - (a[1] - camy) * F / da);
+                            ctx.lineTo(cx + (b[0] * kx - camx) * F / db, cy - (b[1] - camy) * F / db);
+                            ctx.stroke();
+                        }
+                    });
+
+                    sc.items.forEach(function (o) {
+                        var dz = cz - o.z;
+                        if (dz < 0.8 || dz > FAR) return;
+                        var A = fog(dz); if (A < 0.03) return;
+                        var s = F / dz, sx = cx + (o.x * kx - camx) * s, sy = cy - (o.y - camy) * s, w = o.w * s, h = (o.h || o.w) * s;
+                        if (sx < -w * 2 || sx > W + w * 2 || sy < -h * 2 || sy > H + h * 2) return;
+                        if (o.k === 'f') {
+                            ctx.save(); ctx.translate(sx, sy); ctx.rotate(o.rot);
+                            if (o.fill !== 'none') {
+                                ctx.globalAlpha = A * (o.fill === 'tint' ? 0.4 : 0.85);
+                                ctx.fillStyle = col[o.fill]; ctx.fillRect(-w / 2, -h / 2, w, h);
+                            }
+                            ctx.globalAlpha = A * (o.fill === 'none' ? 0.45 : 0.8); ctx.strokeRect(-w / 2, -h / 2, w, h);
+                            if (o.br) {
+                                var g = Math.max(5, w * 0.07), q = Math.max(8, w * 0.12), x0 = -w / 2 - g, y0 = -h / 2 - g, x1 = w / 2 + g, y1 = h / 2 + g;
+                                ctx.globalAlpha = A; ctx.lineWidth = 2; ctx.beginPath();
+                                ctx.moveTo(x0, y0 + q); ctx.lineTo(x0, y0); ctx.lineTo(x0 + q, y0);
+                                ctx.moveTo(x1 - q, y0); ctx.lineTo(x1, y0); ctx.lineTo(x1, y0 + q);
+                                ctx.moveTo(x1, y1 - q); ctx.lineTo(x1, y1); ctx.lineTo(x1 - q, y1);
+                                ctx.moveTo(x0 + q, y1); ctx.lineTo(x0, y1); ctx.lineTo(x0, y1 - q);
+                                ctx.stroke(); ctx.lineWidth = 1.25;
+                            }
+                            ctx.restore();
+                        } else if (o.k === 's') {
+                            ctx.globalAlpha = A * 0.9; ctx.fillStyle = col.line; ctx.beginPath();
+                            for (var n = 0; n < 8; n++) {
+                                var ang = n / 8 * TAU - Math.PI / 2, rad = n % 2 ? w * 0.26 : w;
+                                if (n) ctx.lineTo(sx + Math.cos(ang) * rad, sy + Math.sin(ang) * rad);
+                                else ctx.moveTo(sx + Math.cos(ang) * rad, sy + Math.sin(ang) * rad);
+                            }
+                            ctx.closePath(); ctx.fill();
+                        } else if (o.k === 'b') {
+                            var bc = o.tone === 0 ? col.line : col.tint;
+                            ctx.globalAlpha = A * (o.tone === 2 ? 0.3 : 0.15);
+                            ctx.fillStyle = o.tone === 2 ? col.sheet : bc;
+                            ctx.beginPath(); ctx.arc(sx, sy, w, 0, TAU); ctx.fill();
+                            ctx.globalAlpha = A * 0.26; ctx.strokeStyle = bc; ctx.lineWidth = Math.max(1, w * 0.045);
+                            ctx.beginPath(); ctx.arc(sx, sy, w * 0.97, 0, TAU); ctx.stroke();
+                            ctx.strokeStyle = col.line; ctx.lineWidth = 1.25;
+                        } else if (o.k === 'r') {
+                            ctx.globalAlpha = A * 0.6; ctx.beginPath(); ctx.arc(sx, sy, w, 0, TAU); ctx.stroke();
+                        } else {
+                            ctx.globalAlpha = A; ctx.fillStyle = col.line; ctx.beginPath(); ctx.arc(sx, sy, Math.max(1.5, w), 0, TAU); ctx.fill();
+                        }
+                    });
+                    ctx.globalAlpha = 1;
+                });
+            }
+            requestAnimationFrame(draw);
+        }
+
+
+
+        /* --- Planetas: sistema en órbita alrededor de un sol --- */
+        function ipInitSystem() {
+            var sys = ipId('ipSys');
+            if (!sys) return;
+            var pls = sys.querySelectorAll('.ip-pl'), orbs = sys.querySelectorAll('.ip-sys__orbit');
+            var RX = [16, 26.5, 37, 47], K = 0.72, PER = [38, 54, 72, 94], A0 = [0.7, 2.6, 4.5, 1.4], TAU = Math.PI * 2;
+            function mqx(q) { return window.matchMedia ? window.matchMedia(q) : { matches: false }; }
+            var small = mqx('(max-width: 768px)'), reduce = mqx('(prefers-reduced-motion: reduce)');
+            var hover = false, vis = true, t = 0, last = 0, wasSmall = null;
+
+            Array.prototype.forEach.call(orbs, function (o, i) {
+                o.style.width = (RX[i] * 2) + '%';
+                o.style.height = (RX[i] * K * 2) + '%';
+            });
+            Array.prototype.forEach.call(pls, function (p, i) {
+                function on() { hover = true; if (orbs[i]) orbs[i].classList.add('on'); }
+                function off() { hover = false; if (orbs[i]) orbs[i].classList.remove('on'); }
+                p.addEventListener('mouseenter', on); p.addEventListener('mouseleave', off);
+                p.addEventListener('focus', on); p.addEventListener('blur', off);
+            });
+            if (window.IntersectionObserver) {
+                new IntersectionObserver(function (en) { vis = en[0].isIntersecting; }).observe(sys);
+            }
+
+            function place() {
+                var sm = small.matches;
+                Array.prototype.forEach.call(pls, function (p, i) {
+                    if (sm) {
+                        p.style.left = ''; p.style.top = ''; p.style.zIndex = '';
+                        p.style.setProperty('--s', '1');
+                        return;
+                    }
+                    var a = A0[i] + t / PER[i] * TAU, s = Math.sin(a);
+                    p.style.left = (50 + RX[i] * Math.cos(a)).toFixed(2) + '%';
+                    p.style.top = (50 + RX[i] * K * s).toFixed(2) + '%';
+                    p.style.zIndex = s > 0 ? '3' : '1';
+                    p.style.setProperty('--s', (0.86 + 0.2 * s).toFixed(3));
+                });
+                wasSmall = sm;
+            }
+
+            function loop(now) {
+                requestAnimationFrame(loop);
+                var dt = Math.min(0.05, Math.max(0, (now - last) / 1000)); last = now;
+                var modal = ipId('planetModal'), open = modal && modal.classList.contains('active');
+                if (small.matches !== wasSmall) { place(); return; }
+                if (!vis || hover || open || reduce.matches || small.matches) return;
+                t += dt;
+                place();
+            }
+            place();
+            requestAnimationFrame(loop);
+
+            /* Los textos de la cabecera aparecen al llegar con el scroll */
+            var texts = document.querySelectorAll('.ip-sys-head > *');
+            if (window.IntersectionObserver && texts.length) {
+                var io = new IntersectionObserver(function (en) {
+                    en.forEach(function (e) {
+                        if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); }
+                    });
+                }, { threshold: 0.6, rootMargin: '0px 0px -12% 0px' });
+                Array.prototype.forEach.call(texts, function (el, i) {
+                    el.classList.add('ip-rv');
+                    el.style.setProperty('--rd', (i * 0.16) + 's');
+                    io.observe(el);
+                });
+            }
+        }
+
+        /* --- Proyectos: scroll horizontal propio en pantallas anchas (sin depender de
+               ninguna librería), fichas en vertical en móvil, pestañas y aparición --- */
+        function ipInitProj() {
+            var sec = ipId('proj'), track = ipId('ipProjTrack');
+            if (!sec || !track || !sec.classList.contains('ip-proj')) return;
+            var cases = sec.querySelectorAll('.ip-case'), tabs = sec.querySelectorAll('[data-ip-go]');
+            var count = ipId('ipProjCount'), fill = ipId('ipProjFill'), n = cases.length;
+            if (!n) return;
+            function mqx(q) { return window.matchMedia ? window.matchMedia(q) : { matches: false }; }
+            var wide = mqx('(min-width: 901px) and (min-height: 600px)');
+            var reduce = mqx('(prefers-reduced-motion: reduce)');
+            var canClip = !!(window.CSS && CSS.supports && CSS.supports('overflow', 'clip'));
+            var horiz = false, x = 0, cur = -1;
+
+            Array.prototype.forEach.call(sec.querySelectorAll('.ip-case__pic img'), function (img) {
+                function gone() { img.style.display = 'none'; }
+                img.addEventListener('error', gone);
+                if (img.complete && img.naturalWidth === 0 && img.getAttribute('src')) gone();
+            });
+
+            function setMode() {
+                var h = canClip && wide.matches && n > 1;
+                if (h !== horiz) {
+                    horiz = h;
+                    sec.classList.toggle('ip-proj--h', h);
+                    if (!h) { sec.style.height = ''; track.style.transform = ''; x = 0; mark(-1); }
+                }
+                if (horiz) sec.style.height = Math.round(window.innerHeight + (n - 1) * window.innerWidth) + 'px';
+            }
+            function mark(i) {
+                if (i === cur) return;
+                cur = i;
+                Array.prototype.forEach.call(tabs, function (t, k) { t.classList.toggle('on', k === i); });
+                if (count && i >= 0) count.textContent = String(i + 1).padStart(2, '0') + ' / ' + String(n).padStart(2, '0');
+            }
+
+            Array.prototype.forEach.call(tabs, function (a, i) {
+                a.addEventListener('click', function (e) {
+                    var el = ipId(a.getAttribute('data-ip-go'));
+                    if (!el) return;
+                    e.preventDefault();
+                    var smooth = reduce.matches ? 'auto' : 'smooth';
+                    if (horiz) {
+                        var top = sec.getBoundingClientRect().top + (window.pageYOffset || 0);
+                        var travel = sec.offsetHeight - window.innerHeight;
+                        window.scrollTo({ top: Math.round(top + i / (n - 1) * travel), behavior: smooth });
+                    } else el.scrollIntoView({ behavior: smooth, block: 'start' });
+                });
+            });
+
+            /* aparición: cada texto e imagen se muestra al entrar, venga de abajo o de lado */
+            var parts = Array.prototype.map.call(sec.querySelectorAll('.ip-case__info, .ip-case__img'), function (el) {
+                el.style.opacity = '0';
+                return { el: el, p: 0 };
+            });
+            function reveal(vw, vh) {
+                parts.forEach(function (o) {
+                    if (o.p >= 1) return;
+                    var r = o.el.getBoundingClientRect();
+                    if (!r.width && !r.height) return;
+                    var pv = (vh * 0.9 - r.top) / (vh * 0.34), ph = horiz ? (vw * 0.94 - r.left) / (vw * 0.42) : 1;
+                    var p = Math.max(0, Math.min(1, Math.min(pv, ph)));
+                    if (p <= o.p) return;
+                    o.p = p;
+                    o.el.style.opacity = p.toFixed(3);
+                    if (p >= 1 || reduce.matches) o.el.style.transform = '';
+                    else o.el.style.transform = horiz ? 'translateX(' + ((1 - p) * 70).toFixed(1) + 'px)' : 'translateY(' + ((1 - p) * 48).toFixed(1) + 'px)';
+                });
+            }
+
+            function frame() {
+                requestAnimationFrame(frame);
+                var r = sec.getBoundingClientRect(), vh = window.innerHeight, vw = window.innerWidth;
+                if (r.bottom < -80 || r.top > vh + 80) return;
+                if (horiz) {
+                    var travel = r.height - vh, p = travel > 0 ? Math.max(0, Math.min(1, -r.top / travel)) : 0;
+                    var target = -p * (n - 1) * vw;
+                    x += (target - x) * (reduce.matches ? 1 : 0.16);
+                    if (Math.abs(target - x) < 0.4) x = target;
+                    track.style.transform = 'translate3d(' + x.toFixed(1) + 'px,0,0)';
+                    if (fill) fill.style.width = (p * 100).toFixed(1) + '%';
+                    mark(Math.max(0, Math.min(n - 1, Math.round(-x / vw))));
+                }
+                reveal(vw, vh);
+            }
+
+            setMode();
+            window.addEventListener('resize', setMode);
+            if (wide.addEventListener) wide.addEventListener('change', setMode);
+            ipScrub(sec.querySelectorAll('.ip-proj__head > *, .ip-proj__tabs'));
+            requestAnimationFrame(frame);
+        }
+
+        function ipStartMainApp() {
+            if (window.__ipAppStarted) return;
+            window.__ipAppStarted = true;
+            try {
+                if (typeof initHeroAndHomeScripts === 'function') initHeroAndHomeScripts();
+            } catch (e) { if (window.console) console.error('IP Hero Script:', e); }
+
+            [ipInitTray, ipInitProj, ipInitUni, ipBuildTurn, ipInitScenes, ipInitSystem].forEach(function (fn) {
+                try { if (typeof fn === 'function') fn(); } catch (e) { if (window.console) console.error('IP App:', e); }
+            });
+        }
+
+        /* --- INTRO PRELOADER LOGIC --- */
+        function ipInitIntroPreloader() {
+            var screen = document.getElementById('introScreen');
+            if (!screen) {
+                ipStartMainApp();
+                return;
+            }
+
+            var body = document.body;
+            body.classList.add('intro-active');
+
+            var path = document.getElementById('introSigPath');
+            var pencil = document.getElementById('pencilTipGroup');
+            var sigClip = document.getElementById('introSigClip');
+            var counter = document.getElementById('introCounter');
+
+            if (!path) {
+                body.classList.remove('intro-active');
+                if (screen.parentNode) screen.parentNode.removeChild(screen);
+                ipStartMainApp();
+                return;
+            }
+
+            var totalLen = 0;
+            try {
+                totalLen = path.getTotalLength();
+            } catch(e) {
+                totalLen = 1000;
+            }
+
+            path.style.strokeDasharray = totalLen;
+            path.style.strokeDashoffset = totalLen;
+
+            var progress = 0;
+            var duration = 3800; // 3.8 seconds slow luxury load animation
+            var startTime = null;
+            var isDone = false;
+
+            function render(timestamp) {
+                if (!startTime) startTime = timestamp;
+                var elapsed = timestamp - startTime;
+                progress = Math.min(1, elapsed / duration);
+
+                // Easing curve (ease-out cubic)
+                var ease = 1 - Math.pow(1 - progress, 3);
+                var currentLen = ease * totalLen;
+                path.style.strokeDashoffset = (totalLen - currentLen).toFixed(2);
+
+                var percent = Math.floor(ease * 100);
+                if (counter) counter.textContent = percent + '%';
+                if (sigClip) sigClip.style.clipPath = 'inset(0 ' + (100 - percent) + '% 0 0)';
+
+                // Position pencil tip along the animated stroke curve
+                if (pencil && currentLen > 0 && currentLen <= totalLen) {
+                    try {
+                        var p1 = path.getPointAtLength(currentLen);
+                        var p0 = path.getPointAtLength(Math.max(0, currentLen - 3));
+                        var angle = Math.atan2(p1.y - p0.y, p1.x - p0.x) * (180 / Math.PI);
+                        pencil.setAttribute('transform', 'translate(' + p1.x.toFixed(2) + ',' + p1.y.toFixed(2) + ') rotate(' + (angle + 90).toFixed(1) + ')');
+                    } catch (err) {}
+                }
+
+                if (progress < 1) {
+                    requestAnimationFrame(render);
+                } else {
+                    setTimeout(finishIntro, 200);
+                }
+            }
+
+            function finishIntro() {
+                if (isDone) return;
+                isDone = true;
+                screen.classList.add('is-hiding');
+                ipStartMainApp();
+                setTimeout(function() {
+                    body.classList.remove('intro-active');
+                    if (screen.parentNode) {
+                        screen.parentNode.removeChild(screen);
+                    }
+                }, 850);
+            }
+
+            requestAnimationFrame(render);
+        }
+
+        /* --- Arranque propio: no depende del resto de la página, y si una parte
+               fallara las demás siguen funcionando --- */
+        (function () {
+            function run() {
+                try {
+                    ipInitIntroPreloader();
+                } catch (e) {
+                    if (window.console) console.error('IP:', e);
+                    ipStartMainApp();
+                }
+            }
+            if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', run);
+            else run();
+        })();
+
     </script>
 </body>
 
