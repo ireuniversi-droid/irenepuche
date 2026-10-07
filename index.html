@@ -3163,9 +3163,10 @@
             font-size: 1.05rem;
         }
 
-        /* Offset body content for side nav */
+        /* Remove body offset so content & reveal overlays span true 100vw wall-to-wall without white margins */
         body {
-            padding-left: 64px;
+            padding-left: 0 !important;
+            overflow-x: hidden;
         }
 
         header {
