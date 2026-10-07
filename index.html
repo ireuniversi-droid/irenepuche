@@ -1822,7 +1822,10 @@
             scrollbar-width: none;
             padding: 4px 0;
         }
-        .cinema-nav-pills::-webkit-scrollbar { display: none; }
+
+        .cinema-nav-pills::-webkit-scrollbar {
+            display: none;
+        }
 
         .cinema-pill-btn {
             white-space: nowrap;
@@ -1939,8 +1942,13 @@
             transition: all 0.25s ease;
         }
 
-        .cinema-nav-arrow.prev { left: 10px; }
-        .cinema-nav-arrow.next { right: 10px; }
+        .cinema-nav-arrow.prev {
+            left: 10px;
+        }
+
+        .cinema-nav-arrow.next {
+            right: 10px;
+        }
 
         .cinema-nav-arrow:hover {
             background: var(--lilac-primary);
@@ -1964,7 +1972,10 @@
             scroll-behavior: smooth;
             scrollbar-width: none;
         }
-        .cinema-filmstrip-reel::-webkit-scrollbar { display: none; }
+
+        .cinema-filmstrip-reel::-webkit-scrollbar {
+            display: none;
+        }
 
         .cinema-reel-item {
             position: relative;
@@ -2415,6 +2426,7 @@
             min-height: calc(1.35em * 3);
             margin: 0;
         }
+
         .typed-line .caret {
             display: inline-block;
             width: 0.08em;
@@ -2424,12 +2436,19 @@
             background: var(--lilac-primary);
             animation: blinkCaret 0.9s steps(1) infinite;
         }
-        @keyframes blinkCaret { 50% { opacity: 0; } }
+
+        @keyframes blinkCaret {
+            50% {
+                opacity: 0;
+            }
+        }
+
         .typed-dots {
             display: flex;
             gap: 6px;
             margin-bottom: 14px;
         }
+
         .typed-dots i {
             width: 22px;
             height: 3px;
@@ -2437,7 +2456,10 @@
             background: rgba(157, 114, 255, 0.25);
             transition: background 0.3s;
         }
-        .typed-dots i.on { background: var(--lilac-primary); }
+
+        .typed-dots i.on {
+            background: var(--lilac-primary);
+        }
 
         /* === HERO PHOTO WITHOUT FRAME === */
         .hero-photo-clean {
@@ -2450,6 +2472,7 @@
             overflow: hidden;
             padding-right: 2vw;
         }
+
         .hero-photo-clean::before {
             content: '';
             position: absolute;
@@ -2462,6 +2485,7 @@
             filter: blur(20px);
             z-index: -1;
         }
+
         .hero-photo-clean img {
             max-height: 100%;
             width: auto;
@@ -2486,6 +2510,7 @@
             text-align: center;
             pointer-events: none;
         }
+
         .section-reveal-overlay h2 {
             font-family: var(--font-serif);
             font-style: italic;
@@ -2496,6 +2521,7 @@
             padding: 0 16px;
             color: var(--dark-ink);
         }
+
         .section-reveal-overlay h2 b {
             font-family: var(--font-display);
             font-style: normal;
@@ -2520,18 +2546,22 @@
             transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
             overflow: hidden;
         }
+
         .expertise-word-item:first-child {
             border-top: 1px solid var(--line);
         }
+
         .expertise-word-item:hover {
             padding-left: 24px;
         }
+
         .expertise-word-top {
             display: flex;
             align-items: center;
             justify-content: space-between;
             gap: 16px;
         }
+
         .expertise-word-num {
             font-family: var(--font-display);
             font-size: 0.85rem;
@@ -2540,6 +2570,7 @@
             opacity: 0.7;
             min-width: 28px;
         }
+
         .expertise-word-title {
             font-family: var(--font-display);
             font-size: clamp(1.6rem, 4vw, 3rem);
@@ -2550,28 +2581,34 @@
             flex: 1;
             transition: color 0.3s;
         }
+
         .expertise-word-item:hover .expertise-word-title {
             color: var(--lilac-accent);
         }
+
         .expertise-word-arrow {
             font-size: 1.4rem;
             color: var(--dark-mute);
             transition: transform 0.3s, color 0.3s;
         }
+
         .expertise-word-item:hover .expertise-word-arrow {
             transform: rotate(45deg);
             color: var(--lilac-primary);
         }
+
         .expertise-word-expand {
             max-height: 0;
             overflow: hidden;
             transition: max-height 0.5s cubic-bezier(0.16, 1, 0.3, 1), padding 0.4s;
             padding-top: 0;
         }
+
         .expertise-word-item.open .expertise-word-expand {
             max-height: 220px;
             padding-top: 18px;
         }
+
         .expertise-word-expand p {
             font-size: 0.95rem;
             color: var(--dark-mute);
@@ -2579,6 +2616,7 @@
             max-width: 60ch;
             margin: 0 0 12px 0;
         }
+
         .expertise-word-expand .tag-pill {
             background: rgba(157, 114, 255, 0.15);
             color: var(--lilac-accent);
@@ -2589,9 +2627,11 @@
             background: var(--dark-bg);
             color: var(--dark-ink);
         }
+
         .section-expertise-new .expertise-intro h2 {
             color: var(--dark-ink);
         }
+
         .section-expertise-new .expertise-intro p {
             color: var(--dark-mute);
         }
@@ -2607,6 +2647,7 @@
             transform: translateX(-50%);
             z-index: 0;
         }
+
         .trayectoria-timeline-line .fill {
             width: 100%;
             background: var(--lilac-primary);
@@ -2614,6 +2655,7 @@
             transition: height 0.1s linear;
             box-shadow: 0 0 10px var(--lilac-glow);
         }
+
         .tray-stop {
             position: relative;
             z-index: 1;
@@ -2623,12 +2665,15 @@
             align-items: start;
             margin-bottom: 48px;
         }
+
         .tray-stop:nth-child(even) .tray-stop-content {
             grid-column: 3;
         }
+
         .tray-stop:nth-child(even) .tray-stop-space {
             grid-column: 1;
         }
+
         .tray-stop-dot {
             grid-column: 2;
             width: 18px;
@@ -2641,6 +2686,7 @@
             justify-self: center;
             margin-top: 4px;
         }
+
         .tray-stop-content {
             grid-column: 1;
             background: var(--surf-card);
@@ -2652,10 +2698,12 @@
             transform: translateY(20px);
             transition: opacity 0.6s ease, transform 0.6s ease;
         }
+
         .tray-stop-content.visible {
             opacity: 1;
             transform: translateY(0);
         }
+
         .tray-stop-space {
             grid-column: 3;
         }
@@ -2671,6 +2719,7 @@
             margin-bottom: 22px;
             min-height: calc(0.95em * 2);
         }
+
         .contact-typed-title .caret {
             display: inline-block;
             width: 4px;
@@ -2694,9 +2743,17 @@
             color: var(--mute);
             animation: bounceHint 2s ease-in-out infinite;
         }
+
         @keyframes bounceHint {
-            0%, 100% { transform: translateX(-50%) translateY(0); }
-            50% { transform: translateX(-50%) translateY(-6px); }
+
+            0%,
+            100% {
+                transform: translateX(-50%) translateY(0);
+            }
+
+            50% {
+                transform: translateX(-50%) translateY(-6px);
+            }
         }
 
         /* === HERO NEW LAYOUT === */
@@ -2716,6 +2773,7 @@
                 grid-template-columns: 1fr;
                 grid-template-rows: 1fr auto;
             }
+
             .hero-photo-clean {
                 position: absolute;
                 left: 50%;
@@ -2723,33 +2781,58 @@
                 height: 46svh;
                 transform: translateX(-50%);
             }
+
             .hero-copy-new {
                 position: relative;
                 z-index: 3;
                 background: linear-gradient(to top, var(--bg) 85%, transparent);
                 padding-top: 28px;
             }
-            .typed-line { min-height: calc(1.35em * 4); font-size: 1.05rem; }
-            .hero-copy-new p { font-size: 0.92rem; }
-            .hero-copy-new .signature { font-size: 2rem; }
+
+            .typed-line {
+                min-height: calc(1.35em * 4);
+                font-size: 1.05rem;
+            }
+
+            .hero-copy-new p {
+                font-size: 0.92rem;
+            }
+
+            .hero-copy-new .signature {
+                font-size: 2rem;
+            }
+
             .tray-stop {
                 grid-template-columns: auto 1fr;
                 gap: 16px;
             }
-            .tray-stop-dot { grid-column: 1; }
-            .tray-stop-content, .tray-stop:nth-child(even) .tray-stop-content {
+
+            .tray-stop-dot {
+                grid-column: 1;
+            }
+
+            .tray-stop-content,
+            .tray-stop:nth-child(even) .tray-stop-content {
                 grid-column: 2;
             }
-            .tray-stop-space, .tray-stop:nth-child(even) .tray-stop-space {
+
+            .tray-stop-space,
+            .tray-stop:nth-child(even) .tray-stop-space {
                 display: none;
             }
+
             .trayectoria-timeline-line {
                 left: 9px;
                 transform: none;
             }
         }
+
         @media (prefers-reduced-motion: reduce) {
-            .typed-line .caret, .contact-typed-title .caret { animation: none; }
+
+            .typed-line .caret,
+            .contact-typed-title .caret {
+                animation: none;
+            }
         }
 
         /* =============================================
@@ -3276,8 +3359,11 @@
     <!-- Header Bar -->
     <header>
         <div class="wrap" style="display:flex; align-items:center; justify-content:space-between; gap:20px;">
-            <a href="#" style="font-family: var(--font-serif); font-size: 1.25rem; font-style: italic; font-weight: 700; color: var(--ink); text-decoration: none; display:flex; align-items:center;">
-                Irene Puche <span style="font-family: var(--font-sans); font-size:0.75rem; font-style:normal; font-weight:700; color:var(--lilac-primary); text-transform:uppercase; margin-left:8px; letter-spacing:0.06em;">✦ Portfolio</span>
+            <a href="#"
+                style="font-family: var(--font-serif); font-size: 1.25rem; font-style: italic; font-weight: 700; color: var(--ink); text-decoration: none; display:flex; align-items:center;">
+                Irene Puche <span
+                    style="font-family: var(--font-sans); font-size:0.75rem; font-style:normal; font-weight:700; color:var(--lilac-primary); text-transform:uppercase; margin-left:8px; letter-spacing:0.06em;">✦
+                    Portfolio</span>
             </a>
 
             <nav style="display:flex; align-items:center; gap:24px;">
@@ -3336,15 +3422,15 @@
                             onerror="this.onerror=null;this.src='irene_avatar.png'" alt="Irene Puche Armero"
                             loading="eager">
                     </div>
+                    </div>
                 </div>
-            </div>
-            <div class="scroll-hint-badge">Desliza ↓</div>
+                <div class="scroll-hint-badge">Desliza ↓</div>
 
-            <!-- Reveal overlay for scroll transition -->
-            <div class="section-reveal-overlay" id="hero-reveal">
-                <h2>Esto es lo que<b>SÉ HACER</b></h2>
-            </div>
-        </section>
+                <!-- Reveal overlay for scroll transition -->
+                <div class="section-reveal-overlay" id="hero-reveal">
+                    <h2>Esto es lo que<b>SÉ HACER</b></h2>
+                </div>
+            </section>
         </div>
         <input type="file" id="avatar-input" class="hidden-file-input" accept="image/*">
 
@@ -3354,8 +3440,12 @@
         <section class="section-block section-expertise-new" id="about">
             <div class="wrap">
                 <div class="expertise-intro" style="margin-bottom: 32px;">
-                    <span style="font-family: var(--font-display); font-size: 0.85rem; font-weight: 700; color: var(--lilac-primary); letter-spacing: 0.15em; text-transform: uppercase;">✦ ÁREAS DE ESPECIALIZACIÓN</span>
-                    <h2 style="font-family: var(--font-display); font-size: 2rem; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; margin: 4px 0 0 0;">EXPERTISE & SKILLS</h2>
+                    <span
+                        style="font-family: var(--font-display); font-size: 0.85rem; font-weight: 700; color: var(--lilac-primary); letter-spacing: 0.15em; text-transform: uppercase;">✦
+                        ÁREAS DE ESPECIALIZACIÓN</span>
+                    <h2
+                        style="font-family: var(--font-display); font-size: 2rem; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; margin: 4px 0 0 0;">
+                        EXPERTISE & SKILLS</h2>
                     <p style="font-size: 0.95rem; margin-top: 6px;">Pulsa en cada área para descubrir más.</p>
                 </div>
 
@@ -3367,7 +3457,8 @@
                             <span class="expertise-word-arrow">↗</span>
                         </div>
                         <div class="expertise-word-expand">
-                            <p>Interfaces web intuitivas, responsive y diseñadas con enfoque en el usuario. Prototipado en Figma y validación mediante heurísticas de usabilidad.</p>
+                            <p>Interfaces web intuitivas, responsive y diseñadas con enfoque en el usuario. Prototipado
+                                en Figma y validación mediante heurísticas de usabilidad.</p>
                             <div class="expertise-tags-pills">
                                 <span class="tag-pill">Figma</span>
                                 <span class="tag-pill">UI Design</span>
@@ -3383,7 +3474,8 @@
                             <span class="expertise-word-arrow">↗</span>
                         </div>
                         <div class="expertise-word-expand">
-                            <p>Estrategias de contenido, redes sociales y posicionamiento orgánico de marca. Gestión de comunidades y analítica de audiencias.</p>
+                            <p>Estrategias de contenido, redes sociales y posicionamiento orgánico de marca. Gestión de
+                                comunidades y analítica de audiencias.</p>
                             <div class="expertise-tags-pills">
                                 <span class="tag-pill">Redes Sociales</span>
                                 <span class="tag-pill">Estrategia</span>
@@ -3399,7 +3491,8 @@
                             <span class="expertise-word-arrow">↗</span>
                         </div>
                         <div class="expertise-word-expand">
-                            <p>Narrativas multicanal que conectan ideas, plataformas y audiencias. Gamificación y storytelling interactivo aplicado a proyectos culturales.</p>
+                            <p>Narrativas multicanal que conectan ideas, plataformas y audiencias. Gamificación y
+                                storytelling interactivo aplicado a proyectos culturales.</p>
                             <div class="expertise-tags-pills">
                                 <span class="tag-pill">Storytelling</span>
                                 <span class="tag-pill">Contenido Móvil</span>
@@ -3414,7 +3507,8 @@
                             <span class="expertise-word-arrow">↗</span>
                         </div>
                         <div class="expertise-word-expand">
-                            <p>Estructuración de datos, curaduría de contenidos y gestión de recursos documentales. Organización y arquitectura de la información.</p>
+                            <p>Estructuración de datos, curaduría de contenidos y gestión de recursos documentales.
+                                Organización y arquitectura de la información.</p>
                             <div class="expertise-tags-pills">
                                 <span class="tag-pill">Contenidos</span>
                                 <span class="tag-pill">Organización</span>
@@ -3610,23 +3704,35 @@
         <div class="section-transition" data-transition="2"><canvas></canvas></div>
 
         <!-- SECTION: TRAYECTORIA — TIMELINE DRAW -->
-        <section class="section-block" id="trayectoria" style="background: var(--bg-alt); border-bottom: 1px solid var(--line);">
+        <section class="section-block" id="trayectoria"
+            style="background: var(--bg-alt); border-bottom: 1px solid var(--line);">
             <div class="wrap">
                 <div style="margin-bottom: 40px;">
-                    <span style="font-family: var(--font-display); font-size: 0.85rem; font-weight: 700; color: var(--lilac-primary); letter-spacing: 0.15em; text-transform: uppercase;">✦ MI RECORRIDO</span>
-                    <h2 data-k="n2_n3" style="font-family: var(--font-display); font-size: 2.2rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; margin: 4px 0 0 0;">Trayectoria & Formación</h2>
-                    <p style="color: var(--mute); font-size: 0.95rem; margin-top: 6px;">La línea se dibuja al bajar — cada parada es un hito.</p>
+                    <span
+                        style="font-family: var(--font-display); font-size: 0.85rem; font-weight: 700; color: var(--lilac-primary); letter-spacing: 0.15em; text-transform: uppercase;">✦
+                        MI RECORRIDO</span>
+                    <h2 data-k="n2_n3"
+                        style="font-family: var(--font-display); font-size: 2.2rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; margin: 4px 0 0 0;">
+                        Trayectoria & Formación</h2>
+                    <p style="color: var(--mute); font-size: 0.95rem; margin-top: 6px;">La línea se dibuja al bajar —
+                        cada parada es un hito.</p>
                 </div>
 
                 <div style="position: relative; padding: 20px 0;">
-                    <div class="trayectoria-timeline-line"><div class="fill" id="tray-fill"></div></div>
+                    <div class="trayectoria-timeline-line">
+                        <div class="fill" id="tray-fill"></div>
+                    </div>
 
                     <div class="tray-stop">
                         <div class="tray-stop-content">
                             <div class="trayectoria-item-date">22/09/2026 · Taller Práctico & IA</div>
-                            <div class="trayectoria-item-title" data-k="gpts_title">Asistencia al Taller de GPTs Personalizados</div>
-                            <div class="trayectoria-item-institution" data-k="gpts_inst">AICS · Asociación de Inteligencia Artificial y Ciencia</div>
-                            <div class="trayectoria-item-desc" data-k="gpts_desc">Capacitación práctica especializada en el diseño, configuración, entrenamiento de instrucciones y despliegue de asistentes GPTs personalizados.</div>
+                            <div class="trayectoria-item-title" data-k="gpts_title">Asistencia al Taller de GPTs
+                                Personalizados</div>
+                            <div class="trayectoria-item-institution" data-k="gpts_inst">AICS · Asociación de
+                                Inteligencia Artificial y Ciencia</div>
+                            <div class="trayectoria-item-desc" data-k="gpts_desc">Capacitación práctica especializada en
+                                el diseño, configuración, entrenamiento de instrucciones y despliegue de asistentes GPTs
+                                personalizados.</div>
                         </div>
                         <div class="tray-stop-dot"></div>
                         <div class="tray-stop-space"></div>
@@ -3636,21 +3742,30 @@
                         <div class="tray-stop-space"></div>
                         <div class="tray-stop-dot"></div>
                         <div class="tray-stop-content">
-                            <div class="trayectoria-item-date" data-k="sherpa_tag">07/09/2026 – 09/09/2026 · Ponencias & Talleres</div>
-                            <div class="trayectoria-item-title" data-k="sherpa_title">Asistencia a ponencias y talleres de SherpaDigital</div>
+                            <div class="trayectoria-item-date" data-k="sherpa_tag">07/09/2026 – 09/09/2026 · Ponencias &
+                                Talleres</div>
+                            <div class="trayectoria-item-title" data-k="sherpa_title">Asistencia a ponencias y talleres
+                                de SherpaDigital</div>
                             <div class="trayectoria-item-institution">SherpaDigital</div>
-                            <div class="trayectoria-item-desc" data-k="sherpa_desc">Formación complementaria a través de ponencias y talleres prácticos sobre el ecosistema digital, marketing y creación de contenido.</div>
+                            <div class="trayectoria-item-desc" data-k="sherpa_desc">Formación complementaria a través de
+                                ponencias y talleres prácticos sobre el ecosistema digital, marketing y creación de
+                                contenido.</div>
                         </div>
                     </div>
 
                     <div class="tray-stop">
                         <div class="tray-stop-content">
                             <div class="trayectoria-item-date" data-k="x1d">03/2026 – actualidad</div>
-                            <div class="trayectoria-item-title" data-k="x1">Responsable de Marketing, Diseño y Contenido Visual</div>
+                            <div class="trayectoria-item-title" data-k="x1">Responsable de Marketing, Diseño y Contenido
+                                Visual</div>
                             <div class="trayectoria-item-institution">Thex Arqé
-                                <a href="https://www.linkedin.com/company/thexofficial/" target="_blank" rel="noopener noreferrer" style="font-size:0.78rem; font-weight:700; color:#0077b5; margin-left:8px;">LinkedIn ↗</a>
+                                <a href="https://www.linkedin.com/company/thexofficial/" target="_blank"
+                                    rel="noopener noreferrer"
+                                    style="font-size:0.78rem; font-weight:700; color:#0077b5; margin-left:8px;">LinkedIn
+                                    ↗</a>
                             </div>
-                            <div class="trayectoria-item-desc" data-k="x1t">Gestiono las redes sociales, el marketing digital, la creación de contenido y el desarrollo web del equipo.</div>
+                            <div class="trayectoria-item-desc" data-k="x1t">Gestiono las redes sociales, el marketing
+                                digital, la creación de contenido y el desarrollo web del equipo.</div>
                         </div>
                         <div class="tray-stop-dot"></div>
                         <div class="tray-stop-space"></div>
@@ -3661,18 +3776,29 @@
                         <div class="tray-stop-dot"></div>
                         <div class="tray-stop-content">
                             <div class="trayectoria-item-date">2025 – 06/2026</div>
-                            <div class="trayectoria-item-title" data-k="e2">Máster en Comunicación Móvil y Contenido Digital</div>
-                            <div class="trayectoria-item-institution">Facultad de Comunicación y Documentación · Universidad de Murcia</div>
-                            <div class="trayectoria-item-desc"><strong>TFM:</strong> <em>Diseño de un Proyecto Transmedia para el Fomento de la Lectura Juvenil: GameBooker</em><br><span style="font-size:0.8rem; color:var(--lilac-primary);">Tutora: Tatiana Abellán Aguilar</span></div>
+                            <div class="trayectoria-item-title" data-k="e2">Máster en Comunicación Móvil y Contenido
+                                Digital</div>
+                            <div class="trayectoria-item-institution">Facultad de Comunicación y Documentación ·
+                                Universidad de Murcia</div>
+                            <div class="trayectoria-item-desc"><strong>TFM:</strong> <em>Diseño de un Proyecto
+                                    Transmedia para el Fomento de la Lectura Juvenil: GameBooker</em><br><span
+                                    style="font-size:0.8rem; color:var(--lilac-primary);">Tutora: Tatiana Abellán
+                                    Aguilar</span></div>
                         </div>
                     </div>
 
                     <div class="tray-stop">
                         <div class="tray-stop-content">
                             <div class="trayectoria-item-date">2024 – 2025 · Redes & Web</div>
-                            <div class="trayectoria-item-title" data-k="x_lokura_title">Creación Web, Redes Sociales & Cara de la Empresa (TikTok)</div>
-                            <div class="trayectoria-item-institution">Lokura PC <a href="https://lokurapcshop.es/" target="_blank" rel="noopener noreferrer" style="font-size:0.78rem; font-weight:700; color:var(--lilac-primary); margin-left:8px;">lokurapcshop.es ↗</a></div>
-                            <div class="trayectoria-item-desc" data-k="x_lokura_desc">Diseño y maquetación web en WordPress (UI/UX), estrategia de contenidos y gestión integral de redes sociales, actuando como la cara visible principal de la marca en TikTok.</div>
+                            <div class="trayectoria-item-title" data-k="x_lokura_title">Creación Web, Redes Sociales &
+                                Cara de la Empresa (TikTok)</div>
+                            <div class="trayectoria-item-institution">Lokura PC <a href="https://lokurapcshop.es/"
+                                    target="_blank" rel="noopener noreferrer"
+                                    style="font-size:0.78rem; font-weight:700; color:var(--lilac-primary); margin-left:8px;">lokurapcshop.es
+                                    ↗</a></div>
+                            <div class="trayectoria-item-desc" data-k="x_lokura_desc">Diseño y maquetación web en
+                                WordPress (UI/UX), estrategia de contenidos y gestión integral de redes sociales,
+                                actuando como la cara visible principal de la marca en TikTok.</div>
                         </div>
                         <div class="tray-stop-dot"></div>
                         <div class="tray-stop-space"></div>
@@ -3683,9 +3809,15 @@
                         <div class="tray-stop-dot"></div>
                         <div class="tray-stop-content">
                             <div class="trayectoria-item-date">09/2021 – 06/2025</div>
-                            <div class="trayectoria-item-title" data-k="e1">Grado en Gestión de la Información y Contenidos Digitales</div>
-                            <div class="trayectoria-item-institution">Facultad de Comunicación y Documentación · Universidad de Murcia</div>
-                            <div class="trayectoria-item-desc"><strong>TFG:</strong> <em>Optimización de la Interfaz (UI) y Experiencia del Usuario (UX) de una Web en WordPress para mejorar la percepción de una PYME (Caso LokuraPC)</em><br><span style="font-size:0.8rem; color:var(--lilac-primary);">Tutor: José Alberto García Berná · Cotutor: Juan Manuel Carrillo de Gea</span></div>
+                            <div class="trayectoria-item-title" data-k="e1">Grado en Gestión de la Información y
+                                Contenidos Digitales</div>
+                            <div class="trayectoria-item-institution">Facultad de Comunicación y Documentación ·
+                                Universidad de Murcia</div>
+                            <div class="trayectoria-item-desc"><strong>TFG:</strong> <em>Optimización de la Interfaz
+                                    (UI) y Experiencia del Usuario (UX) de una Web en WordPress para mejorar la
+                                    percepción de una PYME (Caso LokuraPC)</em><br><span
+                                    style="font-size:0.8rem; color:var(--lilac-primary);">Tutor: José Alberto García
+                                    Berná · Cotutor: Juan Manuel Carrillo de Gea</span></div>
                         </div>
                     </div>
 
@@ -3693,8 +3825,11 @@
                         <div class="tray-stop-content">
                             <div class="trayectoria-item-date" data-k="x2d">02/2025 – 05/2025</div>
                             <div class="trayectoria-item-title" data-k="x2">Auxiliar de biblioteca</div>
-                            <div class="trayectoria-item-institution" data-k="x2c">Biblioteca Pública Municipal de Alcantarilla · Prácticas</div>
-                            <div class="trayectoria-item-desc" data-k="x2t">Prácticas como auxiliar en la biblioteca pública de mi localidad, en contacto directo con la gestión de información y usuarios.</div>
+                            <div class="trayectoria-item-institution" data-k="x2c">Biblioteca Pública Municipal de
+                                Alcantarilla · Prácticas</div>
+                            <div class="trayectoria-item-desc" data-k="x2t">Prácticas como auxiliar en la biblioteca
+                                pública de mi localidad, en contacto directo con la gestión de información y usuarios.
+                            </div>
                         </div>
                         <div class="tray-stop-dot"></div>
                         <div class="tray-stop-space"></div>
@@ -3706,17 +3841,22 @@
                         <div class="tray-stop-content">
                             <div class="trayectoria-item-date">2019 · Certificación Oficial</div>
                             <div class="trayectoria-item-title" data-k="b1_title">Certificado de Idioma Inglés B1</div>
-                            <div class="trayectoria-item-institution" data-k="b1_inst">EOI · Escuela Oficial de Idiomas</div>
-                            <div class="trayectoria-item-desc">Dominio fluido a nivel intermedio (B1) de inglés técnico y profesional.</div>
+                            <div class="trayectoria-item-institution" data-k="b1_inst">EOI · Escuela Oficial de Idiomas
+                            </div>
+                            <div class="trayectoria-item-desc">Dominio fluido a nivel intermedio (B1) de inglés técnico
+                                y profesional.</div>
                         </div>
                     </div>
 
                     <div class="tray-stop">
                         <div class="tray-stop-content">
                             <div class="trayectoria-item-date">Participación Voluntaria</div>
-                            <div class="trayectoria-item-title" data-k="manga_title">Voluntariado en el Salón del Manga de Murcia</div>
+                            <div class="trayectoria-item-title" data-k="manga_title">Voluntariado en el Salón del Manga
+                                de Murcia</div>
                             <div class="trayectoria-item-institution">Salón del Manga de Murcia (SeRemanga)</div>
-                            <div class="trayectoria-item-desc" data-k="manga_desc">Colaboración en la organización, soporte logístico, comunicación y atención a los asistentes en uno de los eventos culturales más concurridos de la región.</div>
+                            <div class="trayectoria-item-desc" data-k="manga_desc">Colaboración en la organización,
+                                soporte logístico, comunicación y atención a los asistentes en uno de los eventos
+                                culturales más concurridos de la región.</div>
                         </div>
                         <div class="tray-stop-dot"></div>
                         <div class="tray-stop-space"></div>
@@ -3875,7 +4015,8 @@
             <div class="wrap">
                 <div class="contact-layout">
                     <div class="contact-left">
-                        <h2 class="contact-typed-title"><span id="typed-contact"></span><span class="caret" aria-hidden="true"></span></h2>
+                        <h2 class="contact-typed-title"><span id="typed-contact"></span><span class="caret"
+                                aria-hidden="true"></span></h2>
                         <p data-k="ct_s">¿Tienes un proyecto en mente o quieres colaborar? Hablemos y hagámoslo
                             realidad.</p>
                         <button class="btn-connect" onclick="copyLinkedInLink()">LET'S CONNECT ⟶</button>
@@ -4456,7 +4597,7 @@
 
             var navBtns = n > 1
                 ? '<button class="cinema-nav-arrow prev" id="cinema-prev" aria-label="Anterior">‹</button>' +
-                  '<button class="cinema-nav-arrow next" id="cinema-next" aria-label="Siguiente">›</button>'
+                '<button class="cinema-nav-arrow next" id="cinema-next" aria-label="Siguiente">›</button>'
                 : '';
 
             html += '<div class="cinema-stage-hero">' + navBtns +
@@ -4983,14 +5124,14 @@
                     if (onLoop) onLoop(i);
                     for (var c = 1; c <= text.length; c++) {
                         el.textContent = text.slice(0, c);
-                        await new Promise(function(r) { setTimeout(r, /[,.]/.test(text[c - 1]) ? 260 : speed + Math.random() * 40); });
+                        await new Promise(function (r) { setTimeout(r, /[,.]/.test(text[c - 1]) ? 260 : speed + Math.random() * 40); });
                     }
-                    await new Promise(function(r) { setTimeout(r, pause); });
+                    await new Promise(function (r) { setTimeout(r, pause); });
                     for (var c = text.length; c >= 0; c--) {
                         el.textContent = text.slice(0, c);
-                        await new Promise(function(r) { setTimeout(r, 16); });
+                        await new Promise(function (r) { setTimeout(r, 16); });
                     }
-                    await new Promise(function(r) { setTimeout(r, 350); });
+                    await new Promise(function (r) { setTimeout(r, 350); });
                     i = (i + 1) % phrases.length;
                 }
             }
@@ -5001,7 +5142,7 @@
         function initHeroPhotoParallax() {
             var photo = document.querySelector('#hero-photo-el img');
             if (!photo || reduceMotion || !window.matchMedia('(pointer: fine)').matches) return;
-            window.addEventListener('mousemove', function(e) {
+            window.addEventListener('mousemove', function (e) {
                 var x = (e.clientX / innerWidth - 0.5) * 14;
                 var y = (e.clientY / innerHeight - 0.5) * 8;
                 photo.style.transform = 'translate(' + x + 'px, ' + y + 'px)';
@@ -5011,10 +5152,10 @@
         /* === EXPERTISE ACCORDION === */
         function initExpertiseAccordion() {
             var items = document.querySelectorAll('.expertise-word-item');
-            items.forEach(function(item) {
-                item.addEventListener('click', function() {
+            items.forEach(function (item) {
+                item.addEventListener('click', function () {
                     var wasOpen = item.classList.contains('open');
-                    items.forEach(function(it) { it.classList.remove('open'); });
+                    items.forEach(function (it) { it.classList.remove('open'); });
                     if (!wasOpen) item.classList.add('open');
                 });
             });
@@ -5034,7 +5175,7 @@
                 var pct = Math.max(0, Math.min(1, scrolled / (total - window.innerHeight * 0.5)));
                 fill.style.height = (pct * 100) + '%';
 
-                stops.forEach(function(stop) {
+                stops.forEach(function (stop) {
                     var r = stop.getBoundingClientRect();
                     if (r.top < window.innerHeight * 0.8) {
                         stop.classList.add('visible');
@@ -5061,7 +5202,7 @@
                 end: '+=120%',
                 pin: true,
                 scrub: true,
-                onUpdate: function(self) {
+                onUpdate: function (self) {
                     var p = self.progress;
                     reveal.style.clipPath = 'circle(' + (p * 150) + '% at 70% 45%)';
                     if (title) {
@@ -5081,7 +5222,7 @@
             if (!el) return;
             if (reduceMotion) { el.textContent = "LET'S WORK TOGETHER"; return; }
 
-            var observer = new IntersectionObserver(function(entries) {
+            var observer = new IntersectionObserver(function (entries) {
                 if (entries[0].isIntersecting) {
                     typeWriter('typed-contact', ["LET'S WORK TOGETHER"], 50, 4000, null);
                     observer.disconnect();
