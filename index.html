@@ -2533,17 +2533,22 @@
             }
         }
 
-        /* === SECTION REVEAL TRANSITION === */
+        /* === SECTION REVEAL TRANSITION (FULLSCREEN NO MARGINS) === */
         .section-reveal-overlay {
-            position: absolute;
-            inset: 0;
-            z-index: 10;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            z-index: 999;
             background: var(--dark-bg);
             clip-path: circle(0% at 70% 45%);
             display: grid;
             place-items: center;
             text-align: center;
             pointer-events: none;
+            margin: 0;
+            padding: 0;
         }
 
         .section-reveal-overlay h2 {
@@ -2983,8 +2988,18 @@
         }
 
         /* =============================================
-           VERTICAL SIDE NAVIGATION (COLOR DOTS)
+           VERTICAL SIDE NAVIGATION (AUTO-HIDE & HOVER)
            ============================================= */
+        .side-nav-hover-zone {
+            position: fixed;
+            left: 0;
+            top: 0;
+            width: 44px;
+            height: 100vh;
+            z-index: 1001;
+            pointer-events: auto;
+        }
+
         .side-nav {
             position: fixed;
             left: 0;
@@ -2995,13 +3010,26 @@
             backdrop-filter: blur(20px);
             -webkit-backdrop-filter: blur(20px);
             border-right: 1px solid var(--line);
-            z-index: 1000;
+            z-index: 1002;
             display: flex;
             flex-direction: column;
             align-items: center;
             justify-content: center;
             gap: 0;
-            transition: background 0.4s ease;
+            transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.4s ease, background 0.4s ease;
+        }
+
+        /* Scrolled state: Hidden off-screen to the left */
+        .side-nav.is-scrolled {
+            transform: translateX(-100%);
+            opacity: 0;
+        }
+
+        /* Reveal when hovering left edge or side nav itself */
+        .side-nav-hover-zone:hover + .side-nav,
+        .side-nav.is-scrolled:hover {
+            transform: translateX(0) !important;
+            opacity: 1 !important;
         }
 
         .side-nav-items {
@@ -3580,6 +3608,9 @@
         <button class="top-action-btn" id="lang" title="Cambiar idioma">EN</button>
         <button class="top-action-btn icon-only" id="theme" title="Cambiar tema">◐</button>
     </div>
+
+    <!-- HOVER ZONE FOR AUTO-HIDDEN SIDE NAVIGATION -->
+    <div class="side-nav-hover-zone" id="sideNavHoverZone"></div>
 
     <!-- VERTICAL SIDE NAVIGATION -->
     <nav class="side-nav" id="sideNav">
@@ -5665,6 +5696,22 @@
                     window.scrollTo({ top: 0, behavior: 'smooth' });
                 });
             });
+
+            /* Auto-hide side nav when scrolling down past hero, reveal on left hover */
+            var sideNav = document.getElementById('sideNav');
+            var heroSection = document.querySelector('.section-hero');
+            if (sideNav && heroSection) {
+                function updateSideNavVisibility() {
+                    var heroRect = heroSection.getBoundingClientRect();
+                    if (heroRect.bottom <= 120) {
+                        sideNav.classList.add('is-scrolled');
+                    } else {
+                        sideNav.classList.remove('is-scrolled');
+                    }
+                }
+                window.addEventListener('scroll', updateSideNavVisibility, { passive: true });
+                updateSideNavVisibility();
+            }
 
             /* Wire side nav buttons to match header functionality */
             var sideTheme = document.getElementById('sideTheme');
