@@ -3024,10 +3024,12 @@
             transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.4s ease, background 0.4s ease;
         }
 
-        /* Scrolled state: Hidden off-screen to the left */
+        /* Scrolled state: Hidden off-screen to the left without leaving white blocks */
         .side-nav.is-scrolled {
-            transform: translateX(-100%);
-            opacity: 0;
+            transform: translateX(-100%) !important;
+            opacity: 0 !important;
+            border-right-color: transparent !important;
+            box-shadow: none !important;
         }
 
         /* Reveal when hovering left edge or side nav itself */
@@ -3035,6 +3037,7 @@
         .side-nav.is-scrolled:hover {
             transform: translateX(0) !important;
             opacity: 1 !important;
+            border-right-color: var(--line) !important;
         }
 
         .side-nav-items {
@@ -5709,13 +5712,12 @@
                 });
             });
 
-            /* Auto-hide side nav when scrolling down past hero, reveal on left hover */
+            /* Auto-hide side nav immediately when scroll starts / transition begins, reveal on left hover */
             var sideNav = document.getElementById('sideNav');
-            var heroSection = document.querySelector('.section-hero');
-            if (sideNav && heroSection) {
+            if (sideNav) {
                 function updateSideNavVisibility() {
-                    var heroRect = heroSection.getBoundingClientRect();
-                    if (heroRect.bottom <= 120) {
+                    var sy = window.scrollY || window.pageYOffset || document.documentElement.scrollTop;
+                    if (sy > 40) {
                         sideNav.classList.add('is-scrolled');
                     } else {
                         sideNav.classList.remove('is-scrolled');
